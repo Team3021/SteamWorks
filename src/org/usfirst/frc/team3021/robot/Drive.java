@@ -21,8 +21,8 @@ public class Drive {
 		RightRear = new CANTalon(23);
 		SpeedBase=new RobotDrive(LeftFront, LeftRear, RightFront, RightRear);
 
-		//SpeedBase.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
-		//SpeedBase.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
+		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
 		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
 		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 		

@@ -17,6 +17,7 @@ public class Stanley extends IterativeRobot {
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
 		SmartDashboard.putData("Auto choices", chooser);
+		robotDrive = new Drive();
 	}
 
 	@Override
