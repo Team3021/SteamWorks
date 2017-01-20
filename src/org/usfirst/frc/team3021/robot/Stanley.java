@@ -10,6 +10,7 @@ public class Stanley extends IterativeRobot {
 	final String customAuto = "My Auto";
 	String autoSelected;
 	SendableChooser<String> chooser = new SendableChooser<>();
+	Drive robotDrive;
 
 	@Override
 	public void robotInit() {
@@ -41,6 +42,7 @@ public class Stanley extends IterativeRobot {
 
 	@Override
 	public void teleopPeriodic() {
+		robotDrive.teleopPeriodic();
 	}
 
 	@Override
