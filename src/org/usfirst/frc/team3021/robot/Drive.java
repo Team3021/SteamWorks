@@ -10,10 +10,10 @@ public class Drive {
 	private CANTalon LeftRear;
 	private CANTalon LeftFront;
 	private RobotDrive SpeedBase;
-	private ThrustMasterController JS;
+	private Xbox360Controller controller;
 
 	public Drive(){
-		JS = new ThrustMasterController(0);
+		controller = new Xbox360Controller(0);
 
 		LeftFront = new CANTalon(25);
 		LeftRear = new CANTalon(24);
@@ -30,6 +30,7 @@ public class Drive {
 	}
 	
 	public void teleopPeriodic(){
-		SpeedBase.arcadeDrive(JS.getMoveValue(), JS.getTurnValue(), true);
+		double reducedTurn = controller.getTurnValue() * 0.8;
+		SpeedBase.arcadeDrive(controller.getMoveValue(), reducedTurn, true);
 	}
 }
