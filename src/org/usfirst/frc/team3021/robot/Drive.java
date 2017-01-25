@@ -10,10 +10,10 @@ public class Drive {
 	private CANTalon LeftRear;
 	private CANTalon LeftFront;
 	private RobotDrive SpeedBase;
-	private Xbox360Controller controller;
+	private ThrustMasterController controller;
 
 	public Drive(){
-		controller = new Xbox360Controller(0);
+		controller = new ThrustMasterController(0);
 
 		LeftFront = new CANTalon(25);
 		LeftRear = new CANTalon(24);

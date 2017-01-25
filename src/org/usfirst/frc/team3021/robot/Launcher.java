@@ -4,15 +4,15 @@ import com.ctre.CANTalon;
 
 public class Launcher {
 	CANTalon launchWheel;
-	Xbox360Controller joystick;
+	ThrustMasterController joystick;
 	
 	public Launcher() {
 		launchWheel = new CANTalon(21);
-		joystick = new Xbox360Controller(0);
+		joystick = new ThrustMasterController(0);
 	}
 	
 	public void teleopPeriodic() {
-		if(joystick.isSpinnerForward()) {
+		if(joystick.isHighGear()) {
 			launchWheel.set(0.55);
 		}
 		else {
