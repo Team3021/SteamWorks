@@ -7,24 +7,43 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Stanley extends IterativeRobot {
 	// Member Attributes
 	final String defaultAuto = "Default";
-	final String customAuto = "My Auto";
+	final String THRUSTMASTER = "ThrustMaster";
+	final String XBOX360 = "Xbox360";
+	
 	String autoSelected;
-	SendableChooser<String> chooser = new SendableChooser<>();
+	String selectedController;
+	
+	SendableChooser<String> autonomousChooser = new SendableChooser<>();
+	SendableChooser<String> controllerChooser = new SendableChooser<>();
 	Drive robotDrive;
 	Launcher launcher;
+	Controller controller;
 
 	@Override
 	public void robotInit() {
-		chooser.addDefault("Default Auto", defaultAuto);
-		chooser.addObject("My Auto", customAuto);
-		SmartDashboard.putData("Auto choices", chooser);
-		robotDrive = new Drive();
-		launcher = new Launcher();
+		
+		autonomousChooser.addDefault("Default Auto", defaultAuto);
+		SmartDashboard.putData("Auto choices", autonomousChooser);
+		
+		controllerChooser.addDefault("ThrustMaster Joystick", THRUSTMASTER );
+		controllerChooser.addObject("Xbox 360 Controller", XBOX360);
+		
+		selectedController = controllerChooser.getSelected();
+		
+		if(selectedController == THRUSTMASTER){
+			controller = new ThrustMasterController(0);
+		}
+		else if (selectedController == XBOX360) {
+			controller = new Xbox360Controller(0);
+		}
+		
+		robotDrive = new Drive(controller);
+		launcher = new Launcher(controller);
 	}
 
 	@Override
 	public void autonomousInit() {
-		autoSelected = chooser.getSelected();
+		autoSelected = autonomousChooser.getSelected();
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
 		System.out.println("Auto selected: " + autoSelected);
@@ -33,9 +52,6 @@ public class Stanley extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		switch (autoSelected) {
-		case customAuto:
-			// Put custom auto code here
-			break;
 		case defaultAuto:
 		default:
 			// Put default auto code here

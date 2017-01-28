@@ -10,11 +10,10 @@ public class Drive {
 	private CANTalon LeftRear;
 	private CANTalon LeftFront;
 	private RobotDrive SpeedBase;
-	private ThrustMasterController controller;
+	private Controller controller;
 
-	public Drive(){
-		controller = new ThrustMasterController(0);
-
+	public Drive(Controller controller){
+		this.controller = controller;
 		LeftFront = new CANTalon(25);
 		LeftRear = new CANTalon(24);
 		RightFront = new CANTalon(22);
