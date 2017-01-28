@@ -2,7 +2,7 @@ package org.usfirst.frc.team3021.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-public class Xbox360Controller {
+public class Xbox360Controller implements Controller {
 	// Controller Buttons
 	private static final int A_BUTTON = 1;
 	private static final int B_BBUTTON = 2;
@@ -30,77 +30,28 @@ public class Xbox360Controller {
 		controller = new Joystick(port);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.usfirst.frc.team3021.robot.Controller#getMoveValue()
+	 */
+	@Override
 	public double getMoveValue(){
 		return controller.getRawAxis(LEFT_STICK_Y);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.usfirst.frc.team3021.robot.Controller#getTurnValue()
+	 */
+	@Override
 	public double getTurnValue(){
 		return controller.getRawAxis(LEFT_STICK_X);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.usfirst.frc.team3021.robot.Controller#isSpinnerForward()
+	 */
+	@Override
 	public boolean isSpinnerForward(){
 		return controller.getRawButton(A_BUTTON);
 	}
 	
-	// The methods below are not currently used by Stanley as they do not correspond to a component on the robot.
-	
-//	public boolean isHighGear(){
-//		return controller.getRawButton();
-//	}
-//
-//
-//
-//	public boolean isSpinnerBackward(){
-//		return controller.getRawButton();
-//	}
-//
-//	public boolean isFiring(){
-//		return controller.getRawButton();
-//	}
-//
-//	public boolean isAutomaticAiming(){
-//		return !controller.getRawButton();
-//	}
-//
-//	public boolean isFlashlightOn(){
-//		return controller.getRawButton();
-//		
-//	}
-//	
-//	public boolean isFeederIn(){
-//		return controller.getRawButton();
-//	}
-//	
-//	public boolean isFeederOut(){
-//		return controller.getRawButton();
-//	}
-//	
-//	public boolean isShortShot(){
-//		return controller.getRawButton();
-//	}
-//
-//	public boolean isFastShot(){
-//		return controller.getRawButton();
-//	}
-//	
-//	public boolean isLauncherEnabled(){
-//		return !controller.getRawButton();
-//	}
-//
-//	
-//	public boolean isLauncherMovingUp(){
-//		if (controller.get(1) > 0) {
-//			return true;
-//		}
-//		
-//		return false;
-//	}
-//
-//	public boolean isLauncherMovingDown(){
-//		if (controller.getRawAxis(1) < 0) {
-//			return true;
-//		}
-//		
-//		return false;
-//	}
 }

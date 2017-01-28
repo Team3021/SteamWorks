@@ -11,15 +11,14 @@ public class Drive {
 	private CANTalon LeftRear;
 	private CANTalon LeftFront;
 	private RobotDrive SpeedBase;
-	private ThrustMasterController controller;
+	private Controller controller;
 
 	public Drive(){
-		controller = new ThrustMasterController(0);
-
 		LeftFront = new CANTalon(25);
 		LeftRear = new CANTalon(24);
 		RightFront = new CANTalon(22);
 		RightRear = new CANTalon(23);
+		
 		SpeedBase=new RobotDrive(LeftFront, LeftRear, RightFront, RightRear);
 
 		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
@@ -41,6 +40,10 @@ public class Drive {
 		else {
 			return 0;
 		}
+	}
+	
+	public void setController(Controller controller) {
+		this.controller = controller;
 	}
 	
 	public void teleopPeriodic(){

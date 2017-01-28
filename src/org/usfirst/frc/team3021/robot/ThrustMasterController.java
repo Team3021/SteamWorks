@@ -2,7 +2,7 @@ package org.usfirst.frc.team3021.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-public class ThrustMasterController {
+public class ThrustMasterController implements Controller {
 	private static final int TRIGGER = 1; // The middle trigger on the back of the stick
 	private static final int RBUTTON = 4; // The right button on the front of the stick
 	private static final int SHOULDER = 3; // The right shoulder button on the back of the stick
@@ -23,20 +23,9 @@ public class ThrustMasterController {
 		return JS.getX();
 	}
 	
-	public boolean isHighGear(){
+	public boolean isSpinnerForward(){
 		return JS.getRawButton(TRIGGER);
 	}
 	
-	public boolean isSpinnerForward(){
-		return JS.getRawButton(RBUTTON);
-	}
-	
-	public boolean isSpinnerBackward(){
-		return JS.getRawButton(MIDDLEBUTTON);
-	}
-	
-	public boolean isFiring(){
-		return JS.getRawButton(SHOULDER);
-	}
 }
 
