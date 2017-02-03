@@ -8,4 +8,5 @@ public interface Controller {
 
 	boolean isSpinnerForward();
 
+	boolean isSwitchingCamera();
 }

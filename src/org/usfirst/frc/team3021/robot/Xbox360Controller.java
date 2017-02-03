@@ -54,4 +54,9 @@ public class Xbox360Controller implements Controller {
 		return controller.getRawButton(A_BUTTON);
 	}
 	
+	public boolean isSwitchingCamera(){
+		return controller.getRawButton(X_BUTTON);
+	}
+	
+	
 }

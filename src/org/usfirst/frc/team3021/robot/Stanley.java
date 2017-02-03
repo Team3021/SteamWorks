@@ -18,11 +18,13 @@ public class Stanley extends IterativeRobot {
 	Drive robotDrive;
 	Launcher launcher;
 	Controller controller;
+	Vision camera;
 
 	@Override
 	public void robotInit() {
 		robotDrive = new Drive();
 		launcher = new Launcher();
+		camera = new Vision();
 		
 		autonomousChooser.addDefault("Default Auto", defaultAuto);
 		SmartDashboard.putData("Auto choices", autonomousChooser);
@@ -69,6 +71,7 @@ public class Stanley extends IterativeRobot {
 
 		robotDrive.setController(controller);
 		launcher.setController(controller);
+		camera.setController(controller);
 		
 	}
 	
@@ -76,6 +79,7 @@ public class Stanley extends IterativeRobot {
 	public void teleopPeriodic() {
 		robotDrive.teleopPeriodic();
 		launcher.teleopPeriodic();
+		camera.teleopPeriodic();
 	}
 
 	@Override

@@ -15,17 +15,24 @@ public class ThrustMasterController implements Controller {
 		JS = new Joystick(port);
 	}
 	
+	@Override
 	public double getMoveValue(){
 		return JS.getY();
 	}
 	
+	@Override
 	public double getTurnValue(){
 		return JS.getX();
 	}
 	
+	@Override
 	public boolean isSpinnerForward(){
 		return JS.getRawButton(TRIGGER);
 	}
 	
+	@Override
+	public boolean isSwitchingCamera(){
+		return JS.getRawButton(MIDDLEBUTTON);
+	}
 }
 
