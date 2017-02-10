@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class ThrustMasterController implements Controller {
 	private static final int TRIGGER = 1; // The middle trigger on the back of the stick
-	private static final int RBUTTON = 4; // The right button on the front of the stick
+	private static final int FRONT_RIGHT_BUTTON = 4; // The right button on the front of the stick
 	private static final int SHOULDER = 3; // The right shoulder button on the back of the stick
-	private static final int MIDDLEBUTTON = 2; // The striped middle button on the front of the stick
+	private static final int FRONT_MIDDLE_BUTTON = 2; // The striped middle button on the front of the stick
 	
 	// Member Attributes
 	Joystick JS;
@@ -27,12 +27,17 @@ public class ThrustMasterController implements Controller {
 	
 	@Override
 	public boolean isSpinnerForward(){
-		return JS.getRawButton(TRIGGER);
+		return JS.getRawButton(SHOULDER);
 	}
 	
 	@Override
 	public boolean isSwitchingCamera(){
-		return JS.getRawButton(MIDDLEBUTTON);
+		return JS.getRawButton(FRONT_RIGHT_BUTTON);
+	}
+
+	@Override
+	public boolean isFeederForward() {
+		return JS.getRawButton(FRONT_MIDDLE_BUTTON);
 	}
 }
 

@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 public class Xbox360Controller implements Controller {
 	// Controller Buttons
 	private static final int A_BUTTON = 1;
-	private static final int B_BBUTTON = 2;
+	private static final int B_BUTTON = 2;
 	private static final int X_BUTTON = 3;
 	private static final int Y_BUTTON = 4;
 	private static final int LEFT_SHOULDER = 5;
@@ -51,12 +51,17 @@ public class Xbox360Controller implements Controller {
 	 */
 	@Override
 	public boolean isSpinnerForward(){
-		return controller.getRawButton(A_BUTTON);
-	}
-	
-	public boolean isSwitchingCamera(){
 		return controller.getRawButton(X_BUTTON);
 	}
 	
+	@Override
+	public boolean isSwitchingCamera(){
+		return controller.getRawButton(BACK_BUTTON);
+	}
+	
+	@Override
+	public boolean isFeederForward() {
+		return controller.getRawButton(B_BUTTON);
+	}
 	
 }
