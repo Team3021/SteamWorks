@@ -30,25 +30,16 @@ public class Xbox360Controller implements Controller {
 		controller = new Joystick(port);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.usfirst.frc.team3021.robot.Controller#getMoveValue()
-	 */
 	@Override
 	public double getMoveValue(){
 		return controller.getRawAxis(LEFT_STICK_Y);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.usfirst.frc.team3021.robot.Controller#getTurnValue()
-	 */
 	@Override
 	public double getTurnValue(){
 		return controller.getRawAxis(LEFT_STICK_X);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.usfirst.frc.team3021.robot.Controller#isSpinnerForward()
-	 */
 	@Override
 	public boolean isSpinnerForward(){
 		return controller.getRawButton(X_BUTTON);
