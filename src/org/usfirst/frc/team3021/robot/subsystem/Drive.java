@@ -1,29 +1,30 @@
-package org.usfirst.frc.team3021.robot;
+package org.usfirst.frc.team3021.robot.subsystem;
+
+import org.usfirst.frc.team3021.robot.SubSystem;
 
 import com.ctre.CANTalon;
-import java.lang.Math; // Used for a custom exponential function for the moveValue. 
+
 import edu.wpi.first.wpilibj.RobotDrive;
 
-public class Drive {
+public class Drive extends SubSystem {
 	// Member Attributes
 	private CANTalon RightRear;
 	private CANTalon RightFront;
 	private CANTalon LeftRear;
 	private CANTalon LeftFront;
+	
 	private RobotDrive SpeedBase;
-	private Controller controller;
-
-	public Drive(){
+	
+	public Drive() {
 		LeftFront = new CANTalon(25);
 		LeftRear = new CANTalon(24);
 		RightFront = new CANTalon(22);
 		RightRear = new CANTalon(23);
 		
-		SpeedBase=new RobotDrive(LeftFront, LeftRear, RightFront, RightRear);
-
+		SpeedBase = new RobotDrive(LeftFront, LeftRear, RightFront, RightRear);
 	}
 	
-	public int getDirection(double n){
+	public int getDirection(double n) {
 		// Returns either 1, -1, or 0 depending on whether the argument is 
 		// positive, negative, or neutral respectively.
 		// Returns 0 when given -0 as an argument.
@@ -38,11 +39,7 @@ public class Drive {
 		}
 	}
 	
-	public void setController(Controller controller) {
-		this.controller = controller;
-	}
-	
-	public void teleopPeriodic(){
+	public void teleopPeriodic() {
 		// Determines whether the output of expSpeed should be positive or negative.
 		int verticalDirection = getDirection(controller.getMoveValue());
 		int horizontalDirection = getDirection(controller.getTurnValue());

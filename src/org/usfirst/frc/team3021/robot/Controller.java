@@ -6,9 +6,9 @@ public interface Controller {
 
 	double getTurnValue();
 
-	boolean isSpinnerForward();
+	boolean isLaunching();
 
 	boolean isSwitchingCamera();
 	
-	boolean isFeederForward();
+	boolean isCollecting();
 }

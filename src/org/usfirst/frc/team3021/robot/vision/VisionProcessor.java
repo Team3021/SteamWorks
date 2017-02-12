@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3021.robot;
+package org.usfirst.frc.team3021.robot.vision;
 
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -23,13 +23,11 @@ public class VisionProcessor extends Thread {
 	}
 	
 	@Override
-	public void run(){
+	public void run() {
 		// Get a CvSink. This will capture Mats from the camera
 		
 		// Setup a CvSource. This will send images back to the Dashboard
 		CvSource outputStream = CameraServer.getInstance().putVideo("Targeting (WIP)", 640, 480);
-
-		
 
 		/* This cannot be 'true'. The program will never exit if it is. This
 		 * lets the robot stop this thread when restarting robot code or
