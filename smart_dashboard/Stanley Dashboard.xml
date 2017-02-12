@@ -1,0 +1,54 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Voltage usage by Launch Wheel" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="606" y="40"/>
+		<width>450</width>
+		<height>273</height>
+	</widget>
+	<widget field="Indexer Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="336" y="112"/>
+	</widget>
+	<widget field="Ball Collector Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="336" y="74"/>
+	</widget>
+	<widget field="Launcher Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="336" y="42"/>
+	</widget>
+	<widget field="Xbox 360 Port" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="186" y="180"/>
+		<width>106</width>
+	</widget>
+	<widget field="ThrustMaster Port" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="187" y="154"/>
+		<width>130</width>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="17" y="128"/>
+		<property name="Text" value="Select Controller"/>
+	</static-widget>
+	<widget field="Select Controller" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="0" y="144"/>
+	</widget>
+	<widget field="Auto Selector" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="15" y="42"/>
+		<width>225</width>
+	</widget>
+	<widget field="Auto choices" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="0" y="0"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="-8" y="82"/>
+		<width>152</width>
+		<height>30</height>
+		<property name="Text" value="Connection Status"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="186" y="80"/>
+		<width>38</width>
+		<height>38</height>
+		<property name="Graphics" value="Rounded"/>
+	</static-widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>
