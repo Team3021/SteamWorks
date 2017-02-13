@@ -7,7 +7,7 @@ import org.opencv.imgproc.Imgproc;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.CameraServer;
 
 public class VisionProcessor extends Thread {
@@ -15,7 +15,7 @@ public class VisionProcessor extends Thread {
 	private CvSink cvSink;
 	private Mat mat;
 
-	public VisionProcessor(UsbCamera initialCam) {
+	public VisionProcessor(VideoSource initialCam) {
 		cvSink = new CvSink("Processor Sink");
 		cvSink.setSource(initialCam);
 		// Mats are very memory expensive. Let's reuse this Mat.
@@ -60,7 +60,7 @@ public class VisionProcessor extends Thread {
 	
 	}
 
-	public void setCamera(UsbCamera cam) {
-		cvSink.setSource(cam);	
+	public void setVideoSource(VideoSource source) {
+		cvSink.setSource(source);	
 	}
 }

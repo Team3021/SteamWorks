@@ -1,12 +1,11 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
-
-import org.usfirst.frc.team3021.robot.Controller;
 import org.usfirst.frc.team3021.robot.SubSystem;
 import org.usfirst.frc.team3021.robot.vision.VisionProcessor;
 
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.CameraServer;
 
 public class Vision extends SubSystem {
@@ -24,7 +23,9 @@ public class Vision extends SubSystem {
 	private CameraServer server;
 	
 	private MjpegServer sink;
+	
 	private boolean btn_down;
+	
 	private VisionProcessor visionProcessor;
 	
 	public Vision() {
@@ -50,7 +51,7 @@ public class Vision extends SubSystem {
 			server.addCamera(cam1);
 		}
 		
-		UsbCamera currentCam = null;
+		VideoSource currentCam = null;
 		curCamNum = USB_CAMERA_UNKOWN;
 
 		if (curCamNum == USB_CAMERA_UNKOWN && cam0.isConnected()) {
@@ -75,19 +76,30 @@ public class Vision extends SubSystem {
 		if (controller.isSwitchingCamera() && !btn_down) {
 			btn_down = true;
 			
-			System.out.println("Switch cam");
+			VideoSource currentCam = null;
 			
 			if (curCamNum == 1 && cam0.isConnected()) {
+				System.out.println("Switch cam");
 				curCamNum = 0;
-				
-				sink.setSource(cam0);
-				visionProcessor.setCamera(cam0);
+				currentCam = cam0;
 			} 
 			else if (curCamNum == 0 && cam1.isConnected()) {
+				System.out.println("Switch cam");
 				curCamNum = 1;
-
-				sink.setSource(cam1);
-				visionProcessor.setCamera(cam1);
+				currentCam = cam1;
+			}
+			else if (curCamNum == 0 && cam0.isConnected()) {
+				curCamNum = 0;
+				currentCam = cam0;
+			} 
+			else if (curCamNum == 1 && cam1.isConnected()) {
+				curCamNum = 1;
+				currentCam = cam1;
+			}
+			
+			if (currentCam != null) {
+				sink.setSource(currentCam);
+				visionProcessor.setVideoSource(currentCam);
 			}
 		} 
 		else if (!controller.isSwitchingCamera()) {
