@@ -27,19 +27,27 @@ public class Drive {
 		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 	}
 	
-	public int getDirection(double n){
+	
+	public int getDirection(double n) {
+		int result = 0;
+		
 		// Returns either 1, -1, or 0 depending on whether the argument is 
 		// positive, negative, or neutral respectively.
 		// Returns 0 when given -0 as an argument.
 		if (n > 0) {
-			return 1;
+			result = 1;
 		}
 		else if (n < -0) {
-			return -1;
+			result = -1;
 		}
 		else {
-			return 0;
+			result = 0;
 		}
+		
+		// Reverse the result to make the robot drive in the opposite direction
+		result = result * -1;
+		
+		return result;
 	}
 	
 	public void setController(Controller controller) {
