@@ -10,9 +10,13 @@ import edu.wpi.first.wpilibj.CameraServer;
 
 public class VisionProcessor extends RunnableDevice {
 	
-	private boolean drawSiteScope = false;
+	private boolean drawTargetScope = false;
+	private boolean drawTargetLocation = false;
 
-	private CvSink input; // This is the the sink that will receive images from the camera source
+	private TargetScope targetScope;
+	private TargetLocation targetLocation;
+
+	private CvSink input; // Video sink that will receive images from the camera source
 
 	private CvSource output;
 	
@@ -39,7 +43,7 @@ public class VisionProcessor extends RunnableDevice {
 	}
 	
 	public void setDrawSiteScope(boolean drawSiteScope) {
-		this.drawSiteScope = drawSiteScope;
+		this.drawTargetScope = drawSiteScope;
 	}
 
 	@Override
@@ -57,9 +61,14 @@ public class VisionProcessor extends RunnableDevice {
 			return;
 		}
 
+		// Draw a target location on the image
+		if (drawTargetLocation) {
+			targetLocation.draw(mat);
+		}
+
 		// Draw a target scope on the image
-		if (drawSiteScope) {
-			TargetScope.draw(mat);
+		if (drawTargetScope) {
+			targetScope.draw(mat);
 		}
 
 		// Give the frame to the output

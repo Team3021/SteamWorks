@@ -81,6 +81,10 @@ public class Vision extends SubSystem {
 	}
 
 	public void teleopPeriodic() {		
+		toggleCamera();
+	}
+
+	private void toggleCamera() {
 		if (controller.isSwitchingCamera() && !btn_down) {
 			btn_down = true;
 			

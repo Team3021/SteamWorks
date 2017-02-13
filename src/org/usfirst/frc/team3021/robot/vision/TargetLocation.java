@@ -21,14 +21,14 @@ public class TargetLocation
 	
 	private Mat contouredImage = new Mat();
 
-	private double hueStart;
-	private double hueStop;
+	private double hueStart = 20;
+	private double hueStop = 50;
 
-	private double saturationStart;
-	private double saturationStop;
+	private double saturationStart = 60;
+	private double saturationStop = 200;
 
-	private double valueStart;
-	private double valueStop;
+	private double valueStart = 50;
+	private double valueStop = 255;
 	
 	private String valuesToPrint;
 
