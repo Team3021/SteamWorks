@@ -49,7 +49,7 @@ public class Stanley extends IterativeRobot {
 		int joyStickPort = configuration.getSelectedJoyStickPort();
 
 		if (selectedController.equals(Configuration.THRUSTMASTER)) {
-			controller = new ArcadeController(joyStickPort);
+			controller = new ThrustmasterController(joyStickPort);
 		}
 		else if (selectedController.equals(Configuration.XBOX360)) {
 			controller = new Xbox360Controller(joyStickPort);

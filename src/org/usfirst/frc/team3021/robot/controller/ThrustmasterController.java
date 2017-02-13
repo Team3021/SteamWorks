@@ -4,7 +4,7 @@ import org.usfirst.frc.team3021.robot.Controller;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-public class ArcadeController implements Controller {
+public class ThrustmasterController implements Controller {
 	private static final int TRIGGER = 1; // The middle trigger on the back of the stick
 	private static final int FRONT_RIGHT_BUTTON = 4; // The right button on the front of the stick
 	private static final int SHOULDER = 3; // The right shoulder button on the back of the stick
@@ -13,7 +13,7 @@ public class ArcadeController implements Controller {
 	// Member Attributes
 	Joystick JS;
 	
-	public ArcadeController(int port){
+	public ThrustmasterController(int port){
 		JS = new Joystick(port);
 	}
 	
