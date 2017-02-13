@@ -39,7 +39,7 @@ public abstract class RunnableDevice implements Runnable {
 	public void run() {
 		isFirstPeriodic = true;
 				
-		while (running) {
+		while (running && !Thread.interrupted()) {
 			if (shouldStop()) {
 				break;
 			}
@@ -77,7 +77,7 @@ public abstract class RunnableDevice implements Runnable {
 				try {
 					pauseLock.wait();
 				} catch (InterruptedException ex) {
-					return false;
+					return true;
 				}
 				
 				if (!running) {
