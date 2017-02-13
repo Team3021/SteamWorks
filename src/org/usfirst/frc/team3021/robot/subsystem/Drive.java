@@ -20,6 +20,11 @@ public class Drive extends SubSystem {
 		LeftRear = new CANTalon(24);
 		RightFront = new CANTalon(22);
 		RightRear = new CANTalon(23);
+
+		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
+		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 		
 		SpeedBase = new RobotDrive(LeftFront, LeftRear, RightFront, RightRear);
 	}
