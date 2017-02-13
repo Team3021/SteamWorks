@@ -5,6 +5,7 @@ import org.usfirst.frc.team3021.robot.SubSystem;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Collector extends SubSystem {
@@ -14,8 +15,6 @@ public class Collector extends SubSystem {
 	
 	private CANTalon talon;
 	
-	private double voltage;
-	
 	public Collector() {		
 		talon = new CANTalon(26);
 		
@@ -24,19 +23,39 @@ public class Collector extends SubSystem {
 	
 	@Override
 	public void teleopPeriodic() {
-		voltage = SmartDashboard.getNumber(VOLTAGE, DEFAULT_VOLTAGE);
-		
-		// reverse the polarity
-		voltage = voltage * -1;
-		
 		// Control the motor
 		if (controller.isCollecting()) {
-			talon.set(voltage);
+			talon.set(getVoltage());
 		}
 		else {
 			talon.set(0);
 		}
 
+		displayActualVoltage();
+	}
+
+	@Override
+	public void testPeriodic() {
+		// turn on the motor
+		talon.set(getVoltage());
+		
+		// run the motor for a time
+		Timer.delay(30);
+		
+		// turn off the motor
+		talon.set(0);
+	}
+	
+	private double getVoltage() {
+		double voltage = SmartDashboard.getNumber(VOLTAGE, DEFAULT_VOLTAGE);
+		
+		// reverse the polarity
+		voltage = voltage * -1;
+		
+		return voltage;
+	}
+
+	private void displayActualVoltage() {
 		double actualVoltage = talon.getBusVoltage() - DriverStation.getInstance().getBatteryVoltage();
 		SmartDashboard.putNumber(Collector.class.getSimpleName() + " : Voltage Reading", actualVoltage);
 	}

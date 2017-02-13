@@ -8,6 +8,16 @@ public abstract class SubSystem {
 		this.controller = controller;
 	}
 
-	public abstract void teleopPeriodic();
+	public void autonomousPeriodic() {
+		
+	}
+
+	public void teleopPeriodic() {
+		
+	}
+
+	public void testPeriodic() {
+		
+	}
 
 }

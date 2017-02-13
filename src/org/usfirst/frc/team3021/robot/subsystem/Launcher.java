@@ -7,6 +7,7 @@ import org.usfirst.frc.team3021.robot.device.Indexer;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Launcher extends SubSystem {
@@ -28,11 +29,10 @@ public class Launcher extends SubSystem {
 	}
 	
 	public void teleopPeriodic() {
-		double voltage = SmartDashboard.getNumber(VOLTAGE, DEFAULT_VOLTAGE);
 		
 		// Control for the launch wheel.
 		if (controller.isLaunching()) {
-			launchWheel.set(voltage);
+			launchWheel.set(getVoltage());
 			agitator.play();
 			indexer.play();
 		}
@@ -42,7 +42,37 @@ public class Launcher extends SubSystem {
 			launchWheel.set(0);
 		}
 
+		displayActualVoltage();
+	}
+
+	@Override
+	public void testPeriodic() {
+		// test the indexer
+		indexer.play();
+		Timer.delay(30);
+		indexer.pause();
+
+		// test the launchWheel
+		launchWheel.set(getVoltage());
+		Timer.delay(30);
+		launchWheel.set(0);
+		
+		// test the agitator
+		agitator.play();
+		Timer.delay(30);
+		agitator.pause();
+		
+	}
+	
+	private double getVoltage() {
+		double voltage = SmartDashboard.getNumber(VOLTAGE, DEFAULT_VOLTAGE);
+		
+		return voltage;
+	}
+
+	private void displayActualVoltage() {
 		double actualVoltage = launchWheel.getBusVoltage() - DriverStation.getInstance().getBatteryVoltage();
 		SmartDashboard.putNumber(Launcher.class.getSimpleName() + " : Voltage Reading", actualVoltage);
 	}
+
 }

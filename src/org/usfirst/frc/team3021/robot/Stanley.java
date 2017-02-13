@@ -77,7 +77,10 @@ public class Stanley extends IterativeRobot {
 
 	@Override
 	public void testPeriodic() {
-		// TODO
+		launcher.teleopPeriodic();
+		collector.teleopPeriodic();
+		robotDrive.teleopPeriodic();
+		vision.teleopPeriodic();
 	}
 }
 
