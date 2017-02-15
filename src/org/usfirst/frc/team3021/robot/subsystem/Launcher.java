@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Launcher extends SubSystem {
 	
-	private static final String VOLTAGE = Launcher.class.getSimpleName() + " : Voltage";
+	private static final String VOLTAGE = "Launcher : Voltage";
 	private static final double DEFAULT_VOLTAGE = 0.55;
 	
 	private CANTalon launchWheel;
@@ -72,7 +72,7 @@ public class Launcher extends SubSystem {
 
 	private void displayActualVoltage() {
 		double actualVoltage = launchWheel.getBusVoltage() - DriverStation.getInstance().getBatteryVoltage();
-		SmartDashboard.putNumber(Launcher.class.getSimpleName() + " : Voltage Reading", actualVoltage);
+		SmartDashboard.putNumber("Launcher : Voltage Reading", actualVoltage);
 	}
 
 }

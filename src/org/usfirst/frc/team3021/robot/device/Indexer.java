@@ -6,16 +6,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Indexer extends RunnableDevice {
 	
-	private static final String TIME_BEFORE_FIRST_PERIODIC = Indexer.class.getSimpleName() + " : Time Before First Periodic";
+	private static final String TIME_BEFORE_FIRST_PERIODIC = "Indexer : Time Before First Periodic";
 	private static final double DEFAULT_TIME_BEFORE_FIRST_PERIODIC = 1000;
 	
-	private static final String TIME_BETWEEN_PERIODIC = Indexer.class.getSimpleName() + " : Time Between Periodic";
+	private static final String TIME_BETWEEN_PERIODIC = "Indexer : Time Between Periodic";
 	private static final double DEFAULT_TIME_BETWEEN_PERIODIC = 1800;
 	
-	private static final String TIME_FOR_MOTOR = Indexer.class.getSimpleName() + " : Time for Motor";
-	private static final double DEFAULT_TIME_FOR_MOTOR = 10;
+	private static final String TIME_FOR_MOTOR = "Indexer : Time for Motor";
+	private static final double DEFAULT_TIME_FOR_MOTOR = 2;
 	
-	private static final String VOLTAGE = Indexer.class.getSimpleName() + " : Voltage";
+	private static final String VOLTAGE = "Indexer : Voltage";
 	private static final double DEFAULT_VOLTAGE = 0.2;
 	
 	private CANTalon talon;

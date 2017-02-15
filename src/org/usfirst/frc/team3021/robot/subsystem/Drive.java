@@ -13,20 +13,20 @@ public class Drive extends SubSystem {
 	private CANTalon LeftRear;
 	private CANTalon LeftFront;
 	
-	private RobotDrive SpeedBase;
+	private RobotDrive robotDrive;
 	
 	public Drive() {
 		LeftFront = new CANTalon(25);
 		LeftRear = new CANTalon(24);
 		RightFront = new CANTalon(22);
 		RightRear = new CANTalon(23);
-
-		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
-		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 		
-		SpeedBase = new RobotDrive(LeftFront, LeftRear, RightFront, RightRear);
+		robotDrive = new RobotDrive(LeftFront, LeftRear, RightFront, RightRear);
+
+		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
+		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+		robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+		robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 	}
 	
 	public int getDirection(double n) {
@@ -63,6 +63,6 @@ public class Drive extends SubSystem {
 		double expSpeed = verticalDirection * (0.2 * Math.pow(6.0, Math.abs(controller.getMoveValue())) - 0.2);
 		double expTurn = horizontalDirection * (0.25 * Math.pow(5.0, Math.abs(controller.getTurnValue())) - 0.25);
 		
-		SpeedBase.arcadeDrive(expSpeed, expTurn, false);
+		robotDrive.arcadeDrive(expSpeed, expTurn, false);
 	}
 }

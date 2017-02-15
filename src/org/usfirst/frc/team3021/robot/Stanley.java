@@ -27,12 +27,12 @@ public class Stanley extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		System.out.println("Auto selected: " + configuration.getSelectedAutonomousMode());
+		System.out.println("Auto selected: " + configuration.getAutonomousMode());
 	}
 
 	@Override
 	public void autonomousPeriodic() {
-		String autoSelected = configuration.getSelectedAutonomousMode();
+		String autoSelected = configuration.getAutonomousMode();
 		
 		switch (autoSelected) {
 			case Configuration.AUTONOMOUS_DEFALUT:
@@ -45,14 +45,14 @@ public class Stanley extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 
-		String selectedController = configuration.getSelectedJoystickMode();
-		int joyStickPort = configuration.getSelectedJoyStickPort();
+		String selectedController = configuration.getJoystickMode();
+		int joystickPort = configuration.getJoystickPort();
 
-		if (selectedController.equals(Configuration.THRUSTMASTER)) {
-			controller = new ThrustmasterController(joyStickPort);
+		if (selectedController == Configuration.THRUSTMASTER) {
+			controller = new ThrustmasterController(joystickPort);
 		}
-		else if (selectedController.equals(Configuration.XBOX360)) {
-			controller = new Xbox360Controller(joyStickPort);
+		else if (selectedController == Configuration.XBOX360) {
+			controller = new Xbox360Controller(joystickPort);
 		}
 
 		robotDrive.setController(controller);
@@ -77,10 +77,10 @@ public class Stanley extends IterativeRobot {
 
 	@Override
 	public void testPeriodic() {
-		launcher.teleopPeriodic();
-		collector.teleopPeriodic();
-		robotDrive.teleopPeriodic();
-		vision.teleopPeriodic();
+		launcher.testPeriodic();
+		collector.testPeriodic();
+		robotDrive.testPeriodic();
+		vision.testPeriodic();
 	}
 }
 

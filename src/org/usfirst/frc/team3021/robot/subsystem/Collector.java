@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Collector extends SubSystem {
 	
-	private static final String VOLTAGE = Collector.class.getSimpleName() + " : Voltage";
+	private static final String VOLTAGE = "Collector : Voltage";
 	private static final double DEFAULT_VOLTAGE = 0.55;
 	
 	private CANTalon talon;
@@ -57,6 +57,6 @@ public class Collector extends SubSystem {
 
 	private void displayActualVoltage() {
 		double actualVoltage = talon.getBusVoltage() - DriverStation.getInstance().getBatteryVoltage();
-		SmartDashboard.putNumber(Collector.class.getSimpleName() + " : Voltage Reading", actualVoltage);
+		SmartDashboard.putNumber("Collector : Voltage Reading", actualVoltage);
 	}
 }
