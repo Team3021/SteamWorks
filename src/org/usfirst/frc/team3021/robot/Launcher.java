@@ -72,7 +72,7 @@ public class Launcher {
 				// When a shot is not already being fired, the time to fire has been reached, and the first shot has not been fired.
 				// A different delay is used for the first shot so that the motor has enough time to reach optimal speed.
 				indexer.set(indexerVoltage);
-				Timer.delay(10);
+				Timer.delay(0.010);
 				indexer.set(0);
 				isFiring = true;
 				firstShotFired = true;
@@ -81,7 +81,7 @@ public class Launcher {
 			else if (firstShotFired == true && sinceLastShotCount >= ticksBetweenShots && isFiring == false) {
 				// If a shot is not already being fired, the time to fire has been reached, and the first shot has been fired.
 				indexer.set(indexerVoltage);
-				Timer.delay(10);
+				Timer.delay(0.010);
 				indexer.set(0);
 				isFiring = true;
 				sinceLastShotCount = 0;
