@@ -10,13 +10,13 @@ public class Indexer extends RunnableDevice {
 	private static final double DEFAULT_TIME_BEFORE_FIRST_PERIODIC = 1000;
 	
 	private static final String TIME_BETWEEN_PERIODIC = "Indexer : Time Between Periodic";
-	private static final double DEFAULT_TIME_BETWEEN_PERIODIC = 1800;
+	private static final double DEFAULT_TIME_BETWEEN_PERIODIC = 100;
 	
 	private static final String TIME_FOR_MOTOR = "Indexer : Time for Motor";
-	private static final double DEFAULT_TIME_FOR_MOTOR = 2;
+	private static final double DEFAULT_TIME_FOR_MOTOR = 30;
 	
 	private static final String VOLTAGE = "Indexer : Voltage";
-	private static final double DEFAULT_VOLTAGE = 0.2;
+	private static final double DEFAULT_VOLTAGE = 0.3;
 	
 	private CANTalon talon;
 	
