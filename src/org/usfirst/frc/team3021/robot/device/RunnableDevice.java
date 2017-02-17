@@ -25,6 +25,8 @@ public abstract class RunnableDevice implements Runnable {
 	}
 	
 	public void play() {
+		isFirstPeriodic = true;
+		
 		synchronized (pauseLock) {
 			paused = false;
 			pauseLock.notifyAll(); // Unblocks thread
