@@ -11,4 +11,14 @@ public interface Controller {
 	boolean isSwitchingCamera();
 	
 	boolean isCollecting();
+
+	boolean isResettingNavx();
+
+	boolean isRotateToZero();
+
+	boolean isRotatingToNinety();
+	
+	boolean isRotatingToNegativeNinety();
+	
+	boolean isRotatingToOneHundredEighty();
 }

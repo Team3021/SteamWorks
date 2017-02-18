@@ -6,9 +6,9 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class ThrustmasterController implements Controller {
 	private static final int TRIGGER = 1; // The middle trigger on the back of the stick
-	private static final int FRONT_RIGHT_BUTTON = 4; // The right button on the front of the stick
 	private static final int SHOULDER = 3; // The right shoulder button on the back of the stick
 	private static final int FRONT_MIDDLE_BUTTON = 2; // The striped middle button on the front of the stick
+	private static final int FRONT_RIGHT_BUTTON = 4; // The right button on the front of the stick
 	
 	// Member Attributes
 	Joystick JS;
@@ -40,6 +40,36 @@ public class ThrustmasterController implements Controller {
 	@Override
 	public boolean isCollecting() {
 		return JS.getRawButton(FRONT_MIDDLE_BUTTON);
+	}
+
+	@Override
+	public boolean isResettingNavx() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isRotateToZero() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isRotatingToNinety() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isRotatingToNegativeNinety() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isRotatingToOneHundredEighty() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
 
