@@ -1,4 +1,6 @@
-package org.usfirst.frc.team3021.robot;
+package org.usfirst.frc.team3021.robot.controller;
+
+import org.usfirst.frc.team3021.robot.Controller;
 
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -41,7 +43,7 @@ public class Xbox360Controller implements Controller {
 	}
 
 	@Override
-	public boolean isSpinnerForward(){
+	public boolean isLaunching(){
 		return controller.getRawButton(X_BUTTON);
 	}
 	
@@ -51,7 +53,7 @@ public class Xbox360Controller implements Controller {
 	}
 	
 	@Override
-	public boolean isFeederForward() {
+	public boolean isCollecting() {
 		return controller.getRawButton(B_BUTTON);
 	}
 	

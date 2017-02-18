@@ -1,0 +1,107 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Select Controller" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="47" y="108"/>
+	</widget>
+	<widget field="Auto choices" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="47" y="56"/>
+	</widget>
+	<widget field="Indexer : Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1452" y="19"/>
+		<height>27</height>
+	</widget>
+	<widget field="Launcher : Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="357" y="13"/>
+		<height>26</height>
+	</widget>
+	<widget field="Agitator : Time Between Periodic" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="912" y="58"/>
+		<height>40</height>
+	</widget>
+	<widget field="Indexer : Time Between Periodic" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1357" y="131"/>
+		<width>302</width>
+		<height>32</height>
+	</widget>
+	<widget field="Indexer : Time for Motor" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1407" y="56"/>
+		<height>29</height>
+	</widget>
+	<widget field="Auto Selector" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="28" y="24"/>
+	</widget>
+	<widget field="Collector : Voltage Reading" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="614" y="58"/>
+		<height>37</height>
+	</widget>
+	<widget field="Xbox360 : Port" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="30" y="244"/>
+	</widget>
+	<widget field="Launcher : Voltage Reading" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="305" y="54"/>
+		<height>31</height>
+	</widget>
+	<widget field="Agitator : Time For Motor" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="956" y="12"/>
+		<height>36</height>
+	</widget>
+	<widget field="ThrustMaster : Port" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="6" y="212"/>
+	</widget>
+	<widget field="Collector : Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="663" y="16"/>
+		<height>31</height>
+	</widget>
+	<widget field="Indexer : Time Before First Periodic" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1343" y="93"/>
+		<height>31</height>
+	</widget>
+</dashboard>
+<live-window>
+	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="CANTalon[22]" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="18"/>
+			<height>157</height>
+			<width>309</width>
+		</widget>
+		<widget field="CANTalon[23]" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="175"/>
+			<height>157</height>
+			<width>309</width>
+		</widget>
+		<widget field="CANTalon[24]" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="332"/>
+			<height>157</height>
+			<width>309</width>
+		</widget>
+		<widget field="CANTalon[27]" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="489"/>
+			<height>157</height>
+			<width>309</width>
+		</widget>
+		<widget field="Relay[0]" type="Relay" class="edu.wpi.first.smartdashboard.livewindow.elements.RelayController">
+			<location x="6" y="646"/>
+			<height>22</height>
+			<width>309</width>
+		</widget>
+		<widget field="CANTalon[21]" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="668"/>
+			<height>157</height>
+			<width>309</width>
+		</widget>
+		<widget field="CANTalon[25]" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="825"/>
+			<height>157</height>
+			<width>309</width>
+		</widget>
+		<widget field="CANTalon[26]" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="982"/>
+			<height>157</height>
+			<width>309</width>
+		</widget>
+		<location x="6" y="1"/>
+		<width>321</width>
+		<height>1146</height>
+	</widget>
+</live-window>
+</xml>

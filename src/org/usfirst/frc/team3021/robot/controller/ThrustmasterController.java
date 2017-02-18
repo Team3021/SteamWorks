@@ -1,8 +1,10 @@
-package org.usfirst.frc.team3021.robot;
+package org.usfirst.frc.team3021.robot.controller;
+
+import org.usfirst.frc.team3021.robot.Controller;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-public class ThrustMasterController implements Controller {
+public class ThrustmasterController implements Controller {
 	private static final int TRIGGER = 1; // The middle trigger on the back of the stick
 	private static final int FRONT_RIGHT_BUTTON = 4; // The right button on the front of the stick
 	private static final int SHOULDER = 3; // The right shoulder button on the back of the stick
@@ -11,7 +13,7 @@ public class ThrustMasterController implements Controller {
 	// Member Attributes
 	Joystick JS;
 	
-	public ThrustMasterController(int port){
+	public ThrustmasterController(int port){
 		JS = new Joystick(port);
 	}
 	
@@ -26,7 +28,7 @@ public class ThrustMasterController implements Controller {
 	}
 	
 	@Override
-	public boolean isSpinnerForward(){
+	public boolean isLaunching(){
 		return JS.getRawButton(SHOULDER);
 	}
 	
@@ -36,7 +38,7 @@ public class ThrustMasterController implements Controller {
 	}
 
 	@Override
-	public boolean isFeederForward() {
+	public boolean isCollecting() {
 		return JS.getRawButton(FRONT_MIDDLE_BUTTON);
 	}
 }

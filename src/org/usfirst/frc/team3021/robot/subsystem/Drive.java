@@ -1,32 +1,33 @@
-package org.usfirst.frc.team3021.robot;
+package org.usfirst.frc.team3021.robot.subsystem;
+
+import org.usfirst.frc.team3021.robot.SubSystem;
 
 import com.ctre.CANTalon;
-import java.lang.Math; // Used for a custom exponential function for the moveValue. 
+
 import edu.wpi.first.wpilibj.RobotDrive;
 
-public class Drive {
+public class Drive extends SubSystem {
 	// Member Attributes
 	private CANTalon RightRear;
 	private CANTalon RightFront;
 	private CANTalon LeftRear;
 	private CANTalon LeftFront;
-	private RobotDrive SpeedBase;
-	private Controller controller;
-
-	public Drive(){
+	
+	private RobotDrive robotDrive;
+	
+	public Drive() {
 		LeftFront = new CANTalon(25);
 		LeftRear = new CANTalon(24);
 		RightFront = new CANTalon(22);
 		RightRear = new CANTalon(23);
 		
-		SpeedBase = new RobotDrive(LeftFront, LeftRear, RightFront, RightRear);
+		robotDrive = new RobotDrive(LeftFront, LeftRear, RightFront, RightRear);
 
-		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
-		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-		SpeedBase.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
+		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+		robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+		robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 	}
-	
 	
 	public int getDirection(double n) {
 		int result = 0;
@@ -50,11 +51,7 @@ public class Drive {
 		return result;
 	}
 	
-	public void setController(Controller controller) {
-		this.controller = controller;
-	}
-	
-	public void teleopPeriodic(){
+	public void teleopPeriodic() {
 		// Determines whether the output of expSpeed should be positive or negative.
 		int verticalDirection = getDirection(controller.getMoveValue());
 		int horizontalDirection = getDirection(controller.getTurnValue());
@@ -66,6 +63,6 @@ public class Drive {
 		double expSpeed = verticalDirection * (0.2 * Math.pow(6.0, Math.abs(controller.getMoveValue())) - 0.2);
 		double expTurn = horizontalDirection * (0.25 * Math.pow(5.0, Math.abs(controller.getTurnValue())) - 0.25);
 		
-		SpeedBase.arcadeDrive(expSpeed, expTurn, false);
+		robotDrive.arcadeDrive(expSpeed, expTurn, false);
 	}
 }
