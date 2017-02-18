@@ -44,7 +44,7 @@ public class Xbox360Controller implements Controller {
 
 	@Override
 	public boolean isLaunching(){
-		return controller.getRawButton(X_BUTTON);
+		return controller.getRawButton(LEFT_SHOULDER);
 	}
 	
 	@Override
@@ -54,7 +54,32 @@ public class Xbox360Controller implements Controller {
 	
 	@Override
 	public boolean isCollecting() {
+		return controller.getRawButton(RIGHT_SHOULDER);
+	}
+
+	@Override
+	public boolean isResettingNavx() {
+		return controller.getRawButton(START_BUTTON);
+	}
+
+	@Override
+	public boolean isRotateToZero() {
+		return controller.getRawButton(Y_BUTTON);
+	}
+
+	@Override
+	public boolean isRotatingToNinety() {
 		return controller.getRawButton(B_BUTTON);
 	}
-	
+
+	@Override
+	public boolean isRotatingToNegativeNinety() {
+		return controller.getRawButton(X_BUTTON);
+	}
+
+	@Override
+	public boolean isRotatingToOneHundredEighty() {
+		return controller.getRawButton(A_BUTTON);
+	}
+
 }
