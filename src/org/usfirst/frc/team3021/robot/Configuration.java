@@ -9,12 +9,15 @@ public class Configuration {
 	
 	public static final String THRUSTMASTER = "ThrustMaster";
 	public static final String XBOX360 = "Xbox360";
+	public static final String USBBUTTONS = "GameController";
 	
 	private final String THRUSTMASTER_PORT = "ThrustMaster : Port";
 	private final String XBOX360_PORT = "Xbox360 : Port";
+	private final String USBBUTTONS_PORT = "GameController : Port";
 	
 	private final int THRUSTMASTER_PORT_DEFAULT = 0;
 	private final int XBOX360_PORT_DEFUALT = 0;
+	private final int USBBUTTONS_PORT_DEFAULT = 1;
 	
 	private SendableChooser<String> autonomousChooser = new SendableChooser<>();
 	private SendableChooser<String> controllerChooser = new SendableChooser<>();
@@ -29,6 +32,7 @@ public class Configuration {
 		
 		SmartDashboard.putNumber(THRUSTMASTER_PORT, THRUSTMASTER_PORT_DEFAULT);
 		SmartDashboard.putNumber(XBOX360_PORT, XBOX360_PORT_DEFUALT);
+		SmartDashboard.putNumber(USBBUTTONS_PORT, USBBUTTONS_PORT_DEFAULT);
 	}
 
 	public String getAutonomousMode() {
