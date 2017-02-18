@@ -1,12 +1,12 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
-import org.usfirst.frc.team3021.robot.SubSystem;
+import org.usfirst.frc.team3021.robot.Subsystem;
 
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 
-public class Drive extends SubSystem {
+public class Drive extends Subsystem {
 	// Member Attributes
 	private CANTalon RightRear;
 	private CANTalon RightFront;

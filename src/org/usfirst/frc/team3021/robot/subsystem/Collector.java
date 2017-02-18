@@ -1,14 +1,13 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
-import org.usfirst.frc.team3021.robot.SubSystem;
+import org.usfirst.frc.team3021.robot.Subsystem;
 
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Collector extends SubSystem {
+public class Collector extends Subsystem {
 	
 	private static final String VOLTAGE = "Collector : Voltage";
 	private static final double DEFAULT_VOLTAGE = 0.55;
@@ -25,24 +24,20 @@ public class Collector extends SubSystem {
 	public void teleopPeriodic() {
 		// Control the motor
 		if (controller.isCollecting()) {
-			talon.set(getVoltage());
+			startMotor();
 		}
 		else {
-			talon.set(0);
+			stopMotor();
 		}
 
 		displayActualVoltage();
 	}
 
-	@Override
-	public void testPeriodic() {
-		// turn on the motor
+	public void startMotor() {
 		talon.set(getVoltage());
-		
-		// run the motor for a time
-		Timer.delay(30);
-		
-		// turn off the motor
+	}
+
+	public void stopMotor() {
 		talon.set(0);
 	}
 	
