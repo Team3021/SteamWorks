@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
-import org.usfirst.frc.team3021.robot.SubSystem;
+import org.usfirst.frc.team3021.robot.Subsystem;
 import org.usfirst.frc.team3021.robot.vision.VisionProcessor;
 
 import edu.wpi.cscore.MjpegServer;
@@ -8,7 +8,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.CameraServer;
 
-public class Vision extends SubSystem {
+public class Vision extends Subsystem {
 	
 	private static final int USB_CAMERA_UNKNOWN = -1;
 	private static final int USB_CAMERA_ZERO = 0;

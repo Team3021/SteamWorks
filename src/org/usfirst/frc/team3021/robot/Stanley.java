@@ -1,20 +1,24 @@
 package org.usfirst.frc.team3021.robot;
 
+import org.usfirst.frc.team3021.robot.commands.*;
 import org.usfirst.frc.team3021.robot.controller.*;
 import org.usfirst.frc.team3021.robot.subsystem.*;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class Stanley extends IterativeRobot {
 	// Member Attributes
-	private Configuration configuration;
+	public static Configuration configuration;
 	
-	private Drive robotDrive;
-	private Launcher launcher;
-	private SubSystem collector;
-	private Vision vision;
+	public static Drive robotDrive;
+	public static Launcher launcher;
+	public static Collector collector;
+	public static Vision vision;
 	
 	private Controller controller;
+
+	private SubsystemTest testCommand = new SubsystemTest();
 
 	@Override
 	public void robotInit() {
@@ -72,15 +76,14 @@ public class Stanley extends IterativeRobot {
 
 	@Override
 	public void testInit() {
-		super.testInit();
+		if (testCommand != null) {
+			testCommand.start();
+		}
 	}
 
 	@Override
 	public void testPeriodic() {
-		launcher.testPeriodic();
-		collector.testPeriodic();
-		robotDrive.testPeriodic();
-		vision.testPeriodic();
+		Scheduler.getInstance().run();
 	}
 }
 

@@ -1,16 +1,15 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
-import org.usfirst.frc.team3021.robot.SubSystem;
+import org.usfirst.frc.team3021.robot.Subsystem;
 import org.usfirst.frc.team3021.robot.device.Agitator;
 import org.usfirst.frc.team3021.robot.device.Indexer;
 
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Launcher extends SubSystem {
+public class Launcher extends Subsystem {
 	
 	private static final String VOLTAGE = "Launcher : Voltage";
 	private static final double DEFAULT_VOLTAGE = 0.55;
@@ -28,40 +27,45 @@ public class Launcher extends SubSystem {
 		SmartDashboard.putNumber(VOLTAGE, DEFAULT_VOLTAGE);
 	}
 	
+	public void startIndexer() {
+		indexer.play();
+	}
+	
+	public void stopIndexer() {
+		indexer.pause();
+	}
+	
+	public void startAgitator() {
+		agitator.play();
+	}
+	
+	public void stopAgitator() {
+		agitator.pause();
+	}
+	
+	public void startWheel() {
+		launchWheel.set(getVoltage());
+	}
+	
+	public void stopWheel() {
+		launchWheel.set(0);
+	}
+	
 	public void teleopPeriodic() {
 		
 		// Control for the launch wheel.
 		if (controller.isLaunching()) {
-			launchWheel.set(getVoltage());
-			agitator.play();
-			indexer.play();
+			startWheel();
+			startIndexer();
+			startAgitator();
 		}
 		else {
-			indexer.pause();
-			agitator.pause();
-			launchWheel.set(0);
+			stopIndexer();
+			stopAgitator();
+			stopWheel();
 		}
 
 		displayActualVoltage();
-	}
-
-	@Override
-	public void testPeriodic() {
-		// test the indexer
-		indexer.play();
-		Timer.delay(30);
-		indexer.pause();
-
-		// test the launchWheel
-		launchWheel.set(getVoltage());
-		Timer.delay(30);
-		launchWheel.set(0);
-		
-		// test the agitator
-		agitator.play();
-		Timer.delay(30);
-		agitator.pause();
-		
 	}
 	
 	private double getVoltage() {

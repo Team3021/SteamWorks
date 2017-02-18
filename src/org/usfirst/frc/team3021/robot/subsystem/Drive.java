@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
-import org.usfirst.frc.team3021.robot.SubSystem;
+import org.usfirst.frc.team3021.robot.Subsystem;
 
 import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 
-public class Drive extends SubSystem  implements PIDOutput {
+public class Drive extends Subsystem  implements PIDOutput {
+
 	// Member Attributes
 	
 	// main drive
