@@ -3,7 +3,6 @@ package org.usfirst.frc.team3021.robot.commands;
 import org.usfirst.frc.team3021.robot.Stanley;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
 
 public class LauncherTest extends Command {
 
@@ -22,21 +21,25 @@ public class LauncherTest extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		System.out.println("Executing Launcher Test");
+		
 		Stanley.launcher.startWheel();
-		Timer.delay(20);
+		Timer.delay(5);
 		Stanley.launcher.stopWheel();
 
-		Timer.delay(20);
+		Timer.delay(5);
 		
 		Stanley.launcher.startIndexer();
-		Timer.delay(20);
+		Timer.delay(5);
 		Stanley.launcher.stopIndexer();
 		
-		Timer.delay(20);
+		Timer.delay(5);
 
-		Stanley.launcher.stopAgitator();
-		Timer.delay(20);
 		Stanley.launcher.startAgitator();
+		Timer.delay(5);
+		Stanley.launcher.stopAgitator();
+		
+		Timer.delay(5);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

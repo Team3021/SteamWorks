@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
 import org.usfirst.frc.team3021.robot.Subsystem;
+import org.usfirst.frc.team3021.robot.commands.LauncherTest;
 import org.usfirst.frc.team3021.robot.device.Agitator;
 import org.usfirst.frc.team3021.robot.device.Indexer;
 
@@ -23,7 +24,7 @@ public class Launcher extends Subsystem {
 		indexer = new Indexer(27);
 		agitator = new Agitator(0);
 		
-		// Puts options on the dashboard to choose the voltage of the launch wheel, ball collector, and indexer.
+		// Puts options on the dashboard to choose the voltage of the launch wheel
 		SmartDashboard.putNumber(VOLTAGE, DEFAULT_VOLTAGE);
 	}
 	
@@ -77,6 +78,11 @@ public class Launcher extends Subsystem {
 	private void displayActualVoltage() {
 		double actualVoltage = launchWheel.getBusVoltage() - DriverStation.getInstance().getBatteryVoltage();
 		SmartDashboard.putNumber("Launcher : Voltage Reading", actualVoltage);
+	}
+	
+	@Override
+	protected void initDefaultCommand() {
+		setDefaultCommand(new LauncherTest());
 	}
 
 }

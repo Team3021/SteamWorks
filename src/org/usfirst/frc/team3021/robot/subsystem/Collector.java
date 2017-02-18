@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
 import org.usfirst.frc.team3021.robot.Subsystem;
+import org.usfirst.frc.team3021.robot.commands.CollectorTest;
 
 import com.ctre.CANTalon;
 
@@ -54,4 +55,9 @@ public class Collector extends Subsystem {
 		double actualVoltage = talon.getBusVoltage() - DriverStation.getInstance().getBatteryVoltage();
 		SmartDashboard.putNumber("Collector : Voltage Reading", actualVoltage);
 	}
+	
+	@Override
+	protected void initDefaultCommand() {
+		setDefaultCommand(new CollectorTest());
+	}	
 }

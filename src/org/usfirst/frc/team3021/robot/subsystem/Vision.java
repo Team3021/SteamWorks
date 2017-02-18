@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
 import org.usfirst.frc.team3021.robot.Subsystem;
+import org.usfirst.frc.team3021.robot.commands.VisionTest;
 import org.usfirst.frc.team3021.robot.vision.VisionProcessor;
 
 import edu.wpi.cscore.MjpegServer;
@@ -116,5 +117,10 @@ public class Vision extends Subsystem {
 		else if (!controller.isSwitchingCamera()) {
 			btn_down = false;
 		}
+	}
+	
+	@Override
+	protected void initDefaultCommand() {
+		setDefaultCommand(new VisionTest());
 	}
 }

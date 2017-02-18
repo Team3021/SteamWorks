@@ -3,7 +3,6 @@ package org.usfirst.frc.team3021.robot.commands;
 import org.usfirst.frc.team3021.robot.Stanley;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
 
 public class CollectorTest extends Command {
 
@@ -11,33 +10,29 @@ public class CollectorTest extends Command {
 		requires(Stanley.collector);
 	}
 
-	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
 		Stanley.collector.stopMotor();
 	}
 
-	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		System.out.println("Executing Collector Test");
+		
 		// turn on the motor
 		Stanley.collector.startMotor();
 		
 		// run the motor for a time
-		Timer.delay(20);
+		Timer.delay(5);
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
-	@Override
-	protected boolean isFinished() {
-		return true;
-	}
-
-	// Called once after isFinished returns true
 	@Override
 	protected void end() {
 		// turn off the motor
 		Stanley.collector.stopMotor();
+		
+		// run the motor for a time
+		Timer.delay(5);
 	}
 
 	// Called when another command which requires one or more of the same

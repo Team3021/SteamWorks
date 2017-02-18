@@ -18,15 +18,19 @@ public class Stanley extends IterativeRobot {
 	
 	private Controller controller;
 
-	private SubsystemTest testCommand = new SubsystemTest();
-
-	@Override
-	public void robotInit() {
+	public Stanley() {
+		super();
+		
 		configuration = new Configuration();
 		robotDrive = new Drive();
 		launcher = new Launcher();
 		collector = new Collector();
 		vision = new Vision();
+	}
+	
+	@Override
+	public void robotInit() {
+		
 	}
 
 	@Override
@@ -76,14 +80,15 @@ public class Stanley extends IterativeRobot {
 
 	@Override
 	public void testInit() {
-		if (testCommand != null) {
-			testCommand.start();
-		}
+		Command testCommand = new LauncherTest();
+		
+		Scheduler.getInstance().add(testCommand);
+		Scheduler.getInstance().run();
 	}
 
 	@Override
 	public void testPeriodic() {
-		Scheduler.getInstance().run();
+
 	}
 }
 

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
 import org.usfirst.frc.team3021.robot.Subsystem;
+import org.usfirst.frc.team3021.robot.commands.DriveTest;
 
 import com.ctre.CANTalon;
 
@@ -65,4 +66,9 @@ public class Drive extends Subsystem {
 		
 		robotDrive.arcadeDrive(expSpeed, expTurn, false);
 	}
+	
+	@Override
+	protected void initDefaultCommand() {
+		setDefaultCommand(new DriveTest());
+	}	
 }
