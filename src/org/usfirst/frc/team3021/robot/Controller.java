@@ -21,4 +21,8 @@ public interface Controller {
 	boolean isRotatingToNegativeNinety();
 	
 	boolean isRotatingToOneHundredEighty();
+
+	boolean isRotatingCustom();
+
+	boolean isRotatingCustomNegative();
 }

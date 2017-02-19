@@ -112,7 +112,7 @@ public class Drive extends Subsystem {
 	}	
 
 	// ****************************************************************************
-	// **********************             TELE OP            **********************
+	// **********************             TELEOP            **********************
 	// ****************************************************************************
 
 	@Override
@@ -126,9 +126,11 @@ public class Drive extends Subsystem {
         	resetGyro();
         }
         
+        // Lets the current autonomous command continue to run.
         if (autonomousCommand != null && autonomousCommand.isRunning()) {
         	return;
         }
+        // Clears the current autonomous command if finished.
         else if (autonomousCommand != null && !autonomousCommand.isRunning()) {
         	autonomousCommand = null;
         }
@@ -145,8 +147,17 @@ public class Drive extends Subsystem {
         else if (controller.isRotatingToOneHundredEighty()) {
         	autonomousCommand = new TurnToCentralAngle(180.0);
         }
+        else if (controller.isRotatingCustom()) {
+        	double newAngle = getGyroAngle() + 45;
+        	autonomousCommand = new TurnToCentralAngle(newAngle);
+        }
+        else if (controller.isRotatingCustomNegative()) {
+        	double newAngle = getGyroAngle() - 45;
+        	autonomousCommand = new TurnToCentralAngle(newAngle);
+        }
         
-        // Enable DriveWithJoystick if there are no other commands
+        // Updates the scheduler to the selected autonomous command. 
+        // If none is chosen, the scheduler runs the default command, driving with the joystick.
         if (autonomousCommand != null) {
         	Scheduler.getInstance().removeAll();
         	Scheduler.getInstance().add(autonomousCommand);

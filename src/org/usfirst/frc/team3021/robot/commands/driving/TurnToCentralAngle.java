@@ -38,11 +38,12 @@ public class TurnToCentralAngle extends DriveCommand {
 	@Override
 	protected boolean isFinished() {
 		
-		double angleDifference = Math.abs(Stanley.robotDrive.getGyroCentralAngle()) -  Math.abs(desiredAngle);
+		double angleDifference = Math.abs(Stanley.robotDrive.getGyroCentralAngle()) - Math.abs(desiredAngle);
+		angleDifference = Math.abs(angleDifference);
 		
 		SmartDashboard.putNumber("TurnToAngle : angle difference", angleDifference);
 		
-		return (Math.abs(angleDifference) <= GyroController.kToleranceDegrees);
+		return (angleDifference <= GyroController.kToleranceDegrees);
 	}
 	
 	@Override

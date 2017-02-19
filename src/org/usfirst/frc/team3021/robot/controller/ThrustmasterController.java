@@ -31,47 +31,54 @@ public class ThrustmasterController implements Controller {
 	
 	@Override
 	public boolean isLaunching(){
-		return false;
+		return JS.getRawButton(SHOULDER);
 	}
 	
 	@Override
 	public boolean isSwitchingCamera(){
-		return JS.getRawButton(FRONT_BOTTOM_RIGHT);
+		return JS.getRawButton(FRONT_RIGHT_BUTTON);
 	}
 
 	@Override
 	public boolean isCollecting() {
-		return false;
+		return JS.getRawButton(FRONT_MIDDLE_BUTTON);
 	}
 
 	@Override
 	public boolean isResettingNavx() {
-		// TODO Auto-generated method stub
 		return JS.getRawButton(TRIGGER);
 	}
 
 	@Override
 	public boolean isRotateToZero() {
-		// TODO Auto-generated method stub
 		return JS.getRawButton(SHOULDER);
 	}
 
 	@Override
 	public boolean isRotatingToNinety() {
-		// TODO Auto-generated method stub
 		return JS.getRawButton(FRONT_RIGHT_BUTTON);
 	}
 
 	@Override
 	public boolean isRotatingToNegativeNinety() {
-		// TODO Auto-generated method stub
 		return JS.getRawButton(FRONT_LEFT_BUTTON);
 	}
 
 	@Override
 	public boolean isRotatingToOneHundredEighty() {
-		// TODO Auto-generated method stub
 		return JS.getRawButton(FRONT_MIDDLE_BUTTON);
+	}
+
+	@Override
+	public boolean isRotatingCustom() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isRotatingCustomNegative() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
 

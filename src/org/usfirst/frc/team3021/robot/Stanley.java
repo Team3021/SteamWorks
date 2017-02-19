@@ -1,9 +1,13 @@
 package org.usfirst.frc.team3021.robot;
 
-import org.usfirst.frc.team3021.robot.commands.*;
-import org.usfirst.frc.team3021.robot.commands.test.*;
-import org.usfirst.frc.team3021.robot.controller.*;
-import org.usfirst.frc.team3021.robot.subsystem.*;
+import org.usfirst.frc.team3021.robot.commands.Command;
+import org.usfirst.frc.team3021.robot.commands.test.SubsystemTest;
+import org.usfirst.frc.team3021.robot.controller.ThrustmasterController;
+import org.usfirst.frc.team3021.robot.controller.Xbox360Controller;
+import org.usfirst.frc.team3021.robot.subsystem.Collector;
+import org.usfirst.frc.team3021.robot.subsystem.Drive;
+import org.usfirst.frc.team3021.robot.subsystem.Launcher;
+import org.usfirst.frc.team3021.robot.subsystem.Vision;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -84,14 +88,12 @@ public class Stanley extends IterativeRobot {
 
 	@Override
 	public void testInit() {
-		Command testCommand = new LauncherTest();
-		
-		testCommand.start();
+		Scheduler.getInstance().add(new SubsystemTest());
 	}
 
 	@Override
 	public void testPeriodic() {
-
+		Scheduler.getInstance().run();
 	}
 }
 

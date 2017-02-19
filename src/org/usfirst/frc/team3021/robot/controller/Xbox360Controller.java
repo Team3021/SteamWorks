@@ -82,4 +82,25 @@ public class Xbox360Controller implements Controller {
 		return controller.getRawButton(A_BUTTON);
 	}
 
+	@Override
+	public boolean isRotatingCustom() {
+		if (controller.getRawAxis(LEFT_TRIGGER) > 0.9) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean isRotatingCustomNegative() {
+		if (controller.getRawAxis(RIGHT_TRIGGER) > 0.9) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+
 }
