@@ -3,6 +3,7 @@ package org.usfirst.frc.team3021.robot.subsystem;
 import org.usfirst.frc.team3021.robot.Subsystem;
 import org.usfirst.frc.team3021.robot.commands.DriveCommand;
 import org.usfirst.frc.team3021.robot.commands.driving.DriveWithJoystick;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngle;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnToCentralAngle;
 import org.usfirst.frc.team3021.robot.controller.GyroController;
 
@@ -149,11 +150,11 @@ public class Drive extends Subsystem {
         }
         else if (controller.isRotatingCustom()) {
         	double newAngle = getGyroAngle() + 45;
-        	autonomousCommand = new TurnToCentralAngle(newAngle);
+        	autonomousCommand = new TurnToAngle(newAngle);
         }
         else if (controller.isRotatingCustomNegative()) {
         	double newAngle = getGyroAngle() - 45;
-        	autonomousCommand = new TurnToCentralAngle(newAngle);
+        	autonomousCommand = new TurnToAngle(newAngle);
         }
         
         // Updates the scheduler to the selected autonomous command. 
