@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SerialPort.Port;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GyroController implements PIDOutput {
 
@@ -53,8 +54,9 @@ public class GyroController implements PIDOutput {
 	}
 	
 	public double getAngle() {
-        System.out.println("ahrs.getAngle() " + navx.getAngle());
-        
+		
+		SmartDashboard.putNumber("GyroController : current angle",  navx.getAngle());
+
 		return navx.getAngle();
 	}
 
@@ -63,7 +65,7 @@ public class GyroController implements PIDOutput {
 	}
 
 	public double getTurnValue() {
-		System.out.println("currentRotationRate " + rotateToAngleRate);
+		SmartDashboard.putNumber("GyroController : currentRotationRate",  rotateToAngleRate);
 
 		return rotateToAngleRate;
 	}
