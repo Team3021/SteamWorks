@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
 import org.usfirst.frc.team3021.robot.Subsystem;
-import org.usfirst.frc.team3021.robot.commands.VisionTest;
+import org.usfirst.frc.team3021.robot.commands.VisionCommand;
 import org.usfirst.frc.team3021.robot.vision.VisionProcessor;
 
 import edu.wpi.cscore.MjpegServer;
@@ -121,6 +121,6 @@ public class Vision extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new VisionTest());
+		setDefaultCommand(new VisionCommand());
 	}
 }

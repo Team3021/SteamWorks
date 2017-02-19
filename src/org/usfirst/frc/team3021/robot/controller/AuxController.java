@@ -4,11 +4,11 @@ import org.usfirst.frc.team3021.robot.Controller;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-public class gameController implements Controller{
+public class AuxController implements Controller{
 	
 	Joystick Buttons;
 	
-	public gameController(int port){
+	public AuxController(int port){
 		Buttons = new Joystick(port);
 	}
 	

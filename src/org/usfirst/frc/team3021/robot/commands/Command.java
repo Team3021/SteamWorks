@@ -12,7 +12,9 @@ public abstract class Command extends edu.wpi.first.wpilibj.command.Command {
 	}
 
 	@Override
-	protected abstract void execute();
+	protected void execute() {
+		
+	}
 
 	@Override
 	protected boolean isFinished() {

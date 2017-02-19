@@ -1,11 +1,11 @@
 package org.usfirst.frc.team3021.robot;
 
 import org.usfirst.frc.team3021.robot.commands.*;
+import org.usfirst.frc.team3021.robot.commands.test.*;
 import org.usfirst.frc.team3021.robot.controller.*;
 import org.usfirst.frc.team3021.robot.subsystem.*;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class Stanley extends IterativeRobot {
 	// Member Attributes
@@ -16,7 +16,7 @@ public class Stanley extends IterativeRobot {
 	public static Collector collector;
 	public static Vision vision;
 	
-	private Controller controller;
+	public static Controller controller;
 
 	public Stanley() {
 		super();
@@ -82,8 +82,7 @@ public class Stanley extends IterativeRobot {
 	public void testInit() {
 		Command testCommand = new LauncherTest();
 		
-		Scheduler.getInstance().add(testCommand);
-		Scheduler.getInstance().run();
+		testCommand.start();
 	}
 
 	@Override

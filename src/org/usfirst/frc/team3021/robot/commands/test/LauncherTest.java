@@ -1,14 +1,11 @@
-package org.usfirst.frc.team3021.robot.commands;
+package org.usfirst.frc.team3021.robot.commands.test;
 
 import org.usfirst.frc.team3021.robot.Stanley;
+import org.usfirst.frc.team3021.robot.commands.LauncherCommand;
 
 import edu.wpi.first.wpilibj.Timer;
 
-public class LauncherTest extends Command {
-
-	public LauncherTest() {
-		requires(Stanley.launcher);
-	}
+public class LauncherTest extends LauncherCommand {
 
 	// Called just before this Command runs the first time
 	@Override
@@ -40,24 +37,5 @@ public class LauncherTest extends Command {
 		Stanley.launcher.stopAgitator();
 		
 		Timer.delay(5);
-	}
-
-	// Make this return true when this Command no longer needs to run execute()
-	@Override
-	protected boolean isFinished() {
-		return true;
-	}
-
-	// Called once after isFinished returns true
-	@Override
-	protected void end() {
-		
-	}
-
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	@Override
-	protected void interrupted() {
-		
 	}
 }

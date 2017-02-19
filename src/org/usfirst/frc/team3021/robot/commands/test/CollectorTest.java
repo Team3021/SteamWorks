@@ -1,14 +1,11 @@
-package org.usfirst.frc.team3021.robot.commands;
+package org.usfirst.frc.team3021.robot.commands.test;
 
 import org.usfirst.frc.team3021.robot.Stanley;
+import org.usfirst.frc.team3021.robot.commands.CollectorCommand;
 
 import edu.wpi.first.wpilibj.Timer;
 
-public class CollectorTest extends Command {
-
-	public CollectorTest() {
-		requires(Stanley.collector);
-	}
+public class CollectorTest extends CollectorCommand {
 
 	@Override
 	protected void initialize() {
@@ -33,13 +30,5 @@ public class CollectorTest extends Command {
 		
 		// run the motor for a time
 		Timer.delay(5);
-	}
-
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	@Override
-	protected void interrupted() {
-		// turn off the motor
-		Stanley.collector.stopMotor();
 	}
 }

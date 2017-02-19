@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
 import org.usfirst.frc.team3021.robot.Subsystem;
-import org.usfirst.frc.team3021.robot.commands.CollectorTest;
+import org.usfirst.frc.team3021.robot.commands.CollectorCommand;
 
 import com.ctre.CANTalon;
 
@@ -58,6 +58,6 @@ public class Collector extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new CollectorTest());
+		setDefaultCommand(new CollectorCommand());
 	}	
 }

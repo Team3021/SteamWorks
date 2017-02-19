@@ -2,16 +2,7 @@ package org.usfirst.frc.team3021.robot.commands;
 
 import org.usfirst.frc.team3021.robot.Stanley;
 
-public class Agitate extends Command {
-
-	public Agitate() {
-		requires(Stanley.launcher);
-	}
-
-	@Override
-	protected void initialize() {
-		Stanley.launcher.startAgitator();
-	}
+public class Agitate extends LauncherCommand {
 
 	@Override
 	protected void execute() {
@@ -20,7 +11,7 @@ public class Agitate extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return false;
 	}
 
 	@Override
