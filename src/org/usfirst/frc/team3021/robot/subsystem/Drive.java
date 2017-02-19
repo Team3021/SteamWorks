@@ -27,6 +27,8 @@ public class Drive extends Subsystem {
 	private GyroController gyroController;
 
 	private DriveCommand defaultCommand;
+
+	private DriveCommand autonomousCommand;
 	
 	// gyro controller
 	
@@ -45,12 +47,11 @@ public class Drive extends Subsystem {
 		robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 		
 		gyroController = new GyroController();
-		
-		defaultCommand = new DriveWithJoystick();
 	}
 	
 	@Override
 	protected void initDefaultCommand() {
+		defaultCommand = new DriveWithJoystick();
 		setDefaultCommand(defaultCommand);
 	}
 
@@ -104,19 +105,30 @@ public class Drive extends Subsystem {
         	resetGyro();
         }
         
+        if (autonomousCommand != null && autonomousCommand.isRunning()) {
+        	return;
+        }
+        else if (autonomousCommand != null && !autonomousCommand.isRunning()) {
+        	autonomousCommand = null;
+        }
+        
         if (controller.isRotateToZero()) {
-        	Scheduler.getInstance().add(new TurnToAngle(0.0));
+        	autonomousCommand = new TurnToAngle(0.0);
         }
         else if (controller.isRotatingToNinety()) {
-        	Scheduler.getInstance().add(new TurnToAngle(90.0));
+        	autonomousCommand = new TurnToAngle(90.0);
         }
         else if (controller.isRotatingToNegativeNinety()) {
-        	Scheduler.getInstance().add(new TurnToAngle(-90.0));
+        	autonomousCommand = new TurnToAngle(-90.0);
         }
         else if (controller.isRotatingToOneHundredEighty()) {
-        	Scheduler.getInstance().add(new TurnToAngle(180.0));
-        } else {
-        	Scheduler.getInstance().add(defaultCommand);
+        	autonomousCommand = new TurnToAngle(180.0);
+        }
+        
+        // Enable DriveWithJoystick if there are no other commands
+        if (autonomousCommand != null) {
+        	Scheduler.getInstance().removeAll();
+        	Scheduler.getInstance().add(autonomousCommand);
         }
 	}
 }

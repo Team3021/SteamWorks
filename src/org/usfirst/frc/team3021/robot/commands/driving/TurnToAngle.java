@@ -2,7 +2,6 @@ package org.usfirst.frc.team3021.robot.commands.driving;
 
 import org.usfirst.frc.team3021.robot.Stanley;
 import org.usfirst.frc.team3021.robot.commands.DriveCommand;
-import org.usfirst.frc.team3021.robot.controller.GyroController;
 
 public class TurnToAngle extends DriveCommand {
 	
@@ -15,15 +14,30 @@ public class TurnToAngle extends DriveCommand {
 	}
 
 	@Override
+	protected void initialize() {
+		System.out.println("Start TurnToAngle");
+	}
+	
+	@Override
 	protected void execute() {
 		Stanley.robotDrive.turnToAngle(desiredAngle);
 	}
-
+	
+	@Override
+	protected void end() {
+		System.out.println("End TurnToAngle");
+	}
+	
 	@Override
 	protected boolean isFinished() {
-		double angleDifference = Math.abs(Stanley.robotDrive.getGyroAngle() - desiredAngle);
 		
-		return (angleDifference <= GyroController.kToleranceDegrees);
+		return ( Math.abs(Stanley.robotDrive.getGyroTurnValue()) < 0.2);
+		
+//		double angleDifference = Math.abs(Stanley.robotDrive.getGyroAngle()) -  Math.abs(desiredAngle);
+//		
+//		SmartDashboard.putNumber("TurnToAngle : angle difference", angleDifference);
+//		
+//		return (Math.abs(angleDifference) <= GyroController.kToleranceDegrees);
 	}
 	
 	@Override
