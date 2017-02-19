@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
+import org.usfirst.frc.team3021.robot.Stanley;
 import org.usfirst.frc.team3021.robot.Subsystem;
 import org.usfirst.frc.team3021.robot.commands.VisionCommand;
 import org.usfirst.frc.team3021.robot.vision.VisionProcessor;
@@ -34,6 +35,10 @@ public class Vision extends Subsystem {
 	private VisionProcessor visionProcessor;
 	
 	public Vision() {
+		if (!Stanley.configuration.isVisionEnabled()) {
+			return;  // Don't initialize the camera objects
+		}
+		
 		server = CameraServer.getInstance();
 		
 		// setup the mjpeg server to communicate with the smart dashboard
@@ -82,7 +87,9 @@ public class Vision extends Subsystem {
 	}
 
 	public void teleopPeriodic() {		
-		toggleCamera();
+		if (Stanley.configuration.isVisionEnabled()) {
+			toggleCamera();
+		}
 	}
 
 	private void toggleCamera() {

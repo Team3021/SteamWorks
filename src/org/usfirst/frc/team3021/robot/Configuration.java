@@ -10,6 +10,9 @@ public class Configuration {
 	public static final String THRUSTMASTER = "ThrustMaster";
 	public static final String XBOX360 = "Xbox360";
 	public static final String USBBUTTONS = "GameController";
+
+	private static final String VISION_ENABLED = "ON";
+	private static final String VISION_DISABLED = "OFF";
 	
 	private final String THRUSTMASTER_PORT = "ThrustMaster : Port";
 	private final String XBOX360_PORT = "Xbox360 : Port";
@@ -21,6 +24,7 @@ public class Configuration {
 	
 	private SendableChooser<String> autonomousChooser = new SendableChooser<>();
 	private SendableChooser<String> controllerChooser = new SendableChooser<>();
+	private SendableChooser<String> visionChooser = new SendableChooser<>();
 
 	public Configuration() {
 		autonomousChooser.addDefault("Autonmous : " + AUTONOMOUS_DEFALUT, AUTONOMOUS_DEFALUT);
@@ -29,6 +33,10 @@ public class Configuration {
 		controllerChooser.addDefault(THRUSTMASTER, THRUSTMASTER );
 		controllerChooser.addObject(XBOX360, XBOX360);
 		SmartDashboard.putData("Select Controller", controllerChooser);
+		
+		visionChooser.addDefault(VISION_DISABLED, VISION_DISABLED);
+		visionChooser.addObject(VISION_ENABLED, VISION_ENABLED);
+		SmartDashboard.putData("Vision", visionChooser);
 		
 		SmartDashboard.putNumber(THRUSTMASTER_PORT, THRUSTMASTER_PORT_DEFAULT);
 		SmartDashboard.putNumber(XBOX360_PORT, XBOX360_PORT_DEFUALT);
@@ -40,7 +48,11 @@ public class Configuration {
 	}
 
 	public String getJoystickMode() {
-		return controllerChooser.getSelected();
+		String selected = controllerChooser.getSelected();
+		
+		SmartDashboard.putString("Configuration : joystick mode",  selected);
+		
+		return selected;
 	}
 	
 	public int getJoystickPort() {
@@ -55,5 +67,15 @@ public class Configuration {
 		}
 		
 		return port;
+	}
+	
+	public boolean isVisionEnabled() {
+		String selected = visionChooser.getSelected();
+		
+		if (selected.equals(VISION_ENABLED)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

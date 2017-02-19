@@ -7,6 +7,6 @@ public class VisionCommand extends Command {
 	public VisionCommand() {
 		super();
 		
-		requires(Stanley.collector);
+		requires(Stanley.vision);
 	}
 }
