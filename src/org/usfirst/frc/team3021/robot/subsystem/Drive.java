@@ -3,7 +3,7 @@ package org.usfirst.frc.team3021.robot.subsystem;
 import org.usfirst.frc.team3021.robot.Subsystem;
 import org.usfirst.frc.team3021.robot.commands.DriveCommand;
 import org.usfirst.frc.team3021.robot.commands.driving.DriveWithJoystick;
-import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngle;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnToCentralAngle;
 import org.usfirst.frc.team3021.robot.controller.GyroController;
 
 import com.ctre.CANTalon;
@@ -71,6 +71,14 @@ public class Drive extends Subsystem {
 		gyroController.setAngle(angle);
 	}
 
+	public double getGyroCentralAngle() {
+		return gyroController.getCentralAngle();
+	}
+
+	public void setGyroCentralAngle(double angle) {
+		gyroController.setCentralAngle(angle);
+	}
+
 	public double getGyroTurnValue() {
 		return gyroController.getTurnValue();
 	}
@@ -81,6 +89,14 @@ public class Drive extends Subsystem {
 
 	public void turnToAngle(double desiredAngle) {
 		setGyroAngle(desiredAngle);
+		
+		double turnValue = getGyroTurnValue();
+		
+		drive(0, turnValue);
+	}
+
+	public void turnToCentralAngle(double desiredAngle) {
+		setGyroCentralAngle(desiredAngle);
 		
 		double turnValue = getGyroTurnValue();
 		
@@ -101,6 +117,11 @@ public class Drive extends Subsystem {
 
 	@Override
 	public void teleopPeriodic() {
+		
+		// update the SmartDashboard
+		gyroController.printAngle();
+		gyroController.printCentralAngle();
+		
         if (controller.isResettingNavx()) {
         	resetGyro();
         }
@@ -113,16 +134,16 @@ public class Drive extends Subsystem {
         }
         
         if (controller.isRotateToZero()) {
-        	autonomousCommand = new TurnToAngle(0.0);
+        	autonomousCommand = new TurnToCentralAngle(0.0);
         }
         else if (controller.isRotatingToNinety()) {
-        	autonomousCommand = new TurnToAngle(90.0);
+        	autonomousCommand = new TurnToCentralAngle(90.0);
         }
         else if (controller.isRotatingToNegativeNinety()) {
-        	autonomousCommand = new TurnToAngle(-90.0);
+        	autonomousCommand = new TurnToCentralAngle(-90.0);
         }
         else if (controller.isRotatingToOneHundredEighty()) {
-        	autonomousCommand = new TurnToAngle(180.0);
+        	autonomousCommand = new TurnToCentralAngle(180.0);
         }
         
         // Enable DriveWithJoystick if there are no other commands
