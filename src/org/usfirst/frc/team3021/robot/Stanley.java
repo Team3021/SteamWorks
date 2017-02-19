@@ -6,6 +6,7 @@ import org.usfirst.frc.team3021.robot.controller.*;
 import org.usfirst.frc.team3021.robot.subsystem.*;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class Stanley extends IterativeRobot {
 	// Member Attributes
@@ -56,10 +57,11 @@ public class Stanley extends IterativeRobot {
 		String selectedController = configuration.getJoystickMode();
 		int joystickPort = configuration.getJoystickPort();
 
-		if (selectedController == Configuration.THRUSTMASTER) {
+		if (selectedController.equals(Configuration.THRUSTMASTER)) {
 			controller = new ThrustmasterController(joystickPort);
 		}
-		else if (selectedController == Configuration.XBOX360) {
+		else if (selectedController.equals(Configuration.XBOX360)) {
+			System.out.println("***************XBOX***************");
 			controller = new Xbox360Controller(joystickPort);
 		}
 
@@ -72,6 +74,8 @@ public class Stanley extends IterativeRobot {
 	
 	@Override
 	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
+		
 		robotDrive.teleopPeriodic();
 		launcher.teleopPeriodic();
 		collector.teleopPeriodic();
