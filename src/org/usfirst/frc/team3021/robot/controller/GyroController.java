@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SerialPort.Port;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GyroController implements PIDOutput {
@@ -45,6 +46,8 @@ public class GyroController implements PIDOutput {
         pidController.setContinuous(true);
 
         pidController.enable();
+        
+        LiveWindow.addActuator("Gyro", "Turn controller", pidController);
 	}
 
 	public void printAngle() {
