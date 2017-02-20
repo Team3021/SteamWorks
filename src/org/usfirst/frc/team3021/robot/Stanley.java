@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3021.robot;
 
 import org.usfirst.frc.team3021.robot.commands.test.SubsystemTest;
+import org.usfirst.frc.team3021.robot.controller.AuxController;
 import org.usfirst.frc.team3021.robot.controller.ThrustmasterController;
 import org.usfirst.frc.team3021.robot.controller.Xbox360Controller;
 import org.usfirst.frc.team3021.robot.subsystem.Collector;
@@ -21,6 +22,7 @@ public class Stanley extends IterativeRobot {
 	public static Vision vision;
 	
 	public static Controller controller;
+	public static Controller auxController;
 
 	public Stanley() {
 		super();
@@ -57,17 +59,23 @@ public class Stanley extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 
-		String selectedController = configuration.getJoystickMode();
-		int joystickPort = configuration.getJoystickPort();
+		String selectedController = configuration.getMainControllerMode();
+		int mainControllerPort = configuration.getMainControllerPort();
 
 		if (selectedController.equals(Configuration.THRUSTMASTER)) {
-			controller = new ThrustmasterController(joystickPort);
+			controller = new ThrustmasterController(mainControllerPort);
 		}
 		else if (selectedController.equals(Configuration.XBOX360)) {
 			System.out.println("***************XBOX***************");
-			controller = new Xbox360Controller(joystickPort);
+			controller = new Xbox360Controller(mainControllerPort);
+			
+			if (!controller.isXbox()) {
+				System.out.println("WARNING !!! NOT XBOX CONTROLLER");
+			}
 		}
 
+		auxController = new AuxController(configuration.getAuxPanelPort());
+		
 		robotDrive.setController(controller);
 		launcher.setController(controller);
 		collector.setController(controller);

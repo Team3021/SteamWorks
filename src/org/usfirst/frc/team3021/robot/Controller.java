@@ -25,4 +25,6 @@ public interface Controller {
 	boolean isRotatingCustom();
 
 	boolean isRotatingCustomNegative();
+
+	boolean isXbox();
 }

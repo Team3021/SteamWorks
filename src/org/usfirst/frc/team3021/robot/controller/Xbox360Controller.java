@@ -44,42 +44,42 @@ public class Xbox360Controller implements Controller {
 
 	@Override
 	public boolean isLaunching(){
-		return controller.getRawButton(LEFT_SHOULDER);
+		return getRawButton(LEFT_SHOULDER);
 	}
 	
 	@Override
 	public boolean isSwitchingCamera(){
-		return controller.getRawButton(BACK_BUTTON);
+		return getRawButton(BACK_BUTTON);
 	}
 	
 	@Override
 	public boolean isCollecting() {
-		return controller.getRawButton(RIGHT_SHOULDER);
+		return getRawButton(RIGHT_SHOULDER);
 	}
 
 	@Override
 	public boolean isResettingNavx() {
-		return controller.getRawButton(START_BUTTON);
+		return getRawButton(START_BUTTON);
 	}
 
 	@Override
 	public boolean isRotateToZero() {
-		return controller.getRawButton(Y_BUTTON);
+		return getRawButton(Y_BUTTON);
 	}
 
 	@Override
 	public boolean isRotatingToNinety() {
-		return controller.getRawButton(B_BUTTON);
+		return getRawButton(B_BUTTON);
 	}
 
 	@Override
 	public boolean isRotatingToNegativeNinety() {
-		return controller.getRawButton(X_BUTTON);
+		return getRawButton(X_BUTTON);
 	}
 
 	@Override
 	public boolean isRotatingToOneHundredEighty() {
-		return controller.getRawButton(A_BUTTON);
+		return getRawButton(A_BUTTON);
 	}
 
 	@Override
@@ -102,5 +102,16 @@ public class Xbox360Controller implements Controller {
 		}
 	}
 	
+	private boolean getRawButton(int button) {
+		if (controller.getButtonCount() < button) {
+			return false;
+		}
+		
+		return controller.getRawButton(button);
+	}
 
+	@Override
+	public boolean isXbox() {
+		return controller.getIsXbox();
+	}
 }

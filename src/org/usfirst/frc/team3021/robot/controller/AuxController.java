@@ -6,10 +6,10 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class AuxController implements Controller {
 	
-	Joystick joystick;
+	Joystick controller;
 	
 	public AuxController(int port) {
-		joystick = new Joystick(port);
+		controller = new Joystick(port);
 	}
 	
 	@Override
@@ -24,7 +24,7 @@ public class AuxController implements Controller {
 	
 	@Override
 	public boolean isLaunching() {
-		return joystick.getRawButton(6);
+		return getRawButton(6);
 	}
 	
 	@Override
@@ -34,7 +34,7 @@ public class AuxController implements Controller {
 
 	@Override
 	public boolean isCollecting() {
-		return joystick.getRawButton(7);
+		return getRawButton(7);
 	}
 
 	@Override
@@ -69,6 +69,19 @@ public class AuxController implements Controller {
 
 	@Override
 	public boolean isRotatingCustomNegative() {
+		return false;
+	}
+	
+	private boolean getRawButton(int button) {
+		if (controller.getButtonCount() < button) {
+			return false;
+		}
+		
+		return controller.getRawButton(button);
+	}
+
+	@Override
+	public boolean isXbox() {
 		return false;
 	}
 }

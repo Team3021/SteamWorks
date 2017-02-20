@@ -13,60 +13,60 @@ public class ThrustmasterController implements Controller {
 	private static final int FRONT_BOTTOM_RIGHT = 9; // The button with the number 8 on it
 	
 	// Member Attributes
-	Joystick JS;
+	Joystick controller;
 	
 	public ThrustmasterController(int port){
-		JS = new Joystick(port);
+		controller = new Joystick(port);
 	}
 	
 	@Override
 	public double getMoveValue(){
-		return JS.getY();
+		return controller.getY();
 	}
 	
 	@Override
 	public double getTurnValue(){
-		return JS.getX();
+		return controller.getX();
 	}
 	
 	@Override
 	public boolean isLaunching(){
-		return JS.getRawButton(SHOULDER);
+		return getRawButton(SHOULDER);
 	}
 	
 	@Override
 	public boolean isSwitchingCamera(){
-		return JS.getRawButton(FRONT_RIGHT_BUTTON);
+		return getRawButton(FRONT_RIGHT_BUTTON);
 	}
 
 	@Override
 	public boolean isCollecting() {
-		return JS.getRawButton(FRONT_MIDDLE_BUTTON);
+		return getRawButton(FRONT_MIDDLE_BUTTON);
 	}
 
 	@Override
 	public boolean isResettingNavx() {
-		return JS.getRawButton(TRIGGER);
+		return getRawButton(TRIGGER);
 	}
 
 	@Override
 	public boolean isRotateToZero() {
-		return JS.getRawButton(SHOULDER);
+		return getRawButton(SHOULDER);
 	}
 
 	@Override
 	public boolean isRotatingToNinety() {
-		return JS.getRawButton(FRONT_RIGHT_BUTTON);
+		return getRawButton(FRONT_RIGHT_BUTTON);
 	}
 
 	@Override
 	public boolean isRotatingToNegativeNinety() {
-		return JS.getRawButton(FRONT_LEFT_BUTTON);
+		return getRawButton(FRONT_LEFT_BUTTON);
 	}
 
 	@Override
 	public boolean isRotatingToOneHundredEighty() {
-		return JS.getRawButton(FRONT_MIDDLE_BUTTON);
+		return getRawButton(FRONT_MIDDLE_BUTTON);
 	}
 
 	@Override
@@ -78,6 +78,19 @@ public class ThrustmasterController implements Controller {
 	@Override
 	public boolean isRotatingCustomNegative() {
 		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	private boolean getRawButton(int button) {
+		if (controller.getButtonCount() < button) {
+			return false;
+		}
+		
+		return controller.getRawButton(button);
+	}
+
+	@Override
+	public boolean isXbox() {
 		return false;
 	}
 }
