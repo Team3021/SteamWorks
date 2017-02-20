@@ -41,12 +41,12 @@ public class Stanley extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		System.out.println("Auto selected: " + configuration.getAutonomousMode());
-	}
-
-	@Override
-	public void autonomousPeriodic() {
+		// Stop any commands that might be left running from another mode
+		Scheduler.getInstance().removeAll();
+		
 		String autoSelected = configuration.getAutonomousMode();
+		
+		System.out.println("Auto selected: " + autoSelected);
 		
 		switch (autoSelected) {
 			case Configuration.AUTONOMOUS_DEFALUT:
@@ -57,7 +57,14 @@ public class Stanley extends IterativeRobot {
 	}
 
 	@Override
+	public void autonomousPeriodic() {
+		Scheduler.getInstance().run();
+	}
+
+	@Override
 	public void teleopInit() {
+		// Stop any commands that might be left running from another mode
+		Scheduler.getInstance().removeAll();
 
 		String selectedController = configuration.getMainControllerMode();
 		int mainControllerPort = configuration.getMainControllerPort();
@@ -95,6 +102,9 @@ public class Stanley extends IterativeRobot {
 
 	@Override
 	public void testInit() {
+		// Stop any commands that might be left running from another mode
+		Scheduler.getInstance().removeAll();
+
 		Scheduler.getInstance().add(new SubsystemTest());
 	}
 
