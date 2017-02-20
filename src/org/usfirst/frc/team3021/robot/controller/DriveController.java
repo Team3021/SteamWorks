@@ -82,13 +82,19 @@ public class DriveController {
 	// ****************************************************************************
 	
 	public void printEncoderValues() {
-		SmartDashboard.putNumber("Encoder Speed Left", leftEncoder.getRate());
-		SmartDashboard.putNumber("Encoder Speed Right", rightEncoder.getRate());
+		SmartDashboard.putNumber("Drive : Encoder Speed Left", leftEncoder.getRate());
+		SmartDashboard.putNumber("Drive : Encoder Speed Right", rightEncoder.getRate());
 	}
 
+	public void printEncoderDistance(double distance) {
+		SmartDashboard.putNumber("Drive : Encoder Distance", distance);
+	}
+	
 	public double getEncoderDistance() {
 		double distanceTraveledAverage = (getDistanceTraveled(rightEncoder)
-				+ getDistanceTraveled(leftEncoder)) / 4;
+				+ getDistanceTraveled(leftEncoder)) / 2;
+		
+		printEncoderDistance(distanceTraveledAverage);
 		
 		return distanceTraveledAverage;
 	}
