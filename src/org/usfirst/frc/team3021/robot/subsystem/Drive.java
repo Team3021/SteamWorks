@@ -147,10 +147,22 @@ public class Drive extends Subsystem {
         }
         else if (controller.isRotatingCustom()) {
         	double newAngle = getGyroAngle() + 45;
+        	
+        	// Limit the angle to our range of 0 to 360
+        	if (newAngle > 360) {
+        		newAngle = newAngle - 360;
+        	}
+        	
         	autonomousCommand = new TurnToAngle(newAngle);
         }
         else if (controller.isRotatingCustomNegative()) {
         	double newAngle = getGyroAngle() - 45;
+        	
+        	// Limit the angle to our range of 0 to 360
+        	if (newAngle < 0) {
+        		newAngle = newAngle + 360;
+        	}
+
         	autonomousCommand = new TurnToAngle(newAngle);
         }
         
