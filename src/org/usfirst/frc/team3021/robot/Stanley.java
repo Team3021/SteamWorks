@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3021.robot;
 
-import org.usfirst.frc.team3021.robot.commands.Command;
 import org.usfirst.frc.team3021.robot.commands.test.SubsystemTest;
 import org.usfirst.frc.team3021.robot.controller.ThrustmasterController;
 import org.usfirst.frc.team3021.robot.controller.Xbox360Controller;
