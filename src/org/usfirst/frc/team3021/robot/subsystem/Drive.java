@@ -5,47 +5,23 @@ import org.usfirst.frc.team3021.robot.commands.DriveCommand;
 import org.usfirst.frc.team3021.robot.commands.driving.DriveWithJoystick;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngle;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnToCentralAngle;
+import org.usfirst.frc.team3021.robot.controller.DriveController;
 import org.usfirst.frc.team3021.robot.controller.GyroController;
 
-import com.ctre.CANTalon;
-
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class Drive extends Subsystem {
 
-	// Member Attributes
+	private DriveController driveController;
 	
-	// main drive
-	private RobotDrive robotDrive;
-	
-	// motor controllers
-	private CANTalon RightRear;
-	private CANTalon RightFront;
-	private CANTalon LeftRear;
-	private CANTalon LeftFront;
-
 	private GyroController gyroController;
 
 	private DriveCommand defaultCommand;
 
 	private DriveCommand autonomousCommand;
 	
-	// gyro controller
-	
 	public Drive() {
-		
-		LeftFront = new CANTalon(25);
-		LeftRear = new CANTalon(24);
-		RightFront = new CANTalon(22);
-		RightRear = new CANTalon(23);
-		
-		robotDrive = new RobotDrive(LeftFront, LeftRear, RightFront, RightRear);
-
-		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
-		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-		robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-		robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		driveController = new DriveController();
 		
 		gyroController = new GyroController();
 	}
@@ -84,6 +60,20 @@ public class Drive extends Subsystem {
 		return gyroController.getTurnValue();
 	}
 
+	private double getGyroOffset() {
+		double gyroOffset = (getGyroCentralAngle() * .01111111111);
+		
+		// IF THE ABOSOLUTE VAL OF THE GYRO OFFSET IS LARGER THAN 1
+		if (Math.abs(gyroOffset) > 1) {
+			// SET THE GYRO OFFSET TO EITHER 1 OR -1
+			gyroOffset =  (-1 * (Math.abs(gyroOffset) / gyroOffset));
+		} else {
+			gyroOffset =  -gyroOffset;
+		}
+		
+		return gyroOffset;
+	}
+
 	// ****************************************************************************
 	// **********************             TURNING            **********************
 	// ****************************************************************************
@@ -109,8 +99,15 @@ public class Drive extends Subsystem {
 	// ****************************************************************************
 	
 	public void drive(double moveValue, double turnValue) {
-		robotDrive.arcadeDrive(moveValue, turnValue, false);
-	}	
+		driveController.drive(moveValue, turnValue);
+	}
+	
+	// Drive forward using the gyro to maintain course
+	// This assumes that forward is set to zero degrees
+	// and thus the gyro offset is is a deviaiton from going straight forward
+	public void driveForwardWithGyro(double moveValue) {
+		drive(moveValue, getGyroOffset());
+	}
 
 	// ****************************************************************************
 	// **********************             TELEOP            **********************
