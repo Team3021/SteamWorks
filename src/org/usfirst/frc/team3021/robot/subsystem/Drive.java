@@ -44,6 +44,41 @@ public class Drive extends Subsystem {
 		return driveController.getEncoderDistance();
 	}
 
+	public void drive(double moveValue, double turnValue) {
+		driveController.drive(moveValue, turnValue);
+	}
+	
+	// Drive forward using the gyro to maintain course
+	// This assumes that forward is set to zero degrees
+	// and thus the gyro offset is is a deviaiton from going straight forward
+	public void driveForwardWithGyro(double moveValue) {
+		drive(moveValue, getGyroOffset());
+	}
+
+	public void stop() {
+		driveController.stop();
+	}
+
+	// ****************************************************************************
+	// **********************             TURNING            **********************
+	// ****************************************************************************
+
+	public void turnToAngle(double desiredAngle) {
+		setGyroAngle(desiredAngle);
+		
+		double turnValue = getGyroTurnValue();
+		
+		drive(0, turnValue);
+	}
+
+	public void turnToCentralAngle(double desiredAngle) {
+		setGyroCentralAngle(desiredAngle);
+		
+		double turnValue = getGyroTurnValue();
+		
+		drive(0, turnValue);
+	}
+
 	// ****************************************************************************
 	// **********************              GYRO              **********************
 	// ****************************************************************************
@@ -84,41 +119,6 @@ public class Drive extends Subsystem {
 		}
 		
 		return gyroOffset;
-	}
-
-	// ****************************************************************************
-	// **********************             TURNING            **********************
-	// ****************************************************************************
-
-	public void turnToAngle(double desiredAngle) {
-		setGyroAngle(desiredAngle);
-		
-		double turnValue = getGyroTurnValue();
-		
-		drive(0, turnValue);
-	}
-
-	public void turnToCentralAngle(double desiredAngle) {
-		setGyroCentralAngle(desiredAngle);
-		
-		double turnValue = getGyroTurnValue();
-		
-		drive(0, turnValue);
-	}
-
-	// ****************************************************************************
-	// **********************           ROBOT DRIVE          **********************
-	// ****************************************************************************
-	
-	public void drive(double moveValue, double turnValue) {
-		driveController.drive(moveValue, turnValue);
-	}
-	
-	// Drive forward using the gyro to maintain course
-	// This assumes that forward is set to zero degrees
-	// and thus the gyro offset is is a deviaiton from going straight forward
-	public void driveForwardWithGyro(double moveValue) {
-		drive(moveValue, getGyroOffset());
 	}
 
 	// ****************************************************************************
