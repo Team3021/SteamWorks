@@ -11,7 +11,7 @@ public class TurnToCentralAngle extends DriveCommand {
 	protected double desiredAngle;
 
 	protected TurnToCentralAngle() {
-		
+		super();
 	}
 	
 	public TurnToCentralAngle(double angle) {
@@ -44,10 +44,5 @@ public class TurnToCentralAngle extends DriveCommand {
 		SmartDashboard.putNumber("TurnToAngle : angle difference", angleDifference);
 		
 		return (angleDifference <= GyroController.kToleranceDegrees);
-	}
-	
-	@Override
-	public synchronized boolean isInterruptible() {
-		return false;
 	}
 }

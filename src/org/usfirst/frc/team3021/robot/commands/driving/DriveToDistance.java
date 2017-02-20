@@ -43,9 +43,4 @@ public class DriveToDistance extends DriveCommand {
 		
 		return (remaingDifference < 0.5);
 	}
-	
-	@Override
-	public synchronized boolean isInterruptible() {
-		return false;
-	}
 }

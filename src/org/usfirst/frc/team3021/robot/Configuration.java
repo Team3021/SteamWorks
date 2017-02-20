@@ -70,8 +70,11 @@ public class Configuration {
 		// Add drive commands to dashboard
 		SmartDashboard.putData(new StopDriving());
 		SmartDashboard.putData(new DriveToDistance(0.3, 3));
+		SmartDashboard.putData(new DriveForTime(0.3, 3));
 		SmartDashboard.putData(new TurnToAngle(90.0));
 		SmartDashboard.putData(new TurnToCentralAngle(90.0));
+		SmartDashboard.putData(new ResetGyro());
+		SmartDashboard.putData(new ResetEncoders());
 		
 		// Add device commands to dashboard
 		SmartDashboard.putData(new Agitate(5.0));
