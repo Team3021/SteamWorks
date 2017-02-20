@@ -6,6 +6,7 @@ import org.usfirst.frc.team3021.robot.commands.CollectorCommand;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Collector extends Subsystem {
@@ -17,8 +18,6 @@ public class Collector extends Subsystem {
 	
 	public Collector() {		
 		talon = new CANTalon(26);
-		
-		SmartDashboard.putNumber(VOLTAGE, DEFAULT_VOLTAGE);
 	}
 	
 	@Override
@@ -43,7 +42,7 @@ public class Collector extends Subsystem {
 	}
 	
 	private double getVoltage() {
-		double voltage = SmartDashboard.getNumber(VOLTAGE, DEFAULT_VOLTAGE);
+		double voltage = Preferences.getInstance().getDouble(VOLTAGE, DEFAULT_VOLTAGE);
 		
 		// reverse the polarity
 		voltage = voltage * -1;

@@ -8,6 +8,7 @@ import org.usfirst.frc.team3021.robot.device.Indexer;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Launcher extends Subsystem {
@@ -23,9 +24,6 @@ public class Launcher extends Subsystem {
 		launchWheel = new CANTalon(21);
 		indexer = new Indexer(27);
 		agitator = new Agitator(0);
-		
-		// Puts options on the dashboard to choose the voltage of the launch wheel
-		SmartDashboard.putNumber(VOLTAGE, DEFAULT_VOLTAGE);
 	}
 	
 	public void startIndexer() {
@@ -70,7 +68,7 @@ public class Launcher extends Subsystem {
 	}
 	
 	private double getVoltage() {
-		double voltage = SmartDashboard.getNumber(VOLTAGE, DEFAULT_VOLTAGE);
+		double voltage = Preferences.getInstance().getDouble(VOLTAGE, DEFAULT_VOLTAGE);
 		
 		return voltage;
 	}
