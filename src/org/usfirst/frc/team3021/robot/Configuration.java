@@ -40,8 +40,6 @@ public class Configuration {
 	private final String PREF_AUX_PANEL_PORT = "AuxPanel : Port";
 	private final int AUX_PANEL_PORT_DEFAULT = 1;
 	
-	private final String PREF_VISION_SUBSYSTEM_STATUS = "Vision : Enabled";
-	
 	private SendableChooser<String> autonomousChooser = new SendableChooser<>();
 	private SendableChooser<String> controllerChooser = new SendableChooser<>();
 
@@ -123,9 +121,5 @@ public class Configuration {
 	
 	public boolean isAuxPanelEnabled() {
 		return Preferences.getInstance().getBoolean(PREF_AUX_PANEL_STATUS, false);
-	}
-	
-	public boolean isVisionEnabled() {
-		return Preferences.getInstance().getBoolean(PREF_VISION_SUBSYSTEM_STATUS, false);
 	}
 }

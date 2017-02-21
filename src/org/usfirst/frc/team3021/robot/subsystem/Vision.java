@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
-import org.usfirst.frc.team3021.robot.Stanley;
 import org.usfirst.frc.team3021.robot.Subsystem;
 import org.usfirst.frc.team3021.robot.commands.VisionCommand;
 import org.usfirst.frc.team3021.robot.vision.VisionProcessor;
@@ -9,8 +8,12 @@ import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Preferences;
 
 public class Vision extends Subsystem {
+	
+	private final String PREF_VISION_CAMERA_0_ENABLED = "vision.camera.0.enabled";
+	private final String PREF_VISION_CAMERA_1_ENABLED = "vision.camera.1.enabled";
 	
 	private static final int USB_CAMERA_UNKNOWN = -1;
 	private static final int USB_CAMERA_ZERO = 0;
@@ -34,9 +37,26 @@ public class Vision extends Subsystem {
 	// our robot vision processing
 	private VisionProcessor visionProcessor;
 	
+	private boolean isCamera0Enabled() {
+		return Preferences.getInstance().getBoolean(PREF_VISION_CAMERA_0_ENABLED, false);
+	}
+	
+	private boolean isCamera1Enabled() {
+		return Preferences.getInstance().getBoolean(PREF_VISION_CAMERA_1_ENABLED, false);
+	}
+	
+	private boolean isVisionEnabled() {
+		return isCamera0Enabled() || isCamera1Enabled();
+	}
+	
 	public Vision() {
-		if (!Stanley.configuration.isVisionEnabled()) {
-			return;  // Don't initialize the camera objects
+		if (isVisionEnabled()) {
+			// Don't initialize the camera objects and return right away
+			System.out.println("WARNING !!! NO CAMERAS ENABLED");
+			return;  
+		}
+		else {
+			System.out.println("One or more cameras are enabled");
 		}
 		
 		server = CameraServer.getInstance();
@@ -52,7 +72,7 @@ public class Vision extends Subsystem {
 			cam0.setFPS(20);
 		}
 
-		// set up a usb camera on port 0
+		// set up a usb camera on port 1
 		cam1 = new UsbCamera("Active USB Camera", 1);
 		
 		if (cam1.isConnected()) {
@@ -62,10 +82,10 @@ public class Vision extends Subsystem {
 		VideoSource currentCam = null;
 		curCamNum = USB_CAMERA_UNKNOWN;
 
-		if (curCamNum == USB_CAMERA_UNKNOWN && cam0.isConnected()) {
+		if (curCamNum == USB_CAMERA_UNKNOWN && isCamera0Enabled()) {
 			curCamNum = USB_CAMERA_ZERO;
 			currentCam = cam0;
-		} else if (curCamNum == USB_CAMERA_UNKNOWN && cam1.isConnected()) {
+		} else if (curCamNum == USB_CAMERA_UNKNOWN && isCamera1Enabled()) {
 			curCamNum = USB_CAMERA_ONE;
 			currentCam = cam1;
 		}
@@ -83,11 +103,13 @@ public class Vision extends Subsystem {
 			dashboardSink.setSource(visionProcessorOutput);
 
 			visionProcessor.play();
+		} else {
+			System.out.println("WARNING !!! NO CAMERAS FOUND");
 		}
 	}
 
 	public void teleopPeriodic() {		
-		if (Stanley.configuration.isVisionEnabled()) {
+		if (isVisionEnabled()) {
 			toggleCamera();
 		}
 	}
@@ -98,21 +120,21 @@ public class Vision extends Subsystem {
 			
 			VideoSource currentCam = null;
 			
-			if (curCamNum == 1 && cam0.isConnected()) {
+			if (curCamNum == 1 && isCamera0Enabled()) {
 				System.out.println("Switch cam");
 				curCamNum = 0;
 				currentCam = cam0;
 			} 
-			else if (curCamNum == 0 && cam1.isConnected()) {
+			else if (curCamNum == 0 && isCamera1Enabled()) {
 				System.out.println("Switch cam");
 				curCamNum = 1;
 				currentCam = cam1;
 			}
-			else if (curCamNum == 0 && cam0.isConnected()) {
+			else if (curCamNum == 0 && isCamera0Enabled()) {
 				curCamNum = 0;
 				currentCam = cam0;
 			} 
-			else if (curCamNum == 1 && cam1.isConnected()) {
+			else if (curCamNum == 1 && isCamera1Enabled()) {
 				curCamNum = 1;
 				currentCam = cam1;
 			}

@@ -7,12 +7,13 @@ import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Preferences;
 
 public class VisionProcessor extends RunnableDevice {
 	
-	private boolean drawTargetScope = false;
-	private boolean drawTargetLocation = false;
-
+	private final String PREF_TARGET_SCOPE_ENABLED = "target.scope.enabled";
+	private final String PREF_TARGET_LOCATOR_ENABLED = "target.locator.enabled";
+	
 	private TargetScope targetScope;
 	private TargetLocation targetLocation;
 
@@ -42,10 +43,14 @@ public class VisionProcessor extends RunnableDevice {
 		return output;
 	}
 	
-	public void setDrawSiteScope(boolean drawSiteScope) {
-		this.drawTargetScope = drawSiteScope;
+	private boolean isTargetScopeEnabled() {
+		return Preferences.getInstance().getBoolean(PREF_TARGET_SCOPE_ENABLED, false);
 	}
-
+	
+	private boolean isTargetLocatorEnabled() {
+		return Preferences.getInstance().getBoolean(PREF_TARGET_LOCATOR_ENABLED, false);
+	}
+	
 	@Override
 	protected void runPeriodic() {
 
@@ -62,12 +67,12 @@ public class VisionProcessor extends RunnableDevice {
 		}
 
 		// Draw a target location on the image
-		if (drawTargetLocation) {
+		if (isTargetLocatorEnabled()) {
 			targetLocation.draw(mat);
 		}
 
 		// Draw a target scope on the image
-		if (drawTargetScope) {
+		if (isTargetScopeEnabled()) {
 			targetScope.draw(mat);
 		}
 
