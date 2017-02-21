@@ -2,6 +2,7 @@ package org.usfirst.frc.team3021.robot;
 
 import org.usfirst.frc.team3021.robot.commands.test.SubsystemTest;
 import org.usfirst.frc.team3021.robot.controller.AuxController;
+import org.usfirst.frc.team3021.robot.controller.Controller;
 import org.usfirst.frc.team3021.robot.controller.AttackThreeController;
 import org.usfirst.frc.team3021.robot.controller.Xbox360Controller;
 import org.usfirst.frc.team3021.robot.subsystem.Climber;

@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
-import org.usfirst.frc.team3021.robot.Subsystem;
 import org.usfirst.frc.team3021.robot.commands.LauncherCommand;
 import org.usfirst.frc.team3021.robot.device.Agitator;
 import org.usfirst.frc.team3021.robot.device.Indexer;

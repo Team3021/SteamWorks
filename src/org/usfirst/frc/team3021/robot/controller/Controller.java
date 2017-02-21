@@ -1,7 +1,7 @@
-package org.usfirst.frc.team3021.robot;
+package org.usfirst.frc.team3021.robot.controller;
 
 public interface Controller {
-
+	
 	double getMoveValue();
 
 	double getTurnValue();
@@ -20,13 +20,15 @@ public interface Controller {
 	
 	boolean isRotatingToOneHundredEighty();
 
-	boolean isRotatingCustom();
+	boolean isRotatingRight45();
 
-	boolean isRotatingCustomNegative();
+	boolean isRotatingLeft45();
 
 	boolean isXbox();
 
 	boolean isClimberSafteyOn();
 
 	boolean isClimbing();
+
+	void printButtonActions(String controller);
 }

@@ -1,35 +1,38 @@
 package org.usfirst.frc.team3021.robot.controller;
 
-import org.usfirst.frc.team3021.robot.Controller;
-
 import edu.wpi.first.wpilibj.Joystick;
 
-public class Xbox360Controller implements Controller {
-	
-	// Controller Buttons
-	private static final int A_BUTTON = 1;
-	private static final int B_BUTTON = 2;
-	private static final int X_BUTTON = 3;
-	private static final int Y_BUTTON = 4;
-	private static final int LEFT_SHOULDER = 5;
-	private static final int RIGHT_SHOULDER = 6;
-	private static final int BACK_BUTTON = 7;
-	private static final int START_BUTTON = 8;
-	private static final int LEFT_STICK_CLICK = 9;
-	private static final int RIGHT_STICK_CLICK = 10;
+public class Xbox360Controller extends BaseController {
 	
 	// Controller axes
 	private static final int LEFT_STICK_X = 0;
 	private static final int LEFT_STICK_Y = 1;
+	
 	private static final int LEFT_TRIGGER = 2;
 	private static final int RIGHT_TRIGGER = 3;
+
 	private static final int RIGHT_STICK_X = 4;
 	private static final int RIGHT_STICK_Y = 5;
 
-	// Member Attributes
-	Joystick controller;
+	public Xbox360Controller() {
+		buttonActions.add(new ButtonAction(1, "A_BUTTON", "isRotatingToOneHundredEighty"));
+		buttonActions.add(new ButtonAction(2, "B_BUTTON", "isRotatingToNinety"));
+		buttonActions.add(new ButtonAction(3, "X_BUTTON", "isRotatingToNegativeNinety"));
+		buttonActions.add(new ButtonAction(4, "Y_BUTTON", "isClimbing"));
+		
+		buttonActions.add(new ButtonAction(5, "LEFT_SHOULDER", "isRotatingLeft45"));
+		buttonActions.add(new ButtonAction(6, "RIGHT_SHOULDER", "isRotatingRight45"));
+		
+		buttonActions.add(new ButtonAction(7, "BACK_BUTTON", "isClimberSafteyOn"));
+		buttonActions.add(new ButtonAction(8, "START_BUTTON", "isResettingNavx"));
+		
+		buttonActions.add(new ButtonAction(9, "LEFT_STICK_CLICK", "unassigned"));
+		buttonActions.add(new ButtonAction(10, "RIGHT_STICK_CLICK", "isSwitchingCamera"));
+	}
 
-	public Xbox360Controller(int port){
+	public Xbox360Controller(int port) {
+		this();
+		
 		controller = new Joystick(port);
 	}
 
@@ -44,42 +47,22 @@ public class Xbox360Controller implements Controller {
 	}
 
 	@Override
-	public boolean isLaunching(){
-		return getRawButton(LEFT_SHOULDER);
+	public boolean isLaunching() {
+		if (controller.getRawAxis(LEFT_TRIGGER) > 0.9) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	@Override
-	public boolean isSwitchingCamera(){
-		return getRawButton(BACK_BUTTON);
+	public boolean isSwitchingCamera() {
+		return getRawButton("isSwitchingCamera");
 	}
 	
 	@Override
 	public boolean isCollecting() {
-		return getRawButton(RIGHT_SHOULDER);
-	}
-
-	@Override
-	public boolean isResettingNavx() {
-		return getRawButton(START_BUTTON);
-	}
-
-	@Override
-	public boolean isRotatingToNinety() {
-		return getRawButton(B_BUTTON);
-	}
-
-	@Override
-	public boolean isRotatingToNegativeNinety() {
-		return getRawButton(X_BUTTON);
-	}
-
-	@Override
-	public boolean isRotatingToOneHundredEighty() {
-		return getRawButton(A_BUTTON);
-	}
-
-	@Override
-	public boolean isRotatingCustom() {
 		if (controller.getRawAxis(RIGHT_TRIGGER) > 0.9) {
 			return true;
 		}
@@ -89,35 +72,52 @@ public class Xbox360Controller implements Controller {
 	}
 
 	@Override
-	public boolean isRotatingCustomNegative() {
-		if (controller.getRawAxis(LEFT_TRIGGER) > 0.9) {
-			return true;
-		}
-		else {
-			return false;
-		}
+	public boolean isResettingNavx() {
+		return getRawButton("isResettingNavx");
+	}
+
+	@Override
+	public boolean isRotatingToNinety() {
+		return getRawButton("isResettingNavx");
+	}
+
+	@Override
+	public boolean isRotatingToNegativeNinety() {
+		return getRawButton("isRotatingToNegativeNinety");
+	}
+
+	@Override
+	public boolean isRotatingToOneHundredEighty() {
+		return getRawButton("isRotatingToOneHundredEighty");
+	}
+
+	@Override
+	public boolean isRotatingRight45() {
+		return getRawButton("isRotatingRight45");
+	}
+
+	@Override
+	public boolean isRotatingLeft45() {
+		return getRawButton("isRotatingLeft45");
 	}
 
 	@Override
 	public boolean isClimberSafteyOn() {
-		return getRawButton(BACK_BUTTON);
+		return getRawButton("isClimberSafteyOn");
 	}
 
 	@Override
 	public boolean isClimbing() {
-		return getRawButton(Y_BUTTON);
-	}
-	
-	private boolean getRawButton(int button) {
-		if (controller.getButtonCount() < button) {
-			return false;
-		}
-		
-		return controller.getRawButton(button);
+		return getRawButton("isClimbing");
 	}
 
 	@Override
-	public boolean isXbox() {
-		return controller.getIsXbox();
+	public void printButtonActions(String controller) {
+		super.printButtonActions(controller);
+		
+		System.out.println("PressureAction { 'number':'2', 'name':'" + LEFT_TRIGGER +", 'action':'isLaunching' }");
+		System.out.println("PressureAction { 'number':'2', 'name':'" + RIGHT_TRIGGER +", 'action':'isCollecting' }");
+		
+		System.out.println("");
 	}
 }

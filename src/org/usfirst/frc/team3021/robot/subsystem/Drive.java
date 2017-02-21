@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
-import org.usfirst.frc.team3021.robot.Subsystem;
 import org.usfirst.frc.team3021.robot.commands.DriveCommand;
 import org.usfirst.frc.team3021.robot.commands.driving.DriveWithJoystick;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngle180;
@@ -127,10 +126,10 @@ public class Drive extends Subsystem {
         else if (mainController.isRotatingToOneHundredEighty()) {
         	autonomousCommand = new TurnToAngle180();
         }
-        else if (mainController.isRotatingCustom()) {
+        else if (mainController.isRotatingRight45()) {
         	autonomousCommand = new TurnToAngleRight45();
         }
-        else if (mainController.isRotatingCustomNegative()) {
+        else if (mainController.isRotatingLeft45()) {
         	autonomousCommand = new TurnToAngleLeft45();
         }
         

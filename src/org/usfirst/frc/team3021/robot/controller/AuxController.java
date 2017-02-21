@@ -1,108 +1,85 @@
 package org.usfirst.frc.team3021.robot.controller;
 
-import org.usfirst.frc.team3021.robot.Controller;
-
 import edu.wpi.first.wpilibj.Joystick;
 
-public class AuxController implements Controller {
-
-	private static final int RIGHT_TOGGLE_BUTTON = 1;
-	private static final int MIDDLE_TOGGLE_BUTTON = 2;
-	private static final int LEFT_TOGGLE_BUTTON = 3;
-	
-	private static final int SAFETY_TRIGGER = 4;
-
-	private static final int TOP_BLUE_BUTTON = 5;
-	private static final int MIDDLE_BLUE_BUTTON = 6;
-	private static final int BOTTOM_BLUE_BUTTON = 7;
-
-	private static final int TOP_RED_BUTTON = 8;
-	private static final int MIDDLE_RED_BUTTON = 9;
-	private static final int BOTTOM_RED_BUTTON = 10;
+public class AuxController extends BaseController {
 	
 	Joystick controller;
 	
+	public AuxController() {
+		buttonActions.add(new ButtonAction(1, "RIGHT_TOGGLE_BUTTON", "unassigned"));
+		buttonActions.add(new ButtonAction(2, "MIDDLE_TOGGLE_BUTTON", "unassigned"));
+		buttonActions.add(new ButtonAction(3, "LEFT_TOGGLE_BUTTON", "unassigned"));
+	
+		buttonActions.add(new ButtonAction(4, "SAFETY_TRIGGER", "isClimberSafteyOn"));
+		
+		buttonActions.add(new ButtonAction(5, "TOP_BLUE_BUTTON", "isClimbing"));
+		buttonActions.add(new ButtonAction(6, "MIDDLE_BLUE_BUTTON", "isLaunching"));
+		buttonActions.add(new ButtonAction(7, "BOTTOM_BLUE_BUTTON", "isCollecting"));
+	
+		buttonActions.add(new ButtonAction(8, "TOP_RED_BUTTON", "unassigned"));
+		buttonActions.add(new ButtonAction(9, "MIDDLE_RED_BUTTON", "unassigned"));
+		buttonActions.add(new ButtonAction(10, "BOTTOM_RED_BUTTON", "unassigned"));
+	}
+	
 	public AuxController(int port) {
+		this();
+		
 		controller = new Joystick(port);
 	}
 	
 	@Override
-	public double getMoveValue() {
-		return 0;
-	}
-	
-	@Override
-	public double getTurnValue() {
-		return 0;
-	}
-	
-	@Override
 	public boolean isLaunching() {
-		return getRawButton(6);
+		return getRawButton("isLaunching");
 	}
 	
 	@Override
 	public boolean isSwitchingCamera() {
-		return false;
+		return getRawButton("isSwitchingCamera");
 	}
 
 	@Override
 	public boolean isCollecting() {
-		return getRawButton(7);
+		return getRawButton("isCollecting");
 	}
 
 	@Override
 	public boolean isResettingNavx() {
-		return false;
+		return getRawButton("isResettingNavx");
 	}
 
 	@Override
 	public boolean isRotatingToNinety() {
-		return false;
+		return getRawButton("isRotatingToNinety");
 	}
 
 	@Override
 	public boolean isRotatingToNegativeNinety() {
-		return false;
+		return getRawButton("isRotatingToNegativeNinety");
 	}
 
 	@Override
 	public boolean isRotatingToOneHundredEighty() {
-		return false;
+		return getRawButton("isRotatingToOneHundredEighty");
 	}
 
 	@Override
-	public boolean isRotatingCustom() {
-		return false;
+	public boolean isRotatingRight45() {
+		return getRawButton("isRotatingRight45");
 	}
 
 	@Override
-	public boolean isRotatingCustomNegative() {
-		return false;
+	public boolean isRotatingLeft45() {
+		return getRawButton("isRotatingLeft45");
 	}
 
 	@Override
 	public boolean isClimberSafteyOn() {
-		return getRawButton(SAFETY_TRIGGER);
+		return getRawButton("isClimberSafteyOn");
 	}
 
 	@Override
 	public boolean isClimbing() {
-		return getRawButton(TOP_BLUE_BUTTON);
+		return getRawButton("isClimbing");
 	}
-	
-	
-	private boolean getRawButton(int button) {
-		if (controller.getButtonCount() < button) {
-			return false;
-		}
-		
-		return controller.getRawButton(button);
-	}
-
-	@Override
-	public boolean isXbox() {
-		return false;
-	}
-
 }
