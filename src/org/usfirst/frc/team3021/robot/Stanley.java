@@ -107,7 +107,6 @@ public class Stanley extends IterativeRobot {
 		collector.setControllers(mainController, auxController);
 		climber.setControllers(mainController, auxController);
 		vision.setControllers(mainController, auxController);
-		
 	}
 	
 	@Override
