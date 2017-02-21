@@ -53,7 +53,6 @@ public class GyroController implements PIDOutput {
 
 	public void printAngle() {
 		SmartDashboard.putNumber("GyroController : gyro compass angle",  navx.getCompassHeading());
-		SmartDashboard.putNumber("GyroController : gyro pitch angle",  navx.getPitch());
 		SmartDashboard.putNumber("GyroController : compass adjustment",  compassAdjustment);
 		SmartDashboard.putNumber("GyroController : angle", getAngle());
 	}
