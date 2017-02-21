@@ -28,10 +28,17 @@ public class Stanley extends IterativeRobot {
 		super();
 		
 		configuration = new Configuration();
+		
 		robotDrive = new Drive();
 		launcher = new Launcher();
 		collector = new Collector();
 		vision = new Vision();
+		
+		
+		configuration.addSubsystemsToDashboard();
+		
+		configuration.addCommandsToDashboard();
+
 	}
 	
 	@Override

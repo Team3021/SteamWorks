@@ -33,10 +33,6 @@ public class Configuration {
 		addAutonmousChoices();
 		
 		addControllerChoices();
-		
-		addSubsystemsToDashboard();
-		
-		addCommandsToDashboard();
 	}
 
 	private void addAutonmousChoices() {
@@ -50,14 +46,14 @@ public class Configuration {
 		SmartDashboard.putData("Select Controller", controllerChooser);
 	}
 
-	private void addSubsystemsToDashboard() {
+	public void addSubsystemsToDashboard() {
 		SmartDashboard.putData(Stanley.robotDrive);
 		SmartDashboard.putData(Stanley.collector);
 		SmartDashboard.putData(Stanley.launcher);
 		SmartDashboard.putData(Stanley.vision);
 	}
 	
-	private void addCommandsToDashboard() {
+	public void addCommandsToDashboard() {
 		SmartDashboard.putData(Scheduler.getInstance());
 		
 		// Add test commands to dashboard
