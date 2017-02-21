@@ -5,8 +5,8 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.SerialPort.Port;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GyroController implements PIDOutput {
@@ -15,6 +15,8 @@ public class GyroController implements PIDOutput {
 	private AHRS navx;
 	private PIDController pidController;
     double rotateToAngleRate;
+    
+	private double compassAdjustment;
     
     /* The following PID Controller coefficients will need to be tuned */
     /* to match the dynamics of your drive system.  Note that the      */
@@ -40,36 +42,48 @@ public class GyroController implements PIDOutput {
 
         pidController = new PIDController(kP, kI, kD, kF, navx, this); 
         
-        pidController.setInputRange(-180.0f,  180.0f);
+        pidController.setInputRange(-180.0f, 180.0f);
         pidController.setOutputRange(-0.5, 0.5);
         pidController.setAbsoluteTolerance(kToleranceDegrees);
         pidController.setContinuous(true);
 
         pidController.enable();
         
-        LiveWindow.addActuator("Gyro", "Turn controller", pidController);
+        resetGyro();
 	}
 
 	public void printAngle() {
-		SmartDashboard.putNumber("GyroController : angle",  navx.getAngle());
-		SmartDashboard.putNumber("Gyro angle", navx.getAngle());
+		SmartDashboard.putNumber("GyroController : gyro compass angle",  navx.getCompassHeading());
+		SmartDashboard.putNumber("GyroController : gyro pitch angle",  navx.getPitch());
+		SmartDashboard.putNumber("GyroController : compass adjustment",  compassAdjustment);
+		SmartDashboard.putNumber("GyroController : angle", getAngle());
 	}
 
 	public void printCentralAngle() {
-		SmartDashboard.putNumber("GyroController : central angle",  navx.getAngle());
+		SmartDashboard.putNumber("GyroController : central angle", convertToCentralAngle(getAngle()));
 	}
 	
 	public void resetGyro() {
 		System.out.println("Resetting gyro");
 		
 		navx.reset();
+		
+		compassAdjustment =  navx.getCompassHeading();
+	}
+
+	public static double getAdustedAngle(double angle, double offset) {
+		double adjustedCompassHeading = angle - offset;
+		
+		if (adjustedCompassHeading < 0) {
+			adjustedCompassHeading = adjustedCompassHeading + 360;
+		}
+		
+		return adjustedCompassHeading;
 	}
 	
 	// This returns a value from 0 to 360
 	public double getAngle() {
-		printAngle();
-
-		return navx.getAngle();
+		return getAdustedAngle(navx.getCompassHeading(), compassAdjustment);
 	}
 
 	// Input is the range of 0 to 360
@@ -78,10 +92,10 @@ public class GyroController implements PIDOutput {
 		
 		setCentralAngle(angle);
 	}
-
-	// This returns a value from -180 to 180 from the PID Controller
+	
+	// This returns a value from -180 to 180
 	public double getCentralAngle() {
-		return pidController.get();
+		return convertToCentralAngle(getAngle());
 	}
 
 	// Input is the range of -180 to 180 to control the PID Controller
@@ -122,5 +136,20 @@ public class GyroController implements PIDOutput {
 		}
 		
 		return centralAngle;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(GyroController.convertToCentralAngle(180));
+		System.out.println(GyroController.convertToCentralAngle(90));
+		System.out.println(GyroController.convertToCentralAngle(0));
+		System.out.println(GyroController.convertToCentralAngle(360));
+		System.out.println(GyroController.convertToCentralAngle(270));
+		System.out.println(GyroController.convertToCentralAngle(181));
+		System.out.println("");
+		System.out.println(getAdustedAngle(0, 90));
+		System.out.println(getAdustedAngle(90, 90));
+		System.out.println(getAdustedAngle(180, 90));
+		System.out.println(getAdustedAngle(270, 90));
+		System.out.println(getAdustedAngle(360, 90));
 	}
 }
