@@ -50,7 +50,7 @@ public class Vision extends Subsystem {
 	}
 	
 	public Vision() {
-		if (isVisionEnabled()) {
+		if (!isVisionEnabled()) {
 			// Don't initialize the camera objects and return right away
 			System.out.println("WARNING !!! NO CAMERAS ENABLED");
 			return;  
