@@ -7,31 +7,38 @@ public class MoveForwardForTime extends DriveCommand {
 	
 	protected double speed = 0;
 	protected double time = 0;
+	protected String direction = FORWARD;
 	
-	public MoveForwardForTime() {
+	public MoveForwardForTime(double speed, double seconds) {
 		super();
 		
-		this.speed = getAutonomousMoveSpeed();
-		this.time = getAutonomousMoveTime();
+		this.speed = speed;
+		this.time = seconds;
 		
 		setTimeout(time);
 	}
 
 	@Override
 	protected void initialize() {
-		System.out.println("Start moving forwards for time : " + time);
+		System.out.println("Start moving " + direction + " for time : " + time);
 		Stanley.robotDrive.resetGyro();
 		Stanley.robotDrive.resetEncoders();
 	}
 	
 	@Override
 	protected void execute() {
-		Stanley.robotDrive.moveForwardWithGyro(speed);
+		double moveValue = speed;
+		
+		if (direction.equals(BACKWARD)) {
+			moveValue = -1.0 * moveValue;
+		}
+		
+		Stanley.robotDrive.moveWithGyro(moveValue);
 	}
 	
 	@Override
 	protected void end() {
-		System.out.println("Start moving forwards for time : " + time);
+		System.out.println("End moving " + direction + " for time : " + time);
 	}
 	
 	@Override

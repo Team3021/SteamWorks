@@ -3,6 +3,7 @@ package org.usfirst.frc.team3021.robot;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.usfirst.frc.team3021.robot.commands.DriveCommand;
 import org.usfirst.frc.team3021.robot.commands.device.StartAgitator;
 import org.usfirst.frc.team3021.robot.commands.device.StartClimber;
 import org.usfirst.frc.team3021.robot.commands.device.StartCollector;
@@ -106,11 +107,14 @@ public class Configuration {
 	}
 	
 	public void addCommandsToDashboard() {
+		double speed = DriveCommand.getAutonomousMoveSpeed();
+		double time = DriveCommand.getAutonomousMoveTime();
+		double distance = DriveCommand.getAutonomousMoveDistance();
+		
 		SmartDashboard.putData(Scheduler.getInstance());
 		
 		// Add test commands to dashboard
 		testCommands.add(new SubsystemTest());
-		
 		testCommands.add(new DriveTest());
 		testCommands.add(new CollectorTest());
 		testCommands.add(new ClimberTest());
@@ -121,10 +125,10 @@ public class Configuration {
 		
 		// Add move commands to dashboard
 		moveCommands.add(new ResetEncoders());
-		moveCommands.add(new MoveForwardForDistance());
-		moveCommands.add(new MoveForwardForTime());
-		moveCommands.add(new MoveBackwardForDistance());
-		moveCommands.add(new MoveBackwardForTime());
+		moveCommands.add(new MoveForwardForDistance(speed, distance));
+		moveCommands.add(new MoveForwardForTime(speed, time));
+		moveCommands.add(new MoveBackwardForDistance(speed, distance));
+		moveCommands.add(new MoveBackwardForTime(speed, time));
 		moveCommands.add(new StopMoving());
 		
 		addCommandsToSmartDashboard("Move", moveCommands);

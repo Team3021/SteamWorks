@@ -53,7 +53,7 @@ public class Drive extends Subsystem {
 	// Drive forward using the gyro to maintain course
 	// This assumes that forward is set to zero degrees
 	// and thus the gyro offset is is a deviaiton from going straight forward
-	public void moveForwardWithGyro(double moveValue) {
+	public void moveWithGyro(double moveValue) {
 		drive(moveValue, gyroController.getGyroOffset());
 	}
 
