@@ -1,11 +1,22 @@
 package org.usfirst.frc.team3021.robot.commands.test;
 
-import org.usfirst.frc.team3021.robot.commands.DriveCommand;
+import org.usfirst.frc.team3021.robot.Stanley;
 
-public class DriveTest extends DriveCommand {
+import edu.wpi.first.wpilibj.command.CommandGroup;
+
+public class DriveTest extends CommandGroup {
+
+	public DriveTest() {
+		requires(Stanley.robotDrive);
+	}
 
 	@Override
-	protected void execute() {
-		
+	protected void initialize() {
+		System.out.println("Starting Drive Test");
+	}
+	
+	@Override
+	protected void end() {
+		System.out.println("Ending Drive Test");
 	}
 }

@@ -1,31 +1,31 @@
 package org.usfirst.frc.team3021.robot.commands.test;
 
 import org.usfirst.frc.team3021.robot.Stanley;
-import org.usfirst.frc.team3021.robot.commands.device.StartClimber;
-import org.usfirst.frc.team3021.robot.commands.device.StopClimber;
+import org.usfirst.frc.team3021.robot.commands.device.StartAgitator;
+import org.usfirst.frc.team3021.robot.commands.device.StopAgitator;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.TimedCommand;
 
-public class ClimberTest extends CommandGroup {
+public class AgitatorTest extends CommandGroup {
 
-	public ClimberTest() {
+	public AgitatorTest() {
 		requires(Stanley.collector);
 		
-		addSequential(new StartClimber());
+		addSequential(new StartAgitator());
 		addSequential(new TimedCommand(5));
 		
-		addSequential(new StopClimber());
+		addSequential(new StopAgitator());
 		addSequential(new TimedCommand(5));
 	}
 
 	@Override
 	protected void initialize() {
-		System.out.println("Starting Climber Test");
+		System.out.println("Starting Agitator Test");
 	}
 	
 	@Override
 	protected void end() {
-		System.out.println("Ending Climber Test");
+		System.out.println("Ending Agitator Test");
 	}
 }

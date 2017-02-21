@@ -1,15 +1,26 @@
 package org.usfirst.frc.team3021.robot;
 
-import org.usfirst.frc.team3021.robot.commands.device.Agitate;
-import org.usfirst.frc.team3021.robot.commands.device.Climb;
-import org.usfirst.frc.team3021.robot.commands.device.Collect;
-import org.usfirst.frc.team3021.robot.commands.device.Index;
-import org.usfirst.frc.team3021.robot.commands.device.SpinWheel;
-import org.usfirst.frc.team3021.robot.commands.driving.DriveForTime;
-import org.usfirst.frc.team3021.robot.commands.driving.DriveToDistance;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.usfirst.frc.team3021.robot.commands.device.StartAgitator;
+import org.usfirst.frc.team3021.robot.commands.device.StartClimber;
+import org.usfirst.frc.team3021.robot.commands.device.StartCollector;
+import org.usfirst.frc.team3021.robot.commands.device.StartIndexer;
+import org.usfirst.frc.team3021.robot.commands.device.StartLaunchWheel;
+import org.usfirst.frc.team3021.robot.commands.device.StopAgitator;
+import org.usfirst.frc.team3021.robot.commands.device.StopClimber;
+import org.usfirst.frc.team3021.robot.commands.device.StopCollector;
+import org.usfirst.frc.team3021.robot.commands.device.StopIndexer;
+import org.usfirst.frc.team3021.robot.commands.device.StopLaunchWheel;
+import org.usfirst.frc.team3021.robot.commands.driving.MoveBackwardForDistance;
+import org.usfirst.frc.team3021.robot.commands.driving.MoveBackwardForTime;
+import org.usfirst.frc.team3021.robot.commands.driving.MoveForwardForDistance;
+import org.usfirst.frc.team3021.robot.commands.driving.MoveForwardForTime;
 import org.usfirst.frc.team3021.robot.commands.driving.ResetEncoders;
 import org.usfirst.frc.team3021.robot.commands.driving.ResetGyro;
-import org.usfirst.frc.team3021.robot.commands.driving.StopDriving;
+import org.usfirst.frc.team3021.robot.commands.driving.StopMoving;
+import org.usfirst.frc.team3021.robot.commands.driving.StopTurning;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngle180;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleLeft45;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleLeft90;
@@ -26,7 +37,9 @@ import org.usfirst.frc.team3021.robot.controller.AuxController;
 import org.usfirst.frc.team3021.robot.controller.Xbox360Controller;
 
 import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -46,6 +59,13 @@ public class Configuration {
 	
 	private SendableChooser<String> autonomousChooser = new SendableChooser<>();
 	private SendableChooser<String> controllerChooser = new SendableChooser<>();
+	
+	private List<Subsystem> subsystems = new ArrayList<Subsystem>();
+
+	private List<Command> testCommands = new ArrayList<Command>();
+	private List<Command> moveCommands = new ArrayList<Command>();
+	private List<Command> turnCommands = new ArrayList<Command>();
+	private List<Command> deviceCommands = new ArrayList<Command>();
 
 	public Configuration() {
 		
@@ -66,42 +86,84 @@ public class Configuration {
 	}
 
 	public void addSubsystemsToDashboard() {
-		SmartDashboard.putData(Stanley.robotDrive);
-		SmartDashboard.putData(Stanley.collector);
-		SmartDashboard.putData(Stanley.climber);
-		SmartDashboard.putData(Stanley.launcher);
-		SmartDashboard.putData(Stanley.vision);
+		subsystems.add(Stanley.robotDrive);
+		subsystems.add(Stanley.collector);
+		subsystems.add(Stanley.climber);
+		subsystems.add(Stanley.launcher);
+		subsystems.add(Stanley.vision);
+		
+		addSubsystemsToSmartDashboard(subsystems);
+	}
+
+	private void addSubsystemsToSmartDashboard(List<Subsystem> subsystems) {
+		System.out.println("******************* Subsystems *******************");
+
+		for (Subsystem subsystem : subsystems) {
+			SmartDashboard.putData(subsystem);
+			
+			System.out.println("Subsystem : " + subsystem.getName());
+		}
 	}
 	
 	public void addCommandsToDashboard() {
 		SmartDashboard.putData(Scheduler.getInstance());
 		
 		// Add test commands to dashboard
-		SmartDashboard.putData(new SubsystemTest());
-		SmartDashboard.putData(new DriveTest());
-		SmartDashboard.putData(new CollectorTest());
-		SmartDashboard.putData(new ClimberTest());
-		SmartDashboard.putData(new LauncherTest());
-		SmartDashboard.putData(new VisionTest());
+		testCommands.add(new SubsystemTest());
 		
-		// Add drive commands to dashboard
-		SmartDashboard.putData(new StopDriving());
-		SmartDashboard.putData(new DriveToDistance(0.3, 3));
-		SmartDashboard.putData(new DriveForTime(0.3, 3));
-		SmartDashboard.putData(new TurnToAngleRight45());
-		SmartDashboard.putData(new TurnToAngleRight90());
-		SmartDashboard.putData(new TurnToAngleLeft45());
-		SmartDashboard.putData(new TurnToAngleLeft90());
-		SmartDashboard.putData(new TurnToAngle180());
-		SmartDashboard.putData(new ResetGyro());
-		SmartDashboard.putData(new ResetEncoders());
+		testCommands.add(new DriveTest());
+		testCommands.add(new CollectorTest());
+		testCommands.add(new ClimberTest());
+		testCommands.add(new LauncherTest());
+		testCommands.add(new VisionTest());
+		
+		addCommandsToSmartDashboard("Test", testCommands);
+		
+		// Add move commands to dashboard
+		moveCommands.add(new ResetEncoders());
+		moveCommands.add(new MoveForwardForDistance());
+		moveCommands.add(new MoveForwardForTime());
+		moveCommands.add(new MoveBackwardForDistance());
+		moveCommands.add(new MoveBackwardForTime());
+		moveCommands.add(new StopMoving());
+		
+		addCommandsToSmartDashboard("Move", moveCommands);
+		
+		// add turning commands
+		turnCommands.add(new ResetGyro());
+		turnCommands.add(new TurnToAngleRight45());
+		turnCommands.add(new TurnToAngleRight90());
+		turnCommands.add(new TurnToAngleLeft45());
+		turnCommands.add(new TurnToAngleLeft90());
+		turnCommands.add(new TurnToAngle180());
+		turnCommands.add(new StopTurning());
+		
+		addCommandsToSmartDashboard("Turn", turnCommands);
 		
 		// Add device commands to dashboard
-		SmartDashboard.putData(new Agitate(5.0));
-		SmartDashboard.putData(new Index(5.0));
-		SmartDashboard.putData(new SpinWheel(5.0));
-		SmartDashboard.putData(new Collect(5.0));
-		SmartDashboard.putData(new Climb(5.0));
+		deviceCommands.add(new StartAgitator());
+		deviceCommands.add(new StartIndexer());
+		deviceCommands.add(new StartLaunchWheel());
+		deviceCommands.add(new StartCollector());
+		deviceCommands.add(new StartClimber());
+		
+		deviceCommands.add(new StopAgitator());
+		deviceCommands.add(new StopIndexer());
+		deviceCommands.add(new StopLaunchWheel());
+		deviceCommands.add(new StopCollector());
+		deviceCommands.add(new StopClimber());
+		
+		addCommandsToSmartDashboard("Device", deviceCommands);
+	}
+
+	private void addCommandsToSmartDashboard(String commandType, List<Command> commands) {
+		System.out.println("******************* " + commandType + " commands *******************");
+
+		for (Command command : commands) {
+			SmartDashboard.putData(command);
+			
+			System.out.println("Command : " + command.getName());
+		}
 	}
 	
 	public String getAutonomousMode() {

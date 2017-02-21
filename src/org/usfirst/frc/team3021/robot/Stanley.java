@@ -43,6 +43,8 @@ public class Stanley extends IterativeRobot {
 		configuration.addSubsystemsToDashboard();
 		
 		configuration.addCommandsToDashboard();
+		
+		Configuration.printButtonActions();
 	}
 	
 	@Override

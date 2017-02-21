@@ -41,11 +41,11 @@ public class Launcher extends Subsystem {
 		agitator.pause();
 	}
 	
-	public void startWheel() {
+	public void startLaunchWheel() {
 		launchWheel.set(getVoltage());
 	}
 	
-	public void stopWheel() {
+	public void stopLaunchWheel() {
 		launchWheel.set(0);
 	}
 	
@@ -53,14 +53,14 @@ public class Launcher extends Subsystem {
 		
 		// Control for the launch wheel.
 		if (mainController.isLaunching() || auxController.isLaunching()) {
-			startWheel();
+			startLaunchWheel();
 			startIndexer();
 			startAgitator();
 		}
 		else {
 			stopIndexer();
 			stopAgitator();
-			stopWheel();
+			stopLaunchWheel();
 		}
 
 		displayActualVoltage();

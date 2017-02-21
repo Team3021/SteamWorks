@@ -1,41 +1,26 @@
 package org.usfirst.frc.team3021.robot.commands.test;
 
 import org.usfirst.frc.team3021.robot.Stanley;
-import org.usfirst.frc.team3021.robot.commands.LauncherCommand;
 
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class LauncherTest extends LauncherCommand {
+public class LauncherTest extends CommandGroup {
 
-	// Called just before this Command runs the first time
+	public LauncherTest() {
+		requires(Stanley.launcher);
+		
+		addSequential(new AgitatorTest());
+		addSequential(new IndexerTest());
+		addSequential(new LaunchWheelTest());
+	}
+	
 	@Override
 	protected void initialize() {
-		Stanley.launcher.stopWheel();
-		Stanley.launcher.stopIndexer();
-		Stanley.launcher.stopAgitator();
+		System.out.println("Starting Launcher Test");
 	}
-
-	// Called repeatedly when this Command is scheduled to run
+	
 	@Override
-	protected void execute() {
-		System.out.println("Executing Launcher Test");
-		
-		Stanley.launcher.startWheel();
-		Timer.delay(5);
-		Stanley.launcher.stopWheel();
-
-		Timer.delay(5);
-		
-		Stanley.launcher.startIndexer();
-		Timer.delay(5);
-		Stanley.launcher.stopIndexer();
-		
-		Timer.delay(5);
-
-		Stanley.launcher.startAgitator();
-		Timer.delay(5);
-		Stanley.launcher.stopAgitator();
-		
-		Timer.delay(5);
+	protected void end() {
+		System.out.println("Ending Launcher Test");
 	}
 }

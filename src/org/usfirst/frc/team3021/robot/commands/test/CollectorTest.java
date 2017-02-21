@@ -1,34 +1,31 @@
 package org.usfirst.frc.team3021.robot.commands.test;
 
 import org.usfirst.frc.team3021.robot.Stanley;
-import org.usfirst.frc.team3021.robot.commands.CollectorCommand;
+import org.usfirst.frc.team3021.robot.commands.device.StartCollector;
+import org.usfirst.frc.team3021.robot.commands.device.StopCollector;
 
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.TimedCommand;
 
-public class CollectorTest extends CollectorCommand {
+public class CollectorTest extends CommandGroup {
+
+	public CollectorTest() {
+		requires(Stanley.collector);
+		
+		addSequential(new StartCollector());
+		addSequential(new TimedCommand(5));
+		
+		addSequential(new StopCollector());
+		addSequential(new TimedCommand(5));
+	}
 
 	@Override
 	protected void initialize() {
-		Stanley.collector.stopMotor();
+		System.out.println("Starting Collector Test");
 	}
-
-	@Override
-	protected void execute() {
-		System.out.println("Executing Collector Test");
-		
-		// turn on the motor
-		Stanley.collector.startMotor();
-		
-		// run the motor for a time
-		Timer.delay(5);
-	}
-
+	
 	@Override
 	protected void end() {
-		// turn off the motor
-		Stanley.collector.stopMotor();
-		
-		// run the motor for a time
-		Timer.delay(5);
+		System.out.println("Ending Collector Test");
 	}
 }
