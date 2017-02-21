@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GyroController implements PIDOutput {
 	
-	private final String PREF_GYRO_USB_ENABLED = "gyro.usb.enabled";
-	private final String PREF_GYRO_MXP_ENABLED = "gyro.mxp.enabled";
+	private final String PREF_GYRO_USB_ENABLED = "Gyro.usb.enabled";
+	private final String PREF_GYRO_MXP_ENABLED = "Gyro.mxp.enabled";
 
 	// Member Attributes
 	private AHRS navx;

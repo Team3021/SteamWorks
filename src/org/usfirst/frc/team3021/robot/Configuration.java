@@ -30,14 +30,14 @@ public class Configuration {
 	
 	public static final String AUTONOMOUS_DEFALUT = "Default";
 	
-	public static final String THRUSTMASTER = "ThrustMaster";
+	public static final String ATTACK_THREE = "Attack Three";
 	public static final String XBOX360 = "Xbox360";
 
-	private final String PREF_MAIN_CONTROLLER_PORT = "Main Controller : Port";
+	private final String PREF_MAIN_CONTROLLER_PORT = "Controller.main.port";
 	private final int MAIN_CONTROLLER_PORT_DEFAULT = 0;
 
-	public static final String PREF_AUX_PANEL_STATUS = "AuxPanel";
-	private final String PREF_AUX_PANEL_PORT = "AuxPanel : Port";
+	public  final String PREF_AUX_PANEL_STATUS = "Controller.aux.enabled";
+	private final String PREF_AUX_PANEL_PORT = "Controller.aux.port";
 	private final int AUX_PANEL_PORT_DEFAULT = 1;
 	
 	private SendableChooser<String> autonomousChooser = new SendableChooser<>();
@@ -56,7 +56,7 @@ public class Configuration {
 	}
 
 	private void addControllerChoices() {
-		controllerChooser.addDefault(THRUSTMASTER, THRUSTMASTER );
+		controllerChooser.addDefault(ATTACK_THREE, ATTACK_THREE );
 		controllerChooser.addObject(XBOX360, XBOX360);
 		SmartDashboard.putData("Select Controller", controllerChooser);
 	}

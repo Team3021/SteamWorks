@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.Preferences;
 
 public class Vision extends Subsystem {
 	
-	private final String PREF_VISION_CAMERA_0_ENABLED = "vision.camera.0.enabled";
-	private final String PREF_VISION_CAMERA_1_ENABLED = "vision.camera.1.enabled";
+	private final String PREF_VISION_CAMERA_0_ENABLED = "Vision.camera.0.enabled";
+	private final String PREF_VISION_CAMERA_1_ENABLED = "Vision.camera.1.enabled";
 	
 	private static final int USB_CAMERA_UNKNOWN = -1;
 	private static final int USB_CAMERA_ZERO = 0;

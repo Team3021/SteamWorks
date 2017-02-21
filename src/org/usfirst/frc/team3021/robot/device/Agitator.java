@@ -2,17 +2,16 @@ package org.usfirst.frc.team3021.robot.device;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Agitator extends RunnableDevice {
 	
-	private static final String PREF_TIME_BEFORE_FIRST_PERIODIC = "Agitator : Time Before First Periodic";
+	private static final String PREF_TIME_BEFORE_FIRST_PERIODIC = "Agitator.period.first.time.millis";
 	private static final long DEFAULT_TIME_BEFORE_FIRST_PERIODIC = 200;
 	
-	private static final String PREF_TIME_BETWEEN_PERIODIC = "Agitator : Time Between Periodic";
+	private static final String PREF_TIME_BETWEEN_PERIODIC = "Agitator.periodic.time.millis";
 	private static final long DEFAULT_TIME_BETWEEN_PERIODIC = 200;
 	
-	private static final String PREF_TIME_FOR_MOTOR = "Agitator : Time For Motor";
+	private static final String PREF_TIME_FOR_MOTOR = "Agitator.motor.time.millis";
 	private static final long DEFAULT_TIME_FOR_MOTOR = 800;
 	
 	private Relay relay;

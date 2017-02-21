@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Climber extends Subsystem {
 	
-	private static final String PREF_VOLTAGE = "Climber : Voltage";
+	private static final String PREF_VOLTAGE = "Climber.motor.voltage";
 	private static final double DEFAULT_VOLTAGE = 1.0;
 	
 	private CANTalon talon;

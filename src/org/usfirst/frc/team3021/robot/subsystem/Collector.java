@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Collector extends Subsystem {
 	
-	private static final String PREF_VOLTAGE = "Collector : Voltage";
+	private static final String PREF_VOLTAGE = "Collector.motor.voltage";
 	private static final double DEFAULT_VOLTAGE = 0.55;
 	
 	private CANTalon talon;

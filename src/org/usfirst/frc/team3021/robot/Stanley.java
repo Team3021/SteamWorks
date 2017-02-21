@@ -84,7 +84,7 @@ public class Stanley extends IterativeRobot {
 		String selectedController = configuration.getMainControllerMode();
 		int mainControllerPort = configuration.getMainControllerPort();
 
-		if (selectedController.equals(Configuration.THRUSTMASTER)) {
+		if (selectedController.equals(Configuration.ATTACK_THREE)) {
 			mainController = new AttackThreeController(mainControllerPort);
 			
 			if (mainController.isXbox()) {

@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Launcher extends Subsystem {
 	
-	private static final String PREF_VOLTAGE = "Launcher : Voltage";
+	private static final String PREF_VOLTAGE = "Launcher.motor.voltage";
 	private static final double DEFAULT_VOLTAGE = 0.45;
 	
 	private CANTalon launchWheel;

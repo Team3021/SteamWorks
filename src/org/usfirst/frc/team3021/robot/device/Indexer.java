@@ -6,16 +6,16 @@ import edu.wpi.first.wpilibj.Preferences;
 
 public class Indexer extends RunnableDevice {
 	
-	private static final String PREF_TIME_BEFORE_FIRST_PERIODIC = "Indexer : Time Before First Periodic";
+	private static final String PREF_TIME_BEFORE_FIRST_PERIODIC = "Indexer.period.first.time.mills";
 	private static final long DEFAULT_TIME_BEFORE_FIRST_PERIODIC = 1000;
 	
-	private static final String PREF_TIME_BETWEEN_PERIODIC = "Indexer : Time Between Periodic";
+	private static final String PREF_TIME_BETWEEN_PERIODIC = "Indexer.period.time.millis";
 	private static final long DEFAULT_TIME_BETWEEN_PERIODIC = 100;
 	
-	private static final String PREF_TIME_FOR_MOTOR = "Indexer : Time for Motor";
+	private static final String PREF_TIME_FOR_MOTOR = "Indexer.period.motor.time.millis";
 	private static final long DEFAULT_TIME_FOR_MOTOR = 30;
 	
-	private static final String PREF_VOLTAGE = "Indexer : Voltage";
+	private static final String PREF_VOLTAGE = "Indexer.motor.voltage";
 	private static final double DEFAULT_VOLTAGE = 0.3;
 	
 	private CANTalon talon;
