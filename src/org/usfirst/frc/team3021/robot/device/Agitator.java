@@ -6,13 +6,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Agitator extends RunnableDevice {
 	
-	private static final String TIME_BEFORE_FIRST_PERIODIC = "Agitator : Time Before First Periodic";
+	private static final String PREF_TIME_BEFORE_FIRST_PERIODIC = "Agitator : Time Before First Periodic";
 	private static final long DEFAULT_TIME_BEFORE_FIRST_PERIODIC = 200;
 	
-	private static final String TIME_BETWEEN_PERIODIC = "Agitator : Time Between Periodic";
+	private static final String PREF_TIME_BETWEEN_PERIODIC = "Agitator : Time Between Periodic";
 	private static final long DEFAULT_TIME_BETWEEN_PERIODIC = 200;
 	
-	private static final String TIME_FOR_MOTOR = "Agitator : Time For Motor";
+	private static final String PREF_TIME_FOR_MOTOR = "Agitator : Time For Motor";
 	private static final long DEFAULT_TIME_FOR_MOTOR = 800;
 	
 	private Relay relay;
@@ -27,7 +27,7 @@ public class Agitator extends RunnableDevice {
 	protected void runPeriodic() {
 		// delay the first periodic
 		if (isFirstPeriodic()) {
-			long pulseTime = Preferences.getInstance().getLong(TIME_BEFORE_FIRST_PERIODIC, DEFAULT_TIME_BEFORE_FIRST_PERIODIC);
+			long pulseTime = Preferences.getInstance().getLong(PREF_TIME_BEFORE_FIRST_PERIODIC, DEFAULT_TIME_BEFORE_FIRST_PERIODIC);
 			RunnableDevice.delay(pulseTime);
 		}
 		
@@ -35,14 +35,14 @@ public class Agitator extends RunnableDevice {
 		relay.set(Relay.Value.kReverse);
 
 		// run the motor for a  time
-		long motorRunTime = Preferences.getInstance().getLong(TIME_FOR_MOTOR, DEFAULT_TIME_FOR_MOTOR);
+		long motorRunTime = Preferences.getInstance().getLong(PREF_TIME_FOR_MOTOR, DEFAULT_TIME_FOR_MOTOR);
 		RunnableDevice.delay(motorRunTime);
 
 		// stop the motor
 		relay.set(Relay.Value.kOff);
 		
 		// wait before next periodic
-		long timeBetweenPeriodics = Preferences.getInstance().getLong(TIME_BETWEEN_PERIODIC, DEFAULT_TIME_BETWEEN_PERIODIC);
+		long timeBetweenPeriodics = Preferences.getInstance().getLong(PREF_TIME_BETWEEN_PERIODIC, DEFAULT_TIME_BETWEEN_PERIODIC);
 		RunnableDevice.delay(timeBetweenPeriodics);
 	}
 }

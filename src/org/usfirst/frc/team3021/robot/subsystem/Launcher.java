@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Launcher extends Subsystem {
 	
-	private static final String VOLTAGE = "Launcher : Voltage";
+	private static final String PREF_VOLTAGE = "Launcher : Voltage";
 	private static final double DEFAULT_VOLTAGE = 0.45;
 	
 	private CANTalon launchWheel;
@@ -68,7 +68,7 @@ public class Launcher extends Subsystem {
 	}
 	
 	private double getVoltage() {
-		double voltage = Preferences.getInstance().getDouble(VOLTAGE, DEFAULT_VOLTAGE);
+		double voltage = Preferences.getInstance().getDouble(PREF_VOLTAGE, DEFAULT_VOLTAGE);
 		
 		return voltage;
 	}

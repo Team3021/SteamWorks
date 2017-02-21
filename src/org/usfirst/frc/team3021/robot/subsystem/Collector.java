@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Collector extends Subsystem {
 	
-	private static final String VOLTAGE = "Collector : Voltage";
+	private static final String PREF_VOLTAGE = "Collector : Voltage";
 	private static final double DEFAULT_VOLTAGE = 0.55;
 	
 	private CANTalon talon;
@@ -42,7 +42,7 @@ public class Collector extends Subsystem {
 	}
 	
 	private double getVoltage() {
-		double voltage = Preferences.getInstance().getDouble(VOLTAGE, DEFAULT_VOLTAGE);
+		double voltage = Preferences.getInstance().getDouble(PREF_VOLTAGE, DEFAULT_VOLTAGE);
 		
 		// reverse the polarity
 		voltage = voltage * -1;

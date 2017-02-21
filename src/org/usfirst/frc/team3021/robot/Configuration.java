@@ -33,14 +33,14 @@ public class Configuration {
 	public static final String THRUSTMASTER = "ThrustMaster";
 	public static final String XBOX360 = "Xbox360";
 
-	private final String MAIN_CONTROLLER_PORT = "Main Controller : Port";
+	private final String PREF_MAIN_CONTROLLER_PORT = "Main Controller : Port";
 	private final int MAIN_CONTROLLER_PORT_DEFAULT = 0;
 
-	public static final String AUX_PANEL_STATUS = "AuxPanel";
-	private final String AUX_PANEL_PORT = "AuxPanel : Port";
+	public static final String PREF_AUX_PANEL_STATUS = "AuxPanel";
+	private final String PREF_AUX_PANEL_PORT = "AuxPanel : Port";
 	private final int AUX_PANEL_PORT_DEFAULT = 1;
 	
-	private final String VISION_SUBSYSTEM_STATUS = "Vision : Enabled";
+	private final String PREF_VISION_SUBSYSTEM_STATUS = "Vision : Enabled";
 	
 	private SendableChooser<String> autonomousChooser = new SendableChooser<>();
 	private SendableChooser<String> controllerChooser = new SendableChooser<>();
@@ -114,18 +114,18 @@ public class Configuration {
 	}
 	
 	public int getMainControllerPort() {
-		return Preferences.getInstance().getInt(MAIN_CONTROLLER_PORT, MAIN_CONTROLLER_PORT_DEFAULT);
+		return Preferences.getInstance().getInt(PREF_MAIN_CONTROLLER_PORT, MAIN_CONTROLLER_PORT_DEFAULT);
 	}
 	
 	public int getAuxPanelPort() {
-		return Preferences.getInstance().getInt(AUX_PANEL_PORT, AUX_PANEL_PORT_DEFAULT);
+		return Preferences.getInstance().getInt(PREF_AUX_PANEL_PORT, AUX_PANEL_PORT_DEFAULT);
 	}
 	
 	public boolean isAuxPanelEnabled() {
-		return Preferences.getInstance().getBoolean(AUX_PANEL_STATUS, false);
+		return Preferences.getInstance().getBoolean(PREF_AUX_PANEL_STATUS, false);
 	}
 	
 	public boolean isVisionEnabled() {
-		return Preferences.getInstance().getBoolean(VISION_SUBSYSTEM_STATUS, false);
+		return Preferences.getInstance().getBoolean(PREF_VISION_SUBSYSTEM_STATUS, false);
 	}
 }
