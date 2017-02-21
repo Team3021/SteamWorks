@@ -5,10 +5,14 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GyroController implements PIDOutput {
+	
+	private final String PREF_GYRO_USB_ENABLED = "gyro.usb.enabled";
+	private final String PREF_GYRO_MXP_ENABLED = "gyro.mxp.enabled";
 
 	// Member Attributes
 	private AHRS navx;
@@ -32,9 +36,23 @@ public class GyroController implements PIDOutput {
     public static final double kToleranceDegrees = 2.0f; // Tolerance--Precision of turning with the Navx
 	
 	public GyroController() {
+		if (!isGyroEnabled()) {
+			System.out.println("WARNING !!! NO GYRO PORT ENABLED");
+			return;  
+		}
+		else {
+			System.out.println("gyro port enabled");
+		}
+		
         try {
-        	// The Navx--connected by USB
-            navx = new AHRS(Port.kUSB); 
+        	
+        	if (isUSBEnabled()) {
+        		// The Navx--connected by USB port
+        		navx = new AHRS(Port.kUSB); 
+        	} else {
+        		// The Navx--connected by MXP port
+        		navx = new AHRS(Port.kMXP); 
+        	}
         } catch (RuntimeException ex ) {
             DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
         }
@@ -49,6 +67,18 @@ public class GyroController implements PIDOutput {
         pidController.enable();
         
         resetGyro();
+	}
+	
+	private boolean isUSBEnabled() {
+		return Preferences.getInstance().getBoolean(PREF_GYRO_USB_ENABLED, false);
+	}
+	
+	private boolean isMXPenabled() {
+		return Preferences.getInstance().getBoolean(PREF_GYRO_MXP_ENABLED, false);
+	}
+	
+	private boolean isGyroEnabled() {
+		return isUSBEnabled() || isMXPenabled();
 	}
 
 	public void printAngle() {
