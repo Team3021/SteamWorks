@@ -21,6 +21,9 @@ import org.usfirst.frc.team3021.robot.commands.test.DriveTest;
 import org.usfirst.frc.team3021.robot.commands.test.LauncherTest;
 import org.usfirst.frc.team3021.robot.commands.test.SubsystemTest;
 import org.usfirst.frc.team3021.robot.commands.test.VisionTest;
+import org.usfirst.frc.team3021.robot.controller.AttackThreeController;
+import org.usfirst.frc.team3021.robot.controller.AuxController;
+import org.usfirst.frc.team3021.robot.controller.Xbox360Controller;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -123,5 +126,15 @@ public class Configuration {
 	
 	public boolean isAuxPanelEnabled() {
 		return Preferences.getInstance().getBoolean(PREF_AUX_PANEL_STATUS, false);
+	}
+
+	public static void printButtonActions() {
+		new AttackThreeController().printButtonActions("Attack Three");
+		new Xbox360Controller().printButtonActions("Xbox360");
+		new AuxController().printButtonActions("Aux Panel");
+	}
+
+	public static void main(String[] args) {
+		Configuration.printButtonActions();
 	}
 }

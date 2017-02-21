@@ -64,11 +64,5 @@ public abstract class BaseController implements Controller {
 
 		System.out.println("");
 	}
-
-	public static void main(String[] args) {
-		new AttackThreeController().printButtonActions("Attack Three");
-		new Xbox360Controller().printButtonActions("Xbox360");
-		new AuxController().printButtonActions("Aux Panel");
-	}
 }
 
