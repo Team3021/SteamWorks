@@ -72,7 +72,7 @@ public class GyroController implements PIDOutput {
 	}
 	
 	private boolean isMXPEnabled() {
-		return Preferences.getInstance().getBoolean(PREF_GYRO_MXP_ENABLED, false);
+		return Preferences.getInstance().getBoolean(PREF_GYRO_MXP_ENABLED, true);
 	}
 	
 	private boolean isGyroEnabled() {

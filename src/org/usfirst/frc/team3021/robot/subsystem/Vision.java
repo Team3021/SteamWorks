@@ -38,11 +38,11 @@ public class Vision extends Subsystem {
 	private VisionProcessor visionProcessor;
 	
 	private boolean isCamera0Enabled() {
-		return Preferences.getInstance().getBoolean(PREF_VISION_CAMERA_0_ENABLED, false);
+		return Preferences.getInstance().getBoolean(PREF_VISION_CAMERA_0_ENABLED, true);
 	}
 	
 	private boolean isCamera1Enabled() {
-		return Preferences.getInstance().getBoolean(PREF_VISION_CAMERA_1_ENABLED, false);
+		return Preferences.getInstance().getBoolean(PREF_VISION_CAMERA_1_ENABLED, true);
 	}
 	
 	private boolean isVisionEnabled() {
