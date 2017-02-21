@@ -23,7 +23,7 @@ public class Collector extends Subsystem {
 	@Override
 	public void teleopPeriodic() {
 		// Control the motor
-		if (mainController.isCollecting()) {
+		if (mainController.isCollecting() || auxController.isCollecting()) {
 			startMotor();
 		}
 		else {

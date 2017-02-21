@@ -23,7 +23,8 @@ public class Climber extends Subsystem {
 	@Override
 	public void teleopPeriodic() {
 		// Control the motor
-		if (mainController.isClimberSafteyOn() && mainController.isClimbing()) {
+		if ((mainController.isClimberSafteyOn() && mainController.isClimbing())
+				|| (auxController.isClimberSafteyOn() && auxController.isClimbing())) {
 			startMotor();
 		}
 		else {

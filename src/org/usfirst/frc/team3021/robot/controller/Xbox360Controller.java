@@ -100,7 +100,7 @@ public class Xbox360Controller implements Controller {
 
 	@Override
 	public boolean isClimberSafteyOn() {
-		return true;
+		return getRawButton(BACK_BUTTON);
 	}
 
 	@Override

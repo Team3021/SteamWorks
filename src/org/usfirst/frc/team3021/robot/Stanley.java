@@ -2,7 +2,7 @@ package org.usfirst.frc.team3021.robot;
 
 import org.usfirst.frc.team3021.robot.commands.test.SubsystemTest;
 import org.usfirst.frc.team3021.robot.controller.AuxController;
-import org.usfirst.frc.team3021.robot.controller.ThrustmasterController;
+import org.usfirst.frc.team3021.robot.controller.AttackThreeController;
 import org.usfirst.frc.team3021.robot.controller.Xbox360Controller;
 import org.usfirst.frc.team3021.robot.subsystem.Climber;
 import org.usfirst.frc.team3021.robot.subsystem.Collector;
@@ -85,7 +85,7 @@ public class Stanley extends IterativeRobot {
 		int mainControllerPort = configuration.getMainControllerPort();
 
 		if (selectedController.equals(Configuration.THRUSTMASTER)) {
-			mainController = new ThrustmasterController(mainControllerPort);
+			mainController = new AttackThreeController(mainControllerPort);
 			
 			if (mainController.isXbox()) {
 				System.out.println("WARNING !!! FOUND XBOX CONTROLLER");
