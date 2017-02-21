@@ -3,7 +3,7 @@ package org.usfirst.frc.team3021.robot.commands.driving;
 import org.usfirst.frc.team3021.robot.Stanley;
 import org.usfirst.frc.team3021.robot.commands.DriveCommand;
 
-public abstract class TurnToAngle extends DriveCommand {
+public class TurnToAngle extends DriveCommand {
 	
 	protected double desiredAngle;
 
@@ -19,7 +19,7 @@ public abstract class TurnToAngle extends DriveCommand {
 	
 	@Override
 	protected void execute() {
-		Stanley.robotDrive.turnToCentralAngle(desiredAngle);
+		Stanley.robotDrive.turnToAngle(desiredAngle);
 	}
 	
 	@Override
@@ -29,8 +29,11 @@ public abstract class TurnToAngle extends DriveCommand {
 	
 	@Override
 	protected boolean isFinished() {
-		boolean isRotating = Stanley.robotDrive.isRotating();
-		
-		return !isRotating;
+		return Stanley.robotDrive.isGyroOnTarget();
+	}
+	
+	@Override
+	public synchronized boolean isInterruptible() {
+		return false;
 	}
 }

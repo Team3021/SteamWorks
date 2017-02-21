@@ -55,7 +55,7 @@ public class Drive extends Subsystem {
 	// This assumes that forward is set to zero degrees
 	// and thus the gyro offset is is a deviaiton from going straight forward
 	public void driveForwardWithGyro(double moveValue) {
-		drive(moveValue, getGyroOffset());
+		drive(moveValue, gyroController.getGyroOffset());
 	}
 
 	public void stop() {
@@ -67,15 +67,7 @@ public class Drive extends Subsystem {
 	// ****************************************************************************
 
 	public void turnToAngle(double desiredAngle) {
-		setGyroAngle(desiredAngle);
-		
-		double turnValue = getGyroTurnValue();
-		
-		drive(0, turnValue);
-	}
-
-	public void turnToCentralAngle(double desiredAngle) {
-		setGyroCentralAngle(desiredAngle);
+		setGyroDesiredAngle(desiredAngle);
 		
 		double turnValue = getGyroTurnValue();
 		
@@ -90,41 +82,19 @@ public class Drive extends Subsystem {
 		gyroController.resetGyro();
 	}
 
-	public double getGyroAngle() {
-		return gyroController.getAngle();
-	}
-
-	public void setGyroAngle(double angle) {
-		gyroController.setAngle(angle);
-	}
-
-	public double getGyroCentralAngle() {
-		return gyroController.getCentralAngle();
-	}
-
-	public void setGyroCentralAngle(double angle) {
-		gyroController.setCentralAngle(angle);
+	public void setGyroDesiredAngle(double angle) {
+		gyroController.setDesiredAngle(angle);
 	}
 
 	public double getGyroTurnValue() {
 		return gyroController.getTurnValue();
 	}
 
-	private double getGyroOffset() {
-		double gyroOffset = (getGyroCentralAngle() * .01111111111);
-		
-		// IF THE ABOSOLUTE VAL OF THE GYRO OFFSET IS LARGER THAN 1
-		if (Math.abs(gyroOffset) > 1) {
-			// SET THE GYRO OFFSET TO EITHER 1 OR -1
-			gyroOffset =  (-1 * (Math.abs(gyroOffset) / gyroOffset));
-		} else {
-			gyroOffset =  -gyroOffset;
-		}
-		
-		return gyroOffset;
+	public boolean isGyroOnTarget() {
+		return gyroController.isOnTarget();
 	}
 
-	public boolean isRotating() {
+	public boolean isGyroRotating() {
 		return gyroController.isRotating();
 	}
 
@@ -134,10 +104,6 @@ public class Drive extends Subsystem {
 
 	@Override
 	public void teleopPeriodic() {
-		
-		// update the SmartDashboard
-		gyroController.printAngle();
-		gyroController.printCentralAngle();
 		
         if (mainController.isResettingNavx()) {
         	resetGyro();
