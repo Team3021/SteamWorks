@@ -2,9 +2,6 @@ package org.usfirst.frc.team3021.robot.commands.driving;
 
 import org.usfirst.frc.team3021.robot.Stanley;
 import org.usfirst.frc.team3021.robot.commands.DriveCommand;
-import org.usfirst.frc.team3021.robot.controller.GyroController;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public abstract class TurnToAngle extends DriveCommand {
 	
@@ -17,6 +14,7 @@ public abstract class TurnToAngle extends DriveCommand {
 	@Override
 	protected void initialize() {
 		System.out.println("Start TurnToAngle");
+		Stanley.robotDrive.resetGyro();
 	}
 	
 	@Override
