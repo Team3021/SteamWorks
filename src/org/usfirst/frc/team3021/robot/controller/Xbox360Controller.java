@@ -84,7 +84,7 @@ public class Xbox360Controller implements Controller {
 
 	@Override
 	public boolean isRotatingCustom() {
-		if (controller.getRawAxis(LEFT_TRIGGER) > 0.9) {
+		if (controller.getRawAxis(RIGHT_TRIGGER) > 0.9) {
 			return true;
 		}
 		else {
@@ -94,7 +94,7 @@ public class Xbox360Controller implements Controller {
 
 	@Override
 	public boolean isRotatingCustomNegative() {
-		if (controller.getRawAxis(RIGHT_TRIGGER) > 0.9) {
+		if (controller.getRawAxis(LEFT_TRIGGER) > 0.9) {
 			return true;
 		}
 		else {
