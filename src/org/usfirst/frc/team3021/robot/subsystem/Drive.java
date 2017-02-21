@@ -3,8 +3,11 @@ package org.usfirst.frc.team3021.robot.subsystem;
 import org.usfirst.frc.team3021.robot.Subsystem;
 import org.usfirst.frc.team3021.robot.commands.DriveCommand;
 import org.usfirst.frc.team3021.robot.commands.driving.DriveWithJoystick;
-import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngle;
-import org.usfirst.frc.team3021.robot.commands.driving.TurnToCentralAngle;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngle180;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleLeft45;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleLeft90;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleRight45;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleRight90;
 import org.usfirst.frc.team3021.robot.controller.DriveController;
 import org.usfirst.frc.team3021.robot.controller.GyroController;
 
@@ -145,37 +148,20 @@ public class Drive extends Subsystem {
         	autonomousCommand = null;
         }
         
-        if (controller.isRotateToZero()) {
-        	autonomousCommand = new TurnToCentralAngle(0.0);
-        }
-        else if (controller.isRotatingToNinety()) {
-        	autonomousCommand = new TurnToCentralAngle(90.0);
+        if (controller.isRotatingToNinety()) {
+        	autonomousCommand = new TurnToAngleRight90();
         }
         else if (controller.isRotatingToNegativeNinety()) {
-        	autonomousCommand = new TurnToCentralAngle(-90.0);
+        	autonomousCommand = new TurnToAngleLeft90();
         }
         else if (controller.isRotatingToOneHundredEighty()) {
-        	autonomousCommand = new TurnToCentralAngle(180.0);
+        	autonomousCommand = new TurnToAngle180();
         }
         else if (controller.isRotatingCustom()) {
-        	double newAngle = getGyroAngle() + 45;
-        	
-        	// Limit the angle to our range of 0 to 360
-        	if (newAngle > 360) {
-        		newAngle = newAngle - 360;
-        	}
-        	
-        	autonomousCommand = new TurnToAngle(newAngle);
+        	autonomousCommand = new TurnToAngleRight45();
         }
         else if (controller.isRotatingCustomNegative()) {
-        	double newAngle = getGyroAngle() - 45;
-        	
-        	// Limit the angle to our range of 0 to 360
-        	if (newAngle < 0) {
-        		newAngle = newAngle + 360;
-        	}
-
-        	autonomousCommand = new TurnToAngle(newAngle);
+        	autonomousCommand = new TurnToAngleLeft45();
         }
         
         // Updates the scheduler to the selected autonomous command. 

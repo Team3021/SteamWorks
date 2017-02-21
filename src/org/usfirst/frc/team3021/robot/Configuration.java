@@ -1,8 +1,24 @@
 package org.usfirst.frc.team3021.robot;
 
-import org.usfirst.frc.team3021.robot.commands.device.*;
-import org.usfirst.frc.team3021.robot.commands.driving.*;
-import org.usfirst.frc.team3021.robot.commands.test.*;
+import org.usfirst.frc.team3021.robot.commands.device.Agitate;
+import org.usfirst.frc.team3021.robot.commands.device.Collect;
+import org.usfirst.frc.team3021.robot.commands.device.Index;
+import org.usfirst.frc.team3021.robot.commands.device.SpinWheel;
+import org.usfirst.frc.team3021.robot.commands.driving.DriveForTime;
+import org.usfirst.frc.team3021.robot.commands.driving.DriveToDistance;
+import org.usfirst.frc.team3021.robot.commands.driving.ResetEncoders;
+import org.usfirst.frc.team3021.robot.commands.driving.ResetGyro;
+import org.usfirst.frc.team3021.robot.commands.driving.StopDriving;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngle180;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleLeft45;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleLeft90;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleRight45;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleRight90;
+import org.usfirst.frc.team3021.robot.commands.test.CollectorTest;
+import org.usfirst.frc.team3021.robot.commands.test.DriveTest;
+import org.usfirst.frc.team3021.robot.commands.test.LauncherTest;
+import org.usfirst.frc.team3021.robot.commands.test.SubsystemTest;
+import org.usfirst.frc.team3021.robot.commands.test.VisionTest;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -67,8 +83,11 @@ public class Configuration {
 		SmartDashboard.putData(new StopDriving());
 		SmartDashboard.putData(new DriveToDistance(0.3, 3));
 		SmartDashboard.putData(new DriveForTime(0.3, 3));
-		SmartDashboard.putData(new TurnToAngle(90.0));
-		SmartDashboard.putData(new TurnToCentralAngle(90.0));
+		SmartDashboard.putData(new TurnToAngleRight45());
+		SmartDashboard.putData(new TurnToAngleRight90());
+		SmartDashboard.putData(new TurnToAngleLeft45());
+		SmartDashboard.putData(new TurnToAngleLeft90());
+		SmartDashboard.putData(new TurnToAngle180());
 		SmartDashboard.putData(new ResetGyro());
 		SmartDashboard.putData(new ResetEncoders());
 		
