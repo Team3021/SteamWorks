@@ -107,6 +107,10 @@ public class GyroController implements PIDOutput {
 
 		return rotateToAngleRate;
 	}
+
+	public boolean isRotating() {
+		return navx.isRotating();
+	}
 	
     @Override
     /* This function is invoked periodically by the PID Controller, */

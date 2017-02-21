@@ -124,6 +124,10 @@ public class Drive extends Subsystem {
 		return gyroOffset;
 	}
 
+	public boolean isRotating() {
+		return gyroController.isRotating();
+	}
+
 	// ****************************************************************************
 	// **********************             TELEOP            **********************
 	// ****************************************************************************

@@ -31,17 +31,8 @@ public abstract class TurnToAngle extends DriveCommand {
 	
 	@Override
 	protected boolean isFinished() {
+		boolean isRotating = Stanley.robotDrive.isRotating();
 		
-		double currentAbsAngle = Math.abs(Stanley.robotDrive.getGyroCentralAngle());
-		double currentAbsDesiredAngle = Math.abs(desiredAngle);
-		
-		double angleDifference = currentAbsAngle - currentAbsDesiredAngle;
-		angleDifference = Math.abs(angleDifference);
-		
-		SmartDashboard.putNumber("TurnToAngle : angle difference", angleDifference);
-		SmartDashboard.putNumber("TurnToAngle : desired angle", currentAbsDesiredAngle);
-		SmartDashboard.putNumber("TurnToAngle : current angle", currentAbsAngle);
-		
-		return (angleDifference <= GyroController.kToleranceDegrees);
+		return !isRotating;
 	}
 }
