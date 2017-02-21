@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3021.robot;
 
 import org.usfirst.frc.team3021.robot.commands.device.Agitate;
+import org.usfirst.frc.team3021.robot.commands.device.Climb;
 import org.usfirst.frc.team3021.robot.commands.device.Collect;
 import org.usfirst.frc.team3021.robot.commands.device.Index;
 import org.usfirst.frc.team3021.robot.commands.device.SpinWheel;
@@ -97,6 +98,7 @@ public class Configuration {
 		SmartDashboard.putData(new Index(5.0));
 		SmartDashboard.putData(new SpinWheel(5.0));
 		SmartDashboard.putData(new Collect(5.0));
+		SmartDashboard.putData(new Climb(5.0));
 	}
 	
 	public String getAutonomousMode() {
