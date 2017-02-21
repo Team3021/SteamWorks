@@ -4,6 +4,7 @@ import org.usfirst.frc.team3021.robot.commands.test.SubsystemTest;
 import org.usfirst.frc.team3021.robot.controller.AuxController;
 import org.usfirst.frc.team3021.robot.controller.ThrustmasterController;
 import org.usfirst.frc.team3021.robot.controller.Xbox360Controller;
+import org.usfirst.frc.team3021.robot.subsystem.Climber;
 import org.usfirst.frc.team3021.robot.subsystem.Collector;
 import org.usfirst.frc.team3021.robot.subsystem.Drive;
 import org.usfirst.frc.team3021.robot.subsystem.Launcher;
@@ -17,11 +18,14 @@ public class Stanley extends IterativeRobot {
 	public static Configuration configuration;
 	
 	public static Drive robotDrive;
+	
 	public static Launcher launcher;
 	public static Collector collector;
+	public static Climber climber;
+	
 	public static Vision vision;
 	
-	public static Controller controller;
+	public static Controller mainController;
 	public static Controller auxController;
 
 	public Stanley() {
@@ -32,8 +36,8 @@ public class Stanley extends IterativeRobot {
 		robotDrive = new Drive();
 		launcher = new Launcher();
 		collector = new Collector();
+		climber = new Climber();
 		vision = new Vision();
-		
 		
 		configuration.addSubsystemsToDashboard();
 		
@@ -43,7 +47,12 @@ public class Stanley extends IterativeRobot {
 	
 	@Override
 	public void robotInit() {
-		
+		// Do nothing to prevent warnings
+	}
+
+	@Override
+	public void robotPeriodic() {
+		// Do nothing to prevent warnings
 	}
 
 	@Override
@@ -77,23 +86,28 @@ public class Stanley extends IterativeRobot {
 		int mainControllerPort = configuration.getMainControllerPort();
 
 		if (selectedController.equals(Configuration.THRUSTMASTER)) {
-			controller = new ThrustmasterController(mainControllerPort);
+			mainController = new ThrustmasterController(mainControllerPort);
+			
+			if (mainController.isXbox()) {
+				System.out.println("WARNING !!! FOUND XBOX CONTROLLER");
+			}
 		}
 		else if (selectedController.equals(Configuration.XBOX360)) {
 			System.out.println("***************XBOX***************");
-			controller = new Xbox360Controller(mainControllerPort);
+			mainController = new Xbox360Controller(mainControllerPort);
 			
-			if (!controller.isXbox()) {
+			if (!mainController.isXbox()) {
 				System.out.println("WARNING !!! NOT XBOX CONTROLLER");
 			}
 		}
 
 		auxController = new AuxController(configuration.getAuxPanelPort());
 		
-		robotDrive.setController(controller);
-		launcher.setController(controller);
-		collector.setController(controller);
-		vision.setController(controller);
+		robotDrive.setControllers(mainController, auxController);
+		launcher.setControllers(mainController, auxController);
+		collector.setControllers(mainController, auxController);
+		climber.setControllers(mainController, auxController);
+		vision.setControllers(mainController, auxController);
 		
 	}
 	
@@ -104,6 +118,7 @@ public class Stanley extends IterativeRobot {
 		robotDrive.teleopPeriodic();
 		launcher.teleopPeriodic();
 		collector.teleopPeriodic();
+		climber.teleopPeriodic();
 		vision.teleopPeriodic();
 	}
 
@@ -118,6 +133,16 @@ public class Stanley extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		Scheduler.getInstance().run();
+	}
+
+	@Override
+	public void disabledInit() {
+		// Do nothing to prevent warnings
+	}
+
+	@Override
+	public void disabledPeriodic() {
+		// Do nothing to prevent warnings
 	}
 }
 

@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
 import org.usfirst.frc.team3021.robot.Subsystem;
-import org.usfirst.frc.team3021.robot.commands.CollectorCommand;
+import org.usfirst.frc.team3021.robot.commands.ClimberCommand;
 
 import com.ctre.CANTalon;
 
@@ -9,21 +9,21 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Collector extends Subsystem {
+public class Climber extends Subsystem {
 	
-	private static final String VOLTAGE = "Collector : Voltage";
-	private static final double DEFAULT_VOLTAGE = 0.55;
+	private static final String VOLTAGE = "Climber : Voltage";
+	private static final double DEFAULT_VOLTAGE = 1.0;
 	
 	private CANTalon talon;
 	
-	public Collector() {		
-		talon = new CANTalon(26);
+	public Climber() {		
+		talon = new CANTalon(30);
 	}
 	
 	@Override
 	public void teleopPeriodic() {
 		// Control the motor
-		if (mainController.isCollecting()) {
+		if (mainController.isClimberSafteyOn() && mainController.isClimbing()) {
 			startMotor();
 		}
 		else {
@@ -52,11 +52,11 @@ public class Collector extends Subsystem {
 
 	private void displayActualVoltage() {
 		double actualVoltage = talon.getBusVoltage() - DriverStation.getInstance().getBatteryVoltage();
-		SmartDashboard.putNumber("Collector : Voltage Reading", actualVoltage);
+		SmartDashboard.putNumber("Climber : Voltage Reading", actualVoltage);
 	}
 	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new CollectorCommand());
+		setDefaultCommand(new ClimberCommand());
 	}	
 }

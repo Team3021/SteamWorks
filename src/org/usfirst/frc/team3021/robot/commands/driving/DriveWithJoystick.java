@@ -16,10 +16,10 @@ public class DriveWithJoystick extends DriveCommand {
 	}
 
 	private double getMoveValue() {
-		double moveValue = Stanley.controller.getMoveValue();
+		double moveValue = Stanley.mainController.getMoveValue();
 		
 		// Determines whether the output of expSpeed should be positive or negative.
-		int verticalDirection = getDirection(Stanley.controller.getMoveValue());
+		int verticalDirection = getDirection(Stanley.mainController.getMoveValue());
 
 		// These equations are modified versions of the standard exponential form, ab^x. 
 		// The equations here are of the form d(ab^|x| - a) where d is the respective direction value (note above). 
@@ -31,7 +31,7 @@ public class DriveWithJoystick extends DriveCommand {
 	}
 
 	private double getTurnValue() {
-		double turnValue = Stanley.controller.getTurnValue();
+		double turnValue = Stanley.mainController.getTurnValue();
 
 		int turnDirection = getDirection(turnValue);
 

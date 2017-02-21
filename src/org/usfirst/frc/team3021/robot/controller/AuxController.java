@@ -5,6 +5,20 @@ import org.usfirst.frc.team3021.robot.Controller;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class AuxController implements Controller {
+
+	private static final int RIGHT_TOGGLE_BUTTON = 1;
+	private static final int MIDDLE_TOGGLE_BUTTON = 2;
+	private static final int LEFT_TOGGLE_BUTTON = 3;
+	
+	private static final int SAFETY_TRIGGER = 4;
+
+	private static final int TOP_BLUE_BUTTON = 5;
+	private static final int MIDDLE_BLUE_BUTTON = 6;
+	private static final int BOTTOM_BLUE_BUTTON = 7;
+
+	private static final int TOP_RED_BUTTON = 8;
+	private static final int MIDDLE_RED_BUTTON = 9;
+	private static final int BOTTOM_RED_BUTTON = 10;
 	
 	Joystick controller;
 	
@@ -43,11 +57,6 @@ public class AuxController implements Controller {
 	}
 
 	@Override
-	public boolean isRotateToZero() {
-		return false;
-	}
-
-	@Override
 	public boolean isRotatingToNinety() {
 		return false;
 	}
@@ -71,6 +80,17 @@ public class AuxController implements Controller {
 	public boolean isRotatingCustomNegative() {
 		return false;
 	}
+
+	@Override
+	public boolean isClimberSafteyOn() {
+		return getRawButton(SAFETY_TRIGGER);
+	}
+
+	@Override
+	public boolean isClimbing() {
+		return getRawButton(TOP_BLUE_BUTTON);
+	}
+	
 	
 	private boolean getRawButton(int button) {
 		if (controller.getButtonCount() < button) {
@@ -84,4 +104,5 @@ public class AuxController implements Controller {
 	public boolean isXbox() {
 		return false;
 	}
+
 }

@@ -53,7 +53,7 @@ public class Launcher extends Subsystem {
 	public void teleopPeriodic() {
 		
 		// Control for the launch wheel.
-		if (controller.isLaunching()) {
+		if (mainController.isLaunching()) {
 			startWheel();
 			startIndexer();
 			startAgitator();

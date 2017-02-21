@@ -7,5 +7,6 @@ public class SubsystemTest extends CommandGroup {
 	public SubsystemTest() {
 		addSequential(new LauncherTest());
 		addSequential(new CollectorTest());
+		addSequential(new ClimberTest());
 	}
 }

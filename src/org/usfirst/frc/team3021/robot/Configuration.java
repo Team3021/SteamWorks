@@ -14,6 +14,7 @@ import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleLeft45;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleLeft90;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleRight45;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleRight90;
+import org.usfirst.frc.team3021.robot.commands.test.ClimberTest;
 import org.usfirst.frc.team3021.robot.commands.test.CollectorTest;
 import org.usfirst.frc.team3021.robot.commands.test.DriveTest;
 import org.usfirst.frc.team3021.robot.commands.test.LauncherTest;
@@ -65,6 +66,7 @@ public class Configuration {
 	public void addSubsystemsToDashboard() {
 		SmartDashboard.putData(Stanley.robotDrive);
 		SmartDashboard.putData(Stanley.collector);
+		SmartDashboard.putData(Stanley.climber);
 		SmartDashboard.putData(Stanley.launcher);
 		SmartDashboard.putData(Stanley.vision);
 	}
@@ -76,6 +78,7 @@ public class Configuration {
 		SmartDashboard.putData(new SubsystemTest());
 		SmartDashboard.putData(new DriveTest());
 		SmartDashboard.putData(new CollectorTest());
+		SmartDashboard.putData(new ClimberTest());
 		SmartDashboard.putData(new LauncherTest());
 		SmartDashboard.putData(new VisionTest());
 		

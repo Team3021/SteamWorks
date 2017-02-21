@@ -5,6 +5,7 @@ import org.usfirst.frc.team3021.robot.Controller;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class Xbox360Controller implements Controller {
+	
 	// Controller Buttons
 	private static final int A_BUTTON = 1;
 	private static final int B_BUTTON = 2;
@@ -63,11 +64,6 @@ public class Xbox360Controller implements Controller {
 	}
 
 	@Override
-	public boolean isRotateToZero() {
-		return getRawButton(Y_BUTTON);
-	}
-
-	@Override
 	public boolean isRotatingToNinety() {
 		return getRawButton(B_BUTTON);
 	}
@@ -100,6 +96,16 @@ public class Xbox360Controller implements Controller {
 		else {
 			return false;
 		}
+	}
+
+	@Override
+	public boolean isClimberSafteyOn() {
+		return true;
+	}
+
+	@Override
+	public boolean isClimbing() {
+		return getRawButton(Y_BUTTON);
 	}
 	
 	private boolean getRawButton(int button) {

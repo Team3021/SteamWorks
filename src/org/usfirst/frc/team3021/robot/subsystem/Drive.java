@@ -135,7 +135,7 @@ public class Drive extends Subsystem {
 		gyroController.printAngle();
 		gyroController.printCentralAngle();
 		
-        if (controller.isResettingNavx()) {
+        if (mainController.isResettingNavx()) {
         	resetGyro();
         }
         
@@ -148,19 +148,19 @@ public class Drive extends Subsystem {
         	autonomousCommand = null;
         }
         
-        if (controller.isRotatingToNinety()) {
+        if (mainController.isRotatingToNinety()) {
         	autonomousCommand = new TurnToAngleRight90();
         }
-        else if (controller.isRotatingToNegativeNinety()) {
+        else if (mainController.isRotatingToNegativeNinety()) {
         	autonomousCommand = new TurnToAngleLeft90();
         }
-        else if (controller.isRotatingToOneHundredEighty()) {
+        else if (mainController.isRotatingToOneHundredEighty()) {
         	autonomousCommand = new TurnToAngle180();
         }
-        else if (controller.isRotatingCustom()) {
+        else if (mainController.isRotatingCustom()) {
         	autonomousCommand = new TurnToAngleRight45();
         }
-        else if (controller.isRotatingCustomNegative()) {
+        else if (mainController.isRotatingCustomNegative()) {
         	autonomousCommand = new TurnToAngleLeft45();
         }
         

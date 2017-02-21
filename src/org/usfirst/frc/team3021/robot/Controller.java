@@ -14,8 +14,6 @@ public interface Controller {
 
 	boolean isResettingNavx();
 
-	boolean isRotateToZero();
-
 	boolean isRotatingToNinety();
 	
 	boolean isRotatingToNegativeNinety();
@@ -27,4 +25,8 @@ public interface Controller {
 	boolean isRotatingCustomNegative();
 
 	boolean isXbox();
+
+	boolean isClimberSafteyOn();
+
+	boolean isClimbing();
 }
