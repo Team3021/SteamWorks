@@ -14,6 +14,14 @@ public class ButtonAction {
 	public int getNumber() {
 		return number;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getAction() {
+		return action;
+	}
 	
 	@Override
 	public String toString() {

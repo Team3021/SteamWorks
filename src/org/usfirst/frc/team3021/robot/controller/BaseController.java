@@ -35,17 +35,23 @@ public abstract class BaseController implements Controller {
 		return controller.getIsXbox();
 	}
 	
-	protected boolean getRawButton(String action) {
+	public boolean getRawButton(String action) {
 		
-		if (!buttonActions.contains(action)) {
-			System.err.println("Failed to find button for action");
+		ButtonAction foundButtonAction = null;
+		
+		for (ButtonAction buttonAction : buttonActions) {
+			if (buttonAction.getAction().equals(action)) {
+				foundButtonAction = buttonAction;
+				break;
+			}
 		}
 		
-		int index = buttonActions.indexOf(action);
+		if (foundButtonAction == null) {
+			System.err.println("Failed to find button for action");
+			return false;
+		}
 		
-		ButtonAction buttonAction = buttonActions.get(index);
-		
-		int number = buttonAction.getNumber();
+		int number = foundButtonAction.getNumber();
 		
 		if (controller.getButtonCount() < number) {
 			return false;
