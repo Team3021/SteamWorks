@@ -6,9 +6,7 @@ import org.usfirst.frc.team3021.robot.device.Indexer;
 
 import com.ctre.CANTalon;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Launcher extends Subsystem {
 	
@@ -62,19 +60,12 @@ public class Launcher extends Subsystem {
 			stopAgitator();
 			stopLaunchWheel();
 		}
-
-		displayActualVoltage();
 	}
 	
 	private double getVoltage() {
 		double voltage = Preferences.getInstance().getDouble(PREF_VOLTAGE, DEFAULT_VOLTAGE);
 		
 		return voltage;
-	}
-
-	private void displayActualVoltage() {
-		double actualVoltage = launchWheel.getBusVoltage() - DriverStation.getInstance().getBatteryVoltage();
-		SmartDashboard.putNumber("Launcher : Voltage Reading", actualVoltage);
 	}
 	
 	@Override

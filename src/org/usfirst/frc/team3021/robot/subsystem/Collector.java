@@ -4,9 +4,7 @@ import org.usfirst.frc.team3021.robot.commands.CollectorCommand;
 
 import com.ctre.CANTalon;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Collector extends Subsystem {
 	
@@ -28,8 +26,6 @@ public class Collector extends Subsystem {
 		else {
 			stopMotor();
 		}
-
-		displayActualVoltage();
 	}
 
 	public void startMotor() {
@@ -49,11 +45,6 @@ public class Collector extends Subsystem {
 		return voltage;
 	}
 
-	private void displayActualVoltage() {
-		double actualVoltage = talon.getBusVoltage() - DriverStation.getInstance().getBatteryVoltage();
-		SmartDashboard.putNumber("Collector : Voltage Reading", actualVoltage);
-	}
-	
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new CollectorCommand());

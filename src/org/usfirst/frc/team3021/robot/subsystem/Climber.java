@@ -4,9 +4,7 @@ import org.usfirst.frc.team3021.robot.commands.ClimberCommand;
 
 import com.ctre.CANTalon;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Climber extends Subsystem {
 	
@@ -29,8 +27,6 @@ public class Climber extends Subsystem {
 		else {
 			stopMotor();
 		}
-
-		displayActualVoltage();
 	}
 
 	public void startMotor() {
@@ -50,11 +46,6 @@ public class Climber extends Subsystem {
 		return voltage;
 	}
 
-	private void displayActualVoltage() {
-		double actualVoltage = talon.getBusVoltage() - DriverStation.getInstance().getBatteryVoltage();
-		SmartDashboard.putNumber("Climber : Voltage Reading", actualVoltage);
-	}
-	
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new ClimberCommand());

@@ -77,13 +77,13 @@ public class Configuration {
 
 	private void addAutonmousChoices() {
 		autonomousChooser.addDefault("Autonmous : " + AUTONOMOUS_DEFALUT, AUTONOMOUS_DEFALUT);
-		SmartDashboard.putData("Auto choices", autonomousChooser);
+		SmartDashboard.putData("Autonomous Mode", autonomousChooser);
 	}
 
 	private void addControllerChoices() {
 		controllerChooser.addDefault(ATTACK_THREE, ATTACK_THREE );
 		controllerChooser.addObject(XBOX360, XBOX360);
-		SmartDashboard.putData("Select Controller", controllerChooser);
+		SmartDashboard.putData("Main Controller Mode", controllerChooser);
 	}
 
 	public void addSubsystemsToDashboard() {
