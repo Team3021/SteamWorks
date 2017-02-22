@@ -49,6 +49,6 @@ public class MoveForwardForDistance extends DriveCommand {
 		
 		remaingDifference = Math.abs(remaingDifference);
 		
-		return (remaingDifference < 0.1);
+		return (remaingDifference < 0.1 || !isMoving());
 	}
 }

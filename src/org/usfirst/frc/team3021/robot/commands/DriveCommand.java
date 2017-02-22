@@ -35,4 +35,16 @@ public class DriveCommand extends Command {
 		return Preferences.getInstance().getDouble(AUTONOMOUS_MOVE_DISTANCE, AUTONOMOUS_MOVE_DISTANCE_DEFUALT);
 	}
 
+	protected boolean isMoving() {
+		// Assume there is motion
+		boolean isMoving = true;
+		
+		// After this command has been running for some time
+		// Start reading the motion value from the gyro
+		if (timeSinceInitialized() > 0.25) {
+			isMoving = Stanley.robotDrive.isGyroMoving();
+		}
+		return isMoving;
+	}
+
 }

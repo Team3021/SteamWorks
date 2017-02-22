@@ -43,6 +43,6 @@ public class MoveForwardForTime extends DriveCommand {
 	
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut();
+		return (isTimedOut() || !isMoving());
 	}
 }

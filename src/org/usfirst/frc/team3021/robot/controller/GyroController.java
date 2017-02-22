@@ -114,6 +114,10 @@ public class GyroController implements PIDOutput {
 		return navx.isRotating();
 	}
 
+	public boolean isMoving() {
+		return navx.isMoving();
+	}
+	
 	public boolean isOnTarget() {
 		return pidController.onTarget();
 	}
