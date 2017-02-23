@@ -25,11 +25,11 @@ public class DriveController {
 	private CANTalon leftFrontTalon;
 	
 	// ENCODER CHANNELS
-	private static final int LEFT_ENCODER_CHANNEL_A = 0;
-	private static final int LEFT_ENCODER_CHANNEL_B = 1;
-	
-	private static final int RIGHT_ENCODER_CHANNEL_A = 2;
-	private static final int RIGHT_ENCODER_CHANNEL_B = 3;
+	private static final int RIGHT_ENCODER_CHANNEL_A = 0;
+	private static final int RIGHT_ENCODER_CHANNEL_B = 1;
+
+	private static final int LEFT_ENCODER_CHANNEL_A = 2;
+	private static final int LEFT_ENCODER_CHANNEL_B = 3;
 	
 	// ENCODERS
 	private Encoder leftEncoder;
@@ -37,7 +37,7 @@ public class DriveController {
 	
 	// DISTANCE
 	private static final int PULSE_PER_ROTATION = 256;
-	private static final int WHEEL_DIAMETER = 4;
+	private static final int WHEEL_DIAMETER = 6; // In inches
 	private static final double WHEEL_CIRCUMFERAECE = WHEEL_DIAMETER * Math.PI;
 	private static final double DISTANCE_PER_PULSE = WHEEL_CIRCUMFERAECE / PULSE_PER_ROTATION;
 
@@ -64,7 +64,7 @@ public class DriveController {
 		leftEncoder.setMinRate(10);
 		leftEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
 		
-		rightEncoder = new Encoder(RIGHT_ENCODER_CHANNEL_A, RIGHT_ENCODER_CHANNEL_B, false, Encoder.EncodingType.k4X);
+		rightEncoder = new Encoder(RIGHT_ENCODER_CHANNEL_A, RIGHT_ENCODER_CHANNEL_B, true, Encoder.EncodingType.k4X);
 		rightEncoder.setMinRate(10);
 		rightEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
 
@@ -84,6 +84,8 @@ public class DriveController {
 	public void printEncoderValues() {
 		SmartDashboard.putNumber("Drive : Encoder Speed Left", leftEncoder.getRate());
 		SmartDashboard.putNumber("Drive : Encoder Speed Right", rightEncoder.getRate());
+		SmartDashboard.putNumber("Drive : Encoder Pulses Left: ", leftEncoder.get());
+		SmartDashboard.putNumber("Drive : Encoder Pulses Right: ", rightEncoder.get());
 	}
 
 	public void printEncoderDistance(double distance) {
