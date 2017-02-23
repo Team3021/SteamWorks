@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3021.robot.controller;
 
+import org.usfirst.frc.team3021.robot.Stanley;
+
 import edu.wpi.first.wpilibj.Joystick;
 
 public class AuxController extends BaseController {
@@ -81,5 +83,14 @@ public class AuxController extends BaseController {
 	@Override
 	public boolean isClimbing() {
 		return getRawButton("isClimbing");
+	}
+	
+	@Override
+	public boolean getRawButton(String action) {
+		if (!Stanley.configuration.isAuxPanelEnabled()) {
+			return false;
+		}
+		
+		return super.getRawButton(action);
 	}
 }
