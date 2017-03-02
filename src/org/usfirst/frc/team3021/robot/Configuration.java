@@ -97,12 +97,9 @@ public class Configuration {
 	}
 
 	private void addSubsystemsToSmartDashboard(List<Subsystem> subsystems) {
-		System.out.println("******************* Subsystems *******************");
 
 		for (Subsystem subsystem : subsystems) {
 			SmartDashboard.putData(subsystem);
-			
-			System.out.println("Subsystem : " + subsystem.getName());
 		}
 	}
 	
@@ -161,12 +158,10 @@ public class Configuration {
 	}
 
 	private void addCommandsToSmartDashboard(String commandType, List<Command> commands) {
-		System.out.println("******************* " + commandType + " commands *******************");
 
 		for (Command command : commands) {
 			SmartDashboard.putData(command);
 			
-			System.out.println("Command : " + command.getName());
 		}
 	}
 	
