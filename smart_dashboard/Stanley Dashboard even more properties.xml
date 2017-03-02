@@ -1,0 +1,70 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Select Controller" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="13" y="314"/>
+	</widget>
+	<widget field="Vision" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="0" y="460"/>
+	</widget>
+	<widget field="Auto choices" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="52" y="56"/>
+	</widget>
+	<widget field="GyroController : currentRotationRate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="551" y="332"/>
+	</widget>
+	<widget field="Indexer : Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="557" y="14"/>
+	</widget>
+	<widget field="GyroController : current angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="590" y="296"/>
+	</widget>
+	<widget field="Agitator : Time Between Periodic" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="931" y="85"/>
+	</widget>
+	<widget field="Launcher : Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1016" y="183"/>
+	</widget>
+	<widget field="GameController : Port" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="14" y="244"/>
+	</widget>
+	<widget field="Xbox360 : Port" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="19" y="212"/>
+	</widget>
+	<widget field="Launcher : Voltage Reading" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="972" y="149"/>
+	</widget>
+	<widget field="Indexer : Time Between Periodic" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="545" y="106"/>
+	</widget>
+	<widget field="Indexer : Time for Motor" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="556" y="72"/>
+	</widget>
+	<widget field="Agitator : Time For Motor" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="971" y="45"/>
+	</widget>
+	<widget field="Auto Selector" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="39" y="25"/>
+	</widget>
+	<widget field="ThrustMaster : Port" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="10" y="174"/>
+	</widget>
+	<widget field="Collector : Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1461" y="61"/>
+	</widget>
+	<widget field="Collector : Voltage Reading" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1412" y="18"/>
+	</widget>
+	<widget field="Configuration : joystick mode" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="16" y="384"/>
+	</widget>
+	<widget field="Indexer : Time Before First Periodic" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="554" y="43"/>
+	</widget>
+	<widget field="TurnToAngle : angle difference" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="584" y="262"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+	<hidden field="Select Controller new"/>
+</xml>
