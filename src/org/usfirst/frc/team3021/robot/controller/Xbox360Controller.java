@@ -49,6 +49,7 @@ public class Xbox360Controller extends BaseController {
 	@Override
 	public boolean isLaunching() {
 		if (controller.getRawAxis(LEFT_TRIGGER) > 0.9) {
+			System.out.println("Left tigger for isLaunching");
 			return true;
 		}
 		else {
@@ -64,6 +65,7 @@ public class Xbox360Controller extends BaseController {
 	@Override
 	public boolean isCollecting() {
 		if (controller.getRawAxis(RIGHT_TRIGGER) > 0.9) {
+			System.out.println("Right tigger for isCollecting");
 			return true;
 		}
 		else {
@@ -78,7 +80,7 @@ public class Xbox360Controller extends BaseController {
 
 	@Override
 	public boolean isRotatingToNinety() {
-		return getRawButton("isResettingNavx");
+		return getRawButton("isRotatingToNinety");
 	}
 
 	@Override
@@ -115,7 +117,7 @@ public class Xbox360Controller extends BaseController {
 	public void printButtonActions(String controller) {
 		super.printButtonActions(controller);
 		
-		System.out.println("PressureAction { 'number':'2', 'name':'" + LEFT_TRIGGER +", 'action':'isLaunching' }");
+		System.out.println("PressureAction { 'number':'1', 'name':'" + LEFT_TRIGGER +", 'action':'isLaunching' }");
 		System.out.println("PressureAction { 'number':'2', 'name':'" + RIGHT_TRIGGER +", 'action':'isCollecting' }");
 		
 		System.out.println("");
