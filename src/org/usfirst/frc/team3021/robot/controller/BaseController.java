@@ -57,7 +57,14 @@ public abstract class BaseController implements Controller {
 			return false;
 		}
 		
-		return controller.getRawButton(number);
+		boolean buttonOn = controller.getRawButton(number);
+		
+		if (buttonOn) {
+			System.out.println("button " + number + " for action " + action);
+			return true;
+		}
+		
+		return false;
 	}
 
 	@Override
