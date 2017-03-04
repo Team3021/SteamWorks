@@ -31,9 +31,4 @@ public class TurnToAngle extends DriveCommand {
 	protected boolean isFinished() {
 		return Stanley.robotDrive.isGyroOnTarget();
 	}
-	
-	@Override
-	public synchronized boolean isInterruptible() {
-		return false;
-	}
 }
