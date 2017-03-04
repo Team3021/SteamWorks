@@ -60,7 +60,7 @@ public class GyroController implements PIDOutput {
         pidController = new PIDController(kP, kI, kD, kF, navx, this); 
         
         pidController.setInputRange(-180.0f, 180.0f);
-        pidController.setOutputRange(-0.5, 0.5);
+        pidController.setOutputRange(-0.4, 0.4);
         pidController.setAbsoluteTolerance(kToleranceDegrees);
         pidController.setContinuous(true);
 
