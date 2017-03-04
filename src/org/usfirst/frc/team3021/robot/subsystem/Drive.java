@@ -108,6 +108,8 @@ public class Drive extends Subsystem {
 	@Override
 	public void teleopPeriodic() {
 		
+		driveController.getEncoderDistance();
+		
         if (mainController.isResettingNavx()) {
         	resetGyro();
         }
