@@ -46,9 +46,11 @@ public class GyroController implements PIDOutput {
         	
         	if (isUSBEnabled()) {
         		// The Navx--connected by USB port
+        		System.out.println("Using NavX on USB port");
         		navx = new AHRS(Port.kUSB); 
         	} else {
         		// The Navx--connected by MXP port
+        		System.out.println("Using NavX on MXP port");
         		navx = new AHRS(Port.kMXP); 
         	}
         } catch (RuntimeException ex ) {
