@@ -41,7 +41,7 @@ public class DriveCommand extends Command {
 		
 		// After this command has been running for some time
 		// Start reading the motion value from the gyro
-		if (timeSinceInitialized() > 0.25) {
+		if (timeSinceInitialized() > 0.5) {
 			isMoving = Stanley.robotDrive.isGyroMoving();
 		}
 		return isMoving;
