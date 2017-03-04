@@ -31,7 +31,7 @@ public class GyroController implements PIDOutput {
     static final double kD = 0.00; // Differential
     static final double kF = 0.00; // Feedback
     
-    public static final double kToleranceDegrees = 1.25f; // Tolerance--Precision of turning with the Navx
+    public static final double kToleranceDegrees = 2.0f; // Tolerance--Precision of turning with the Navx
 	
 	public GyroController() {
 		if (!isGyroEnabled()) {
