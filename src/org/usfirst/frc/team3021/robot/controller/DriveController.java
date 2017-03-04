@@ -3,11 +3,15 @@ package org.usfirst.frc.team3021.robot.controller;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveController {
+	
+	private static final String PREF_DRIVE_WHEEL_SIZE = "DriveController.wheel.diameter";
+	private static final double DEFAULT_DRIVE_WHEEL_SIZE = 6.0;
 
 	// DRIVE SYSTEM
 	private RobotDrive robotDrive;
@@ -37,10 +41,7 @@ public class DriveController {
 	
 	// DISTANCE
 	private static final int PULSE_PER_ROTATION = 256;
-	private static final int WHEEL_DIAMETER = 6; // In inches
-	private static final double WHEEL_CIRCUMFERAECE = WHEEL_DIAMETER * Math.PI;
-	private static final double DISTANCE_PER_PULSE = WHEEL_CIRCUMFERAECE / PULSE_PER_ROTATION;
-
+	private static final double INCHES_PER_FOOT = 12;
 
 	public DriveController() {
 		// TALONS
@@ -59,14 +60,20 @@ public class DriveController {
 		robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
 		robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 		
+		// Calculate encoder distance
+		double wheelDiameter = Preferences.getInstance().getDouble(PREF_DRIVE_WHEEL_SIZE, 6.0);
+		
+		final double wheelCircumerence = wheelDiameter * Math.PI;
+		final double distancePerPulse = (wheelCircumerence / PULSE_PER_ROTATION) / INCHES_PER_FOOT;
+		
 		// ENCODERS
 		leftEncoder = new Encoder(LEFT_ENCODER_CHANNEL_A, LEFT_ENCODER_CHANNEL_B, false, Encoder.EncodingType.k4X);
 		leftEncoder.setMinRate(10);
-		leftEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
+		leftEncoder.setDistancePerPulse(distancePerPulse);
 		
 		rightEncoder = new Encoder(RIGHT_ENCODER_CHANNEL_A, RIGHT_ENCODER_CHANNEL_B, true, Encoder.EncodingType.k4X);
 		rightEncoder.setMinRate(10);
-		rightEncoder.setDistancePerPulse(DISTANCE_PER_PULSE);
+		rightEncoder.setDistancePerPulse(distancePerPulse);
 
 		LiveWindow.addActuator("Drive", "Front Left Talon", leftFrontTalon);
 		LiveWindow.addActuator("Drive", "Front Right Talon", rightFrontTalon);
