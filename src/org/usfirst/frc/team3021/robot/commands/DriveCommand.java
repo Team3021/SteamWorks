@@ -17,12 +17,19 @@ public class DriveCommand extends Command {
 	protected static final String FORWARD = "forward";
 	protected static final String BACKWARD = "backward";
 	
+	protected boolean hasMoved = false;
+	
 	public DriveCommand() {
 		super();
 		
 		requires(Stanley.robotDrive);
 	}
 
+	@Override
+	protected void initialize() {
+		hasMoved = false;
+	}
+	
 	public static double getAutonomousMoveSpeed() {
 		return Preferences.getInstance().getDouble(AUTONOMOUS_MOVE_SPEED, AUTONOMOUS_MOVE_SPEED_DEFUALT);
 	}
@@ -36,13 +43,19 @@ public class DriveCommand extends Command {
 	}
 
 	protected boolean isMoving() {
-		// Assume there is motion
+		// Assume there is motion 
+		// (not necessarily the case, but this is required for proper function of turnToAngle).
 		boolean isMoving = true;
 		
-		// After this command has been running for some time
-		// Start reading the motion value from the gyro
-		if (timeSinceInitialized() > 0.4) {
-			isMoving = Stanley.robotDrive.isGyroMoving();
+		// Checks to see if the robot has started moving.
+		if (Stanley.robotDrive.isGyroMoving() && hasMoved == false) {
+			isMoving = true;
+			hasMoved = true;
+		}
+		// False will not be returned unless the robot has already started moving.
+		else if (!Stanley.robotDrive.isGyroMoving() && hasMoved == true) {
+			isMoving = false;
+			hasMoved = false;
 		}
 		return isMoving;
 	}
