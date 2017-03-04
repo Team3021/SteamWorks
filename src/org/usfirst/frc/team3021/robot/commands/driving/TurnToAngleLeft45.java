@@ -5,6 +5,6 @@ public class TurnToAngleLeft45 extends TurnToAngle {
 	public TurnToAngleLeft45() {
 		super();
 		
-		desiredAngle = 45.0;
+		desiredAngle = -45.0;
 	}
 }
