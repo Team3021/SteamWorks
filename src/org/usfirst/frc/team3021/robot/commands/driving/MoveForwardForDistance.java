@@ -14,9 +14,6 @@ public class MoveForwardForDistance extends DriveCommand {
 		
 		this.desiredSpeed = speed;
 		this.desiredDistance = distance;
-		
-		// set time out for safety
-		setTimeout(5);
 	}
 
 	@Override
