@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.usfirst.frc.team3021.robot.commands.DriveCommand;
+import org.usfirst.frc.team3021.robot.commands.auto.StartCenterToCenterGearDelivery;
+import org.usfirst.frc.team3021.robot.commands.auto.StartLeftToLeftGearDelivery;
 import org.usfirst.frc.team3021.robot.commands.device.*;
 import org.usfirst.frc.team3021.robot.commands.driving.*;
 import org.usfirst.frc.team3021.robot.commands.test.*;
@@ -42,6 +44,7 @@ public class Configuration {
 	private List<Command> moveCommands = new ArrayList<Command>();
 	private List<Command> turnCommands = new ArrayList<Command>();
 	private List<Command> deviceCommands = new ArrayList<Command>();
+	private List<Command> autoCommands = new ArrayList<Command>();
 
 	public Configuration() {
 		
@@ -130,6 +133,12 @@ public class Configuration {
 		deviceCommands.add(new StopClimber());
 		
 		addCommandsToSmartDashboard("Device", deviceCommands);
+		
+		// Add autonomous commands to dashboard
+		autoCommands.add(new StartLeftToLeftGearDelivery());
+		autoCommands.add(new StartCenterToCenterGearDelivery());
+		
+		addCommandsToSmartDashboard("Autonomous", autoCommands);
 	}
 
 	private void addCommandsToSmartDashboard(String commandType, List<Command> commands) {
