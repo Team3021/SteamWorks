@@ -7,8 +7,10 @@ public class TurnToAngle extends DriveCommand {
 	
 	protected double desiredAngle;
 
-	public TurnToAngle() {
+	public TurnToAngle(double desiredAngle) {
 		super();
+		
+		this.desiredAngle = desiredAngle;
 	}
 	
 	@Override
