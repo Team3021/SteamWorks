@@ -4,7 +4,7 @@ import org.usfirst.frc.team3021.robot.Stanley;
 
 import edu.wpi.first.wpilibj.Preferences;
 
-public class DriveCommand extends Command {
+public abstract class DriveCommand extends Command {
 	
 	private static final String AUTONOMOUS_MOVE_SPEED = "Drive.autonomouns.move.speed";
 	private static final String AUTONOMOUS_MOVE_TIME = "Drive.autonomouns.move.time";

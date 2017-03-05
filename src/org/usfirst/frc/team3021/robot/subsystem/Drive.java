@@ -3,10 +3,10 @@ package org.usfirst.frc.team3021.robot.subsystem;
 import org.usfirst.frc.team3021.robot.commands.DriveCommand;
 import org.usfirst.frc.team3021.robot.commands.driving.DriveWithJoystick;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngle180;
-import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleLeft45;
-import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleLeft90;
-import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleRight45;
-import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngleRight90;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnLeftToAngle45;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnLeftToAngle90;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnRightToAngle45;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnRightToAngle90;
 import org.usfirst.frc.team3021.robot.controller.DriveController;
 import org.usfirst.frc.team3021.robot.controller.GyroController;
 
@@ -124,19 +124,19 @@ public class Drive extends Subsystem {
         }
         
         if (mainController.isRotatingToNinety()) {
-        	autonomousCommand = new TurnToAngleRight90();
+        	autonomousCommand = new TurnRightToAngle90();
         }
         else if (mainController.isRotatingToNegativeNinety()) {
-        	autonomousCommand = new TurnToAngleLeft90();
+        	autonomousCommand = new TurnLeftToAngle90();
         }
         else if (mainController.isRotatingToOneHundredEighty()) {
         	autonomousCommand = new TurnToAngle180();
         }
         else if (mainController.isRotatingRight45()) {
-        	autonomousCommand = new TurnToAngleRight45();
+        	autonomousCommand = new TurnRightToAngle45();
         }
         else if (mainController.isRotatingLeft45()) {
-        	autonomousCommand = new TurnToAngleLeft45();
+        	autonomousCommand = new TurnLeftToAngle45();
         }
         
         // Updates the scheduler to the selected autonomous command. 

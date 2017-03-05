@@ -110,10 +110,10 @@ public class Configuration {
 		
 		// add turning commands
 		turnCommands.add(new ResetGyro());
-		turnCommands.add(new TurnToAngleRight45());
-		turnCommands.add(new TurnToAngleRight90());
-		turnCommands.add(new TurnToAngleLeft45());
-		turnCommands.add(new TurnToAngleLeft90());
+		turnCommands.add(new TurnRightToAngle45());
+		turnCommands.add(new TurnRightToAngle90());
+		turnCommands.add(new TurnLeftToAngle45());
+		turnCommands.add(new TurnLeftToAngle90());
 		turnCommands.add(new TurnToAngle180());
 		turnCommands.add(new StopTurning());
 		
