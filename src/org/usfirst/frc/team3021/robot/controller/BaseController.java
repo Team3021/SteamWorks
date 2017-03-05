@@ -32,7 +32,11 @@ public abstract class BaseController implements Controller {
 
 	@Override
 	public boolean isXbox() {
-		return controller.getIsXbox();
+		if (controller != null) {
+			return controller.getIsXbox();
+		}
+		
+		return false;
 	}
 	
 	public boolean getRawButton(String action) {

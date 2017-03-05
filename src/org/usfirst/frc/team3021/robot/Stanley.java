@@ -3,6 +3,7 @@ package org.usfirst.frc.team3021.robot;
 import org.usfirst.frc.team3021.robot.commands.test.SubsystemTest;
 import org.usfirst.frc.team3021.robot.controller.AuxController;
 import org.usfirst.frc.team3021.robot.controller.Controller;
+import org.usfirst.frc.team3021.robot.controller.DefaultController;
 import org.usfirst.frc.team3021.robot.controller.AttackThreeController;
 import org.usfirst.frc.team3021.robot.controller.Xbox360Controller;
 import org.usfirst.frc.team3021.robot.subsystem.Climber;
@@ -86,10 +87,12 @@ public class Stanley extends IterativeRobot {
 		int mainControllerPort = configuration.getMainControllerPort();
 
 		if (selectedController.equals(Configuration.ATTACK_THREE)) {
+			System.out.println("***************ATTACK TRHREE***************");
 			mainController = new AttackThreeController(mainControllerPort);
 			
 			if (mainController.isXbox()) {
-				System.out.println("WARNING !!! FOUND XBOX CONTROLLER");
+				System.out.println("*************** WARNING !!! ***************");
+				System.out.println("Dahboard choice is not an XBOX controller, but this is an XBOX CONTROLLER on port " + configuration.getMainControllerPort());
 			}
 		}
 		else if (selectedController.equals(Configuration.XBOX360)) {
@@ -97,8 +100,12 @@ public class Stanley extends IterativeRobot {
 			mainController = new Xbox360Controller(mainControllerPort);
 			
 			if (!mainController.isXbox()) {
-				System.out.println("WARNING !!! NOT XBOX CONTROLLER");
+				System.out.println("*************** WARNING !!! ***************");
+				System.out.println("Dahboard choice is XBOX controller, but this is NOT an XBOX CONTROLLER on port " + configuration.getMainControllerPort());
 			}
+		} else {
+			System.out.println("***************NO CONTROLLER***************");
+			mainController = new DefaultController(mainControllerPort);
 		}
 
 		auxController = new AuxController(configuration.getAuxPanelPort());

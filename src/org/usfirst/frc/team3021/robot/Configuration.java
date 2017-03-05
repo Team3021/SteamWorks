@@ -24,6 +24,7 @@ public class Configuration {
 	
 	public static final String AUTONOMOUS_DEFALUT = "Default";
 	
+	public static final String DEFAULT = "No Controller";
 	public static final String ATTACK_THREE = "Attack Three";
 	public static final String XBOX360 = "Xbox360";
 
@@ -58,7 +59,8 @@ public class Configuration {
 	}
 
 	private void addControllerChoices() {
-		controllerChooser.addDefault(ATTACK_THREE, ATTACK_THREE );
+		controllerChooser.addDefault(DEFAULT, DEFAULT);
+		controllerChooser.addObject(ATTACK_THREE, ATTACK_THREE);
 		controllerChooser.addObject(XBOX360, XBOX360);
 		SmartDashboard.putData("Main Controller Mode", controllerChooser);
 	}
@@ -74,7 +76,6 @@ public class Configuration {
 	}
 
 	private void addSubsystemsToSmartDashboard(List<Subsystem> subsystems) {
-
 		for (Subsystem subsystem : subsystems) {
 			SmartDashboard.putData(subsystem);
 		}
