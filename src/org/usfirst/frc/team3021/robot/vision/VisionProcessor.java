@@ -22,6 +22,8 @@ public class VisionProcessor extends RunnableDevice {
 	private CvSource output;
 	
 	private Mat mat;
+	private boolean targetScopeEnabled = false;
+	private boolean targetLocatorEnabled = false;
 
 	public VisionProcessor(VideoSource initialCam) {
 		// Setup a CvSink. This will capture Mats from an external source
@@ -42,13 +44,21 @@ public class VisionProcessor extends RunnableDevice {
 	public VideoSource getOutput() {
 		return output;
 	}
+
+	public void setTargetScopeEnabled(boolean newValue) {
+		this.targetScopeEnabled = newValue;
+	}
+
+	public void setTargetLocatorEnabled(boolean newValue) {
+		this.targetLocatorEnabled = newValue;
+	}
 	
 	private boolean isTargetScopeEnabled() {
-		return Preferences.getInstance().getBoolean(PREF_TARGET_SCOPE_ENABLED, false);
+		return Preferences.getInstance().getBoolean(PREF_TARGET_SCOPE_ENABLED, false) || targetScopeEnabled;
 	}
 	
 	private boolean isTargetLocatorEnabled() {
-		return Preferences.getInstance().getBoolean(PREF_TARGET_LOCATOR_ENABLED, false);
+		return Preferences.getInstance().getBoolean(PREF_TARGET_LOCATOR_ENABLED, false) || targetLocatorEnabled;
 	}
 	
 	@Override
