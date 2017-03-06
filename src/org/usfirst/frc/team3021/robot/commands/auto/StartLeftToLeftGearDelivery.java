@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class StartLeftToLeftGearDelivery extends CommandGroup {
 	public StartLeftToLeftGearDelivery() {
+		super("[Left] to [Left Gear]");
+		
 		requires(Stanley.robotDrive);
 		
 		addSequential(new MoveForwardForDistance(0.5, 2));

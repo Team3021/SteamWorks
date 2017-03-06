@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.command.TimedCommand;
 
 public class StartCenterToCenterGearDelivery extends CommandGroup {
 	public StartCenterToCenterGearDelivery() {
+		super("[Center] to [Center Gear]");
+
 		requires(Stanley.robotDrive);
 		
 		addSequential(new MoveForwardForDistance(0.4, 7));

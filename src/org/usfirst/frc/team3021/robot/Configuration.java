@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Configuration {
 	
-	public static final String AUTONOMOUS_DEFALUT = "Default";
+	public static final String AUTONOMOUS_DEFALUT = "No Command";
 	
 	public static final String DEFAULT = "No Controller";
 	public static final String ATTACK_THREE = "Attack Three";
@@ -46,19 +46,17 @@ public class Configuration {
 	private List<Command> deviceCommands = new ArrayList<Command>();
 	private List<Command> autoCommands = new ArrayList<Command>();
 
-	public Configuration() {
+	public void addAutonmousChoices() {
+		autonomousChooser.addDefault(AUTONOMOUS_DEFALUT, AUTONOMOUS_DEFALUT);
 		
-		addAutonmousChoices();
+		for (Command command : autoCommands) {
+			autonomousChooser.addObject(command.getName(), command.getName());
+		}
 		
-		addControllerChoices();
-	}
-
-	private void addAutonmousChoices() {
-		autonomousChooser.addDefault("Autonmous : " + AUTONOMOUS_DEFALUT, AUTONOMOUS_DEFALUT);
 		SmartDashboard.putData("Autonomous Mode", autonomousChooser);
 	}
 
-	private void addControllerChoices() {
+	public void addControllerChoices() {
 		controllerChooser.addDefault(DEFAULT, DEFAULT);
 		controllerChooser.addObject(ATTACK_THREE, ATTACK_THREE);
 		controllerChooser.addObject(XBOX360, XBOX360);
@@ -154,6 +152,19 @@ public class Configuration {
 	
 	public String getAutonomousMode() {
 		return autonomousChooser.getSelected();
+	}
+
+	public Command getAutonomousCommand() {
+		
+		String name = getAutonomousMode();
+		
+		for (Command command : autoCommands) {
+			if (command.getName().equals(name)) {
+				return command;
+			}
+		}
+		
+		return null;
 	}
 
 	public String getMainControllerMode() {

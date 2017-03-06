@@ -13,6 +13,7 @@ import org.usfirst.frc.team3021.robot.subsystem.Launcher;
 import org.usfirst.frc.team3021.robot.subsystem.Vision;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class Stanley extends IterativeRobot {
@@ -44,6 +45,10 @@ public class Stanley extends IterativeRobot {
 		configuration.addSubsystemsToDashboard();
 		
 		configuration.addCommandsToDashboard();
+		
+		configuration.addAutonmousChoices();
+		
+		configuration.addControllerChoices();
 	}
 	
 	@Override
@@ -64,17 +69,17 @@ public class Stanley extends IterativeRobot {
 		String autoSelected = configuration.getAutonomousMode();
 		
 		System.out.println("Auto selected: " + autoSelected);
-		
-		switch (autoSelected) {
-			case Configuration.AUTONOMOUS_DEFALUT:
-			default:
-				// Put default auto code here
-				break;
-		}
 	}
 
 	@Override
 	public void autonomousPeriodic() {
+		// Stop any commands that might be left running from another mode
+		Scheduler.getInstance().removeAll();
+		
+		Command autoCommand = configuration.getAutonomousCommand();
+		
+		Scheduler.getInstance().add(autoCommand);
+		
 		Scheduler.getInstance().run();
 	}
 
