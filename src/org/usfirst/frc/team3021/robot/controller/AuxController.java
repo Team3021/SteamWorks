@@ -17,7 +17,7 @@ public class AuxController extends BaseController {
 	
 		buttonActions.add(new ButtonAction(8, "TOP_RED_BUTTON", "isSwitchingCamera"));
 		buttonActions.add(new ButtonAction(9, "MIDDLE_RED_BUTTON", "unassigned"));
-		buttonActions.add(new ButtonAction(10, "BOTTOM_RED_BUTTON", "unassigned"));
+		buttonActions.add(new ButtonAction(10, "BOTTOM_RED_BUTTON", "isStoppingCommands"));
 	}
 	
 	public AuxController(int port) {

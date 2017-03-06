@@ -104,6 +104,11 @@ public abstract class BaseController implements Controller {
 		return getRawButton("isTargetLocatorEnabled");
 	}
 	
+	@Override
+	public boolean isStoppingCommands() {
+		return getRawButton("isStoppingCommands");
+	}
+	
 	public boolean getRawButton(String action) {
 		
 		ButtonAction foundButtonAction = null;

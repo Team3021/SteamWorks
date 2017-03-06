@@ -110,7 +110,11 @@ public class Drive extends Subsystem {
 		
 		driveController.getEncoderDistance();
 		
-        if (mainController.isResettingNavx()) {
+        if (mainController.isStoppingCommands() || auxController.isStoppingCommands()) {
+        	Scheduler.getInstance().removeAll();
+        }
+		
+        if (mainController.isResettingNavx() || auxController.isResettingNavx()) {
         	resetGyro();
         }
         

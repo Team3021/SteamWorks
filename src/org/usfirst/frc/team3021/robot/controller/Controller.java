@@ -35,4 +35,6 @@ public interface Controller {
 	boolean isScopeEnabled();
 
 	boolean isTargetLocatorEnabled();
+
+	boolean isStoppingCommands();
 }

@@ -13,7 +13,7 @@ public class AttackThreeController extends BaseController {
 		buttonActions.add(new ButtonAction(7, "BASE_LEFT_BACK", "isRotatingLeft45"));
 	
 		buttonActions.add(new ButtonAction(8, "BASE_BOTTOM_LEFT", "isSwitchingCamera"));
-		buttonActions.add(new ButtonAction(9, "BASE_BOTTOM_RIGHT", "isResettingNavx"));
+		buttonActions.add(new ButtonAction(9, "BASE_BOTTOM_RIGHT", "isStoppingCommands"));
 		
 		buttonActions.add(new ButtonAction(10, "BASE_RIGHT_BACK", "isRotatingRight45"));
 		buttonActions.add(new ButtonAction(11, "BASE_RIGHT_FRONT", "isClimbing"));
