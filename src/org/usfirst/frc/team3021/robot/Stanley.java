@@ -53,7 +53,7 @@ public class Stanley extends IterativeRobot {
 	
 	@Override
 	public void robotInit() {
-		// Do nothing to prevent warnings
+		configuration.printPreferences();
 	}
 
 	@Override
