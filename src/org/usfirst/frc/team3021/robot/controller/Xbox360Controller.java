@@ -9,8 +9,8 @@ public class Xbox360Controller extends BaseController {
 	private static final int LEFT_TRIGGER = 2;
 	private static final int RIGHT_TRIGGER = 3;
 
-	private static final int RIGHT_STICK_X = 4;
-	private static final int RIGHT_STICK_Y = 5;
+//	private static final int RIGHT_STICK_X = 4;
+//	private static final int RIGHT_STICK_Y = 5;
 
 	public Xbox360Controller() {
 		buttonActions.add(new ButtonAction(1, "A_BUTTON", "isRotatingToOneHundredEighty"));

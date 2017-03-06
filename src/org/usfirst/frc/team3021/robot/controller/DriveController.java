@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveController {
 	
 	private static final String PREF_DRIVE_WHEEL_SIZE = "DriveController.wheel.diameter";
-	private static final double DEFAULT_DRIVE_WHEEL_SIZE = 6.0;
 
 	// DRIVE SYSTEM
 	private RobotDrive robotDrive;
