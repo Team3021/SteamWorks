@@ -66,20 +66,17 @@ public class Stanley extends IterativeRobot {
 		// Stop any commands that might be left running from another mode
 		Scheduler.getInstance().removeAll();
 		
-		String autoSelected = configuration.getAutonomousMode();
+		String autoMode = configuration.getAutonomousMode();
 		
-		System.out.println("Auto selected: " + autoSelected);
-	}
-
-	@Override
-	public void autonomousPeriodic() {
-		// Stop any commands that might be left running from another mode
-		Scheduler.getInstance().removeAll();
+		System.out.println("Autonomous mode: " + autoMode);
 		
 		Command autoCommand = configuration.getAutonomousCommand();
 		
 		Scheduler.getInstance().add(autoCommand);
-		
+	}
+
+	@Override
+	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
