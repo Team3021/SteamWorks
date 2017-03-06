@@ -1,7 +1,5 @@
 package org.usfirst.frc.team3021.robot.controller;
 
-import edu.wpi.first.wpilibj.Joystick;
-
 public class Xbox360Controller extends BaseController {
 	
 	// Controller axes
@@ -28,6 +26,10 @@ public class Xbox360Controller extends BaseController {
 		
 		buttonActions.add(new ButtonAction(9, "LEFT_STICK_CLICK", "unassigned"));
 		buttonActions.add(new ButtonAction(10, "RIGHT_STICK_CLICK", "isSwitchingCamera"));
+	}
+	
+	public Xbox360Controller(int port) {
+		super(port);
 	}
 
 	@Override

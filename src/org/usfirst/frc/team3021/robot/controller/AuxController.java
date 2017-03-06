@@ -2,11 +2,7 @@ package org.usfirst.frc.team3021.robot.controller;
 
 import org.usfirst.frc.team3021.robot.Stanley;
 
-import edu.wpi.first.wpilibj.Joystick;
-
 public class AuxController extends BaseController {
-	
-	Joystick controller;
 	
 	public AuxController() {
 		buttonActions.add(new ButtonAction(1, "RIGHT_TOGGLE_BUTTON", "unassigned"));
@@ -22,6 +18,10 @@ public class AuxController extends BaseController {
 		buttonActions.add(new ButtonAction(8, "TOP_RED_BUTTON", "isSwitchingCamera"));
 		buttonActions.add(new ButtonAction(9, "MIDDLE_RED_BUTTON", "unassigned"));
 		buttonActions.add(new ButtonAction(10, "BOTTOM_RED_BUTTON", "unassigned"));
+	}
+	
+	public AuxController(int port) {
+		super(port);
 	}
 	
 	@Override
