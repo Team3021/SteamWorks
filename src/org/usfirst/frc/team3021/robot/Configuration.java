@@ -86,8 +86,11 @@ public class Configuration {
 		double distance = DriveCommand.getAutonomousMoveDistance();
 		
 		SmartDashboard.putData(Scheduler.getInstance());
+
+		// ****************************************************************************
+		// **********************        TEST COMMANDS           **********************
+		// ****************************************************************************
 		
-		// Add test commands to dashboard
 		testCommands.add(new SubsystemTest());
 		testCommands.add(new CollectorTest());
 		testCommands.add(new ClimberTest());
@@ -97,10 +100,11 @@ public class Configuration {
 		testCommands.add(new MoveBackwardForDistanceTest());
 		testCommands.add(new MoveForwardForTimeTest());
 		testCommands.add(new MoveBackwardForTimeTest());
+
+		// ****************************************************************************
+		// **********************        MOVE COMMANDS           **********************
+		// ****************************************************************************
 		
-		addCommandsToSmartDashboard("Test", testCommands);
-		
-		// Add move commands to dashboard
 		moveCommands.add(new ResetEncoders());
 		moveCommands.add(new MoveForwardForDistance(speed, distance));
 		moveCommands.add(new MoveForwardForTime(speed, time));
@@ -108,9 +112,10 @@ public class Configuration {
 		moveCommands.add(new MoveBackwardForTime(speed, time));
 		moveCommands.add(new StopMoving());
 		
-		addCommandsToSmartDashboard("Move", moveCommands);
+		// ****************************************************************************
+		// **********************        TURN COMMANDS           **********************
+		// ****************************************************************************
 		
-		// add turning commands
 		turnCommands.add(new ResetGyro());
 		turnCommands.add(new TurnRightToAngle45());
 		turnCommands.add(new TurnRightToAngle90());
@@ -119,9 +124,10 @@ public class Configuration {
 		turnCommands.add(new TurnToAngle180());
 		turnCommands.add(new StopTurning());
 		
-		addCommandsToSmartDashboard("Turn", turnCommands);
+		// ****************************************************************************
+		// **********************       DEVICE COMMANDS          **********************
+		// ****************************************************************************
 		
-		// Add device commands to dashboard
 		deviceCommands.add(new StartAgitator());
 		deviceCommands.add(new StartIndexer());
 		deviceCommands.add(new StartLaunchWheel());
@@ -133,13 +139,19 @@ public class Configuration {
 		deviceCommands.add(new StopLaunchWheel());
 		deviceCommands.add(new StopCollector());
 		deviceCommands.add(new StopClimber());
+
+		// ****************************************************************************
+		// **********************        AUTO COMMANDS           **********************
+		// ****************************************************************************
 		
-		addCommandsToSmartDashboard("Device", deviceCommands);
-		
-		// Add autonomous commands to dashboard
 		autoCommands.add(new StartLeftToLeftGearDelivery());
 		autoCommands.add(new StartCenterToCenterGearDelivery());
-		
+
+		// Add commands to dashboard
+		addCommandsToSmartDashboard("Test", testCommands);
+		addCommandsToSmartDashboard("Move", moveCommands);
+		addCommandsToSmartDashboard("Turn", turnCommands);
+		addCommandsToSmartDashboard("Device", deviceCommands);
 		addCommandsToSmartDashboard("Autonomous", autoCommands);
 	}
 
