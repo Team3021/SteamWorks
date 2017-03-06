@@ -88,18 +88,11 @@ public class Configuration {
 		SmartDashboard.putData(Scheduler.getInstance());
 
 		// ****************************************************************************
-		// **********************        TEST COMMANDS           **********************
+		// **********************        AUTO COMMANDS           **********************
 		// ****************************************************************************
 		
-		testCommands.add(new SubsystemTest());
-		testCommands.add(new CollectorTest());
-		testCommands.add(new ClimberTest());
-		testCommands.add(new LauncherTest());
-		testCommands.add(new VisionTest());
-		testCommands.add(new MoveForwardForDistanceTest());
-		testCommands.add(new MoveBackwardForDistanceTest());
-		testCommands.add(new MoveForwardForTimeTest());
-		testCommands.add(new MoveBackwardForTimeTest());
+		autoCommands.add(new StartLeftToLeftGearDelivery());
+		autoCommands.add(new StartCenterToCenterGearDelivery());
 
 		// ****************************************************************************
 		// **********************        MOVE COMMANDS           **********************
@@ -141,18 +134,25 @@ public class Configuration {
 		deviceCommands.add(new StopClimber());
 
 		// ****************************************************************************
-		// **********************        AUTO COMMANDS           **********************
+		// **********************        TEST COMMANDS           **********************
 		// ****************************************************************************
 		
-		autoCommands.add(new StartLeftToLeftGearDelivery());
-		autoCommands.add(new StartCenterToCenterGearDelivery());
+		testCommands.add(new SubsystemTest());
+		testCommands.add(new CollectorTest());
+		testCommands.add(new ClimberTest());
+		testCommands.add(new LauncherTest());
+		testCommands.add(new VisionTest());
+		testCommands.add(new MoveForwardForDistanceTest());
+		testCommands.add(new MoveBackwardForDistanceTest());
+		testCommands.add(new MoveForwardForTimeTest());
+		testCommands.add(new MoveBackwardForTimeTest());
 
 		// Add commands to dashboard
-		addCommandsToSmartDashboard("Test", testCommands);
+		addCommandsToSmartDashboard("Autonomous", autoCommands);
 		addCommandsToSmartDashboard("Move", moveCommands);
 		addCommandsToSmartDashboard("Turn", turnCommands);
 		addCommandsToSmartDashboard("Device", deviceCommands);
-		addCommandsToSmartDashboard("Autonomous", autoCommands);
+		addCommandsToSmartDashboard("Test", testCommands);
 	}
 
 	private void addCommandsToSmartDashboard(String commandType, List<Command> commands) {
