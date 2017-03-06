@@ -31,4 +31,8 @@ public interface Controller {
 	boolean isClimbing();
 
 	void printButtonActions(String controller);
+
+	boolean isScopeEnabled();
+
+	boolean isTargetLocatorEnabled();
 }

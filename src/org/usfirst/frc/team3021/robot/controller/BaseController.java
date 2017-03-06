@@ -39,6 +39,71 @@ public abstract class BaseController implements Controller {
 		return false;
 	}
 	
+	@Override
+	public boolean isLaunching() {
+		return getRawButton("isLaunching");
+	}
+	
+	@Override
+	public boolean isSwitchingCamera() {
+		return getRawButton("isSwitchingCamera");
+	}
+
+	@Override
+	public boolean isCollecting() {
+		return getRawButton("isCollecting");
+	}
+
+	@Override
+	public boolean isResettingNavx() {
+		return getRawButton("isResettingNavx");
+	}
+
+	@Override
+	public boolean isRotatingToNinety() {
+		return getRawButton("isRotatingToNinety");
+	}
+
+	@Override
+	public boolean isRotatingToNegativeNinety() {
+		return getRawButton("isRotatingToNegativeNinety");
+	}
+
+	@Override
+	public boolean isRotatingToOneHundredEighty() {
+		return getRawButton("isRotatingToOneHundredEighty");
+	}
+
+	@Override
+	public boolean isRotatingRight45() {
+		return getRawButton("isRotatingRight45");
+	}
+
+	@Override
+	public boolean isRotatingLeft45() {
+		return getRawButton("isRotatingLeft45");
+	}
+
+	@Override
+	public boolean isClimberSafteyOn() {
+		return getRawButton("isClimberSafteyOn");
+	}
+
+	@Override
+	public boolean isClimbing() {
+		return getRawButton("isClimbing");
+	}
+
+	@Override
+	public boolean isScopeEnabled() {
+		return getRawButton("isScopeEnabled");
+	}
+
+	@Override
+	public boolean isTargetLocatorEnabled() {
+		return getRawButton("isTargetLocatorEnabled");
+	}
+	
 	public boolean getRawButton(String action) {
 		
 		ButtonAction foundButtonAction = null;
@@ -56,6 +121,10 @@ public abstract class BaseController implements Controller {
 		}
 		
 		int number = foundButtonAction.getNumber();
+		
+		if (controller == null) {
+			return false;
+		}
 		
 		if (controller.getButtonCount() < number) {
 			return false;

@@ -22,12 +22,6 @@ public class AttackThreeController extends BaseController {
 		buttonActions.add(new ButtonAction(9, "BASE_BOTTOM_RIGHT", "isResettingNavx"));
 	}
 	
-	public AttackThreeController(int port) {
-		this();
-		
-		controller = new Joystick(port);
-	}
-	
 	@Override
 	public double getMoveValue() {
 		return controller.getY();
@@ -37,60 +31,4 @@ public class AttackThreeController extends BaseController {
 	public double getTurnValue() {
 		return controller.getX();
 	}
-	
-	@Override
-	public boolean isLaunching() {
-		return getRawButton("isLaunching");
-	}
-	
-	@Override
-	public boolean isSwitchingCamera() {
-		return getRawButton("isSwitchingCamera");
-	}
-
-	@Override
-	public boolean isCollecting() {
-		return getRawButton("isCollecting");
-	}
-
-	@Override
-	public boolean isResettingNavx() {
-		return getRawButton("isResettingNavx");
-	}
-
-	@Override
-	public boolean isRotatingToNinety() {
-		return getRawButton("isRotatingToNinety");
-	}
-
-	@Override
-	public boolean isRotatingToNegativeNinety() {
-		return getRawButton("isRotatingToNegativeNinety");
-	}
-
-	@Override
-	public boolean isRotatingToOneHundredEighty() {
-		return getRawButton("isRotatingToOneHundredEighty");
-	}
-
-	@Override
-	public boolean isRotatingRight45() {
-		return getRawButton("isRotatingRight45");
-	}
-
-	@Override
-	public boolean isRotatingLeft45() {
-		return getRawButton("isRotatingLeft45");
-	}
-
-	@Override
-	public boolean isClimberSafteyOn() {
-		return getRawButton("isClimberSafteyOn");
-	}
-
-	@Override
-	public boolean isClimbing() {
-		return getRawButton("isClimbing");
-	}
 }
-

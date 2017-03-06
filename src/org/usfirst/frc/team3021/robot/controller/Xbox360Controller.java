@@ -30,12 +30,6 @@ public class Xbox360Controller extends BaseController {
 		buttonActions.add(new ButtonAction(10, "RIGHT_STICK_CLICK", "isSwitchingCamera"));
 	}
 
-	public Xbox360Controller(int port) {
-		this();
-		
-		controller = new Joystick(port);
-	}
-
 	@Override
 	public double getMoveValue(){
 		return controller.getRawAxis(LEFT_STICK_Y);
@@ -58,11 +52,6 @@ public class Xbox360Controller extends BaseController {
 	}
 	
 	@Override
-	public boolean isSwitchingCamera() {
-		return getRawButton("isSwitchingCamera");
-	}
-	
-	@Override
 	public boolean isCollecting() {
 		if (controller.getRawAxis(RIGHT_TRIGGER) > 0.9) {
 			System.out.println("Right tigger for isCollecting");
@@ -71,46 +60,6 @@ public class Xbox360Controller extends BaseController {
 		else {
 			return false;
 		}
-	}
-
-	@Override
-	public boolean isResettingNavx() {
-		return getRawButton("isResettingNavx");
-	}
-
-	@Override
-	public boolean isRotatingToNinety() {
-		return getRawButton("isRotatingToNinety");
-	}
-
-	@Override
-	public boolean isRotatingToNegativeNinety() {
-		return getRawButton("isRotatingToNegativeNinety");
-	}
-
-	@Override
-	public boolean isRotatingToOneHundredEighty() {
-		return getRawButton("isRotatingToOneHundredEighty");
-	}
-
-	@Override
-	public boolean isRotatingRight45() {
-		return getRawButton("isRotatingRight45");
-	}
-
-	@Override
-	public boolean isRotatingLeft45() {
-		return getRawButton("isRotatingLeft45");
-	}
-
-	@Override
-	public boolean isClimberSafteyOn() {
-		return getRawButton("isClimberSafteyOn");
-	}
-
-	@Override
-	public boolean isClimbing() {
-		return getRawButton("isClimbing");
 	}
 
 	@Override
