@@ -110,6 +110,18 @@ public class Vision extends Subsystem {
 	public void teleopPeriodic() {		
 		if (isVisionEnabled()) {
 			toggleCamera();
+			
+			if (auxController.isScopeEnabled()) {
+				visionProcessor.setTargetScopeEnabled(true);
+			} else {
+				visionProcessor.setTargetScopeEnabled(false);
+			}
+			
+			if (auxController.isTargetLocatorEnabled()) {
+				visionProcessor.setTargetLocatorEnabled(true);
+			} else {
+				visionProcessor.setTargetLocatorEnabled(false);
+			}
 		}
 	}
 
