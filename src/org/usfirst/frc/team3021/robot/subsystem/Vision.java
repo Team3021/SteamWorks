@@ -114,7 +114,7 @@ public class Vision extends Subsystem {
 	}
 
 	private void toggleCamera() {
-		if (mainController.isSwitchingCamera() && !btn_down) {
+		if ((mainController.isSwitchingCamera() || auxController.isSwitchingCamera()) && !btn_down) {
 			btn_down = true;
 			
 			VideoSource currentCam = null;
@@ -142,7 +142,7 @@ public class Vision extends Subsystem {
 				visionProcessor.setInput(currentCam);
 			}
 		} 
-		else if (!mainController.isSwitchingCamera()) {
+		else if (!mainController.isSwitchingCamera() && !auxController.isSwitchingCamera()) {
 			btn_down = false;
 		}
 	}
