@@ -2,6 +2,7 @@ package org.usfirst.frc.team3021.robot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import org.usfirst.frc.team3021.robot.commands.DriveCommand;
 import org.usfirst.frc.team3021.robot.commands.auto.*;
@@ -193,6 +194,30 @@ public class Configuration {
 		new AuxController().printButtonActions("Aux Panel");
 	}
 
+	public void printPreferences() {
+		Preferences prefs = Preferences.getInstance();
+		
+		@SuppressWarnings("rawtypes")
+		Vector keys = prefs.getKeys();
+		
+		System.out.println("******************* Prefernces *******************");
+		
+		for (Object obj : keys) {
+			String key = null;
+			
+			// cast from object to String
+			if (obj instanceof String) {
+				key = (String) obj;
+			}
+			
+			if (key != null) {
+				String value = prefs.getString(key, "");
+			
+				System.out.println(key + " : " + value);
+			}
+		}
+	}
+	
 	public static void main(String[] args) {
 		Configuration.printButtonActions();
 	}
