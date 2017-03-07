@@ -4,6 +4,5 @@ public class TurnLeftToAngle90 extends TurnLeftToAngle {
 	
 	public TurnLeftToAngle90() {
 		super(90.0);
-		
 	}
 }
