@@ -1,7 +1,6 @@
 package org.usfirst.frc.team3021.robot.vision;
 
 import org.opencv.core.Point;
-import org.opencv.core.Rect;
 import org.opencv.core.Size;
 
 public class TargetElement {
