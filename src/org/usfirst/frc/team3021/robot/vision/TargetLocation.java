@@ -78,7 +78,7 @@ public class TargetLocation
 					+ "\tSaturation range: " + minValues.val[1] + "-" + maxValues.val[1] + "\tValue range: "
 					+ minValues.val[2] + "-" + maxValues.val[2];
 			
-			// threshold HSV image to select tennis balls
+			// threshold HSV image to select target
 			Core.inRange(hsvImage, minValues, maxValues, maskImage);
 			
 			// blur the filtered image
