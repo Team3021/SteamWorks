@@ -16,7 +16,8 @@ public abstract class TurnToAngle extends DriveCommand {
 	@Override
 	protected void initialize() {
 		System.out.println("Start TurnToAngle");
-		Stanley.robotDrive.resetGyro();
+		
+		super.initialize();
 	}
 	
 	@Override

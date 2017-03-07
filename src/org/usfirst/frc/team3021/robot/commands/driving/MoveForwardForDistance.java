@@ -19,8 +19,8 @@ public class MoveForwardForDistance extends DriveCommand {
 	@Override
 	protected void initialize() {
 		System.out.println("Start moving " + direction + " for distance : " + desiredDistance);
-		Stanley.robotDrive.resetGyro();
-		Stanley.robotDrive.resetEncoders();
+		
+		super.initialize();
 	}
 	
 	@Override

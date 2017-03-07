@@ -21,8 +21,8 @@ public class MoveForwardForTime extends DriveCommand {
 	@Override
 	protected void initialize() {
 		System.out.println("Start moving " + direction + " for time : " + time);
-		Stanley.robotDrive.resetGyro();
-		Stanley.robotDrive.resetEncoders();
+		
+		super.initialize();
 	}
 	
 	@Override
