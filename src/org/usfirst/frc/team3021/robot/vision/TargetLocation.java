@@ -12,8 +12,8 @@ import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
-public class TargetLocation
-{
+public class TargetLocation extends TargetElement {
+	
 	private Mat blurredImage = new Mat();
 	private Mat hsvImage = new Mat();
 	private Mat maskImage = new Mat();
@@ -40,8 +40,7 @@ public class TargetLocation
 		return centerPoint;
 	}
 	
-	public void draw(Mat frame)
-	{
+	public void draw(Mat frame) {
 		// init
 		buildContourMask(frame);
 		
@@ -57,8 +56,8 @@ public class TargetLocation
 				
 				Rect rect = Imgproc.boundingRect(contours.get(i));
 				
-				if (rect.width > TargetUtil.STRIPE_WIDTH_MIN && rect.width < TargetUtil.STRIPE_WIDTH_MAX
-						&& rect.height > TargetUtil.STRIPE_HEIGHT_MIN && rect.height < TargetUtil.STRIPE_HEIGHT_MAX) {
+				if (rect.width > STRIPE_WIDTH_MIN && rect.width < STRIPE_WIDTH_MAX
+						&& rect.height > STRIPE_HEIGHT_MIN && rect.height < STRIPE_HEIGHT_MAX) {
 					
 					rectangles.add(rect);
 				}
@@ -71,7 +70,7 @@ public class TargetLocation
 	    for (int i = 0; i < rectangles.size(); i++) {
 	    	Rect rect = rectangles.get(i);
 	    	
-	        Imgproc.rectangle(frame, new Point(rect.x,rect.y), new Point(rect.x+rect.width,rect.y+rect.height), color, TargetUtil.LINE_THICKNESS);
+	        Imgproc.rectangle(frame, new Point(rect.x,rect.y), new Point(rect.x+rect.width,rect.y+rect.height), color, LINE_THICKNESS);
 	        
 	        if (leftRect == null) {
 	        	leftRect = rect;
@@ -82,16 +81,15 @@ public class TargetLocation
 	    }
 	    
 	    if (leftRect != null && rightRect != null) {
-	    	centerPoint = TargetUtil.getCenterPoint(leftRect, rightRect);
+	    	centerPoint = getCenterPoint(leftRect, rightRect);
 	    	
-	    	Imgproc.circle(frame, centerPoint, TargetUtil.TARGET_RADIUS, color, TargetUtil.LINE_THICKNESS);
+	    	Imgproc.circle(frame, centerPoint, TARGET_RADIUS, color, LINE_THICKNESS);
 	    } else {
 	    	centerPoint = null;
 	    }
 	}
 
-	private Mat buildContourMask(Mat frame)
-	{
+	private Mat buildContourMask(Mat frame) {
 		// if the frame is not empty, process it
 		if (frame.empty()) {
 			return frame;
@@ -127,6 +125,18 @@ public class TargetLocation
 		}
 
 		return contourFilter;
+	}
+	
+	private Point getCenterPoint(Rect leftRect, Rect rightRect) {
+
+		Point leftBoxCenterPoint = new Point(leftRect.x + (leftRect.width / 2), leftRect.y + (leftRect.height / 2));
+
+		Point rightBoxCenterPoint = new Point(rightRect.x + (rightRect.width / 2), rightRect.y + (rightRect.height / 2));
+
+		double centerX = leftBoxCenterPoint.x + ((rightBoxCenterPoint.x - leftBoxCenterPoint.x) / 2);
+		double centerY = (leftBoxCenterPoint.y + rightBoxCenterPoint.y) / 2;
+
+		return new Point(centerX, centerY);
 	}
 
 	public void setHueStart(double hueStart) {
