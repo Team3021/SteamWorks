@@ -21,16 +21,20 @@ public class TargetLocation
 	
 	private Mat contouredImage = new Mat();
 
-	private double hueStart = 20;
-	private double hueStop = 50;
+	private double hueStart = 50; // 80
+	private double hueStop = 100; // 100
 
-	private double saturationStart = 60;
-	private double saturationStop = 200;
+	private double saturationStart = 0; // 0
+	private double saturationStop = 90; // 60
 
-	private double valueStart = 50;
-	private double valueStop = 255;
+	private double valueStart = 135; // 255
+	private double valueStop = 255; // 255
 	
 	private String valuesToPrint;
+	
+	private Scalar color = new Scalar(0,0,255);
+	
+	private Point centerPoint = null;
 
 	public void draw(Mat frame)
 	{
@@ -38,19 +42,47 @@ public class TargetLocation
 		buildContourMask(frame);
 		
 		List<MatOfPoint> contours = new ArrayList<>();
+		List<Rect> rectangles = new ArrayList<>();
 
 		// find contours
 		Imgproc.findContours(contourFilter, contours, contouredImage, Imgproc.RETR_CCOMP, Imgproc.CHAIN_APPROX_SIMPLE);
 
-	    for (int i = 0; i< contours.size(); i++) {
+		// filter contours by area and then by width and height
+		for (int i = 0; i < contours.size(); i++) {
+			if (Imgproc.contourArea(contours.get(i)) > 200 ) {
+				
+				Rect rect = Imgproc.boundingRect(contours.get(i));
+				
+				if (rect.width > TargetUtil.STRIPE_WIDTH_MIN && rect.width < TargetUtil.STRIPE_WIDTH_MAX
+						&& rect.height > TargetUtil.STRIPE_HEIGHT_MIN && rect.height < TargetUtil.STRIPE_HEIGHT_MAX) {
+					
+					rectangles.add(rect);
+				}
+			}
+		}
+		
+		Rect leftRect = null;
+		Rect rightRect = null;
+		
+	    for (int i = 0; i < rectangles.size(); i++) {
+	    	Rect rect = rectangles.get(i);
+	    	
+	        Imgproc.rectangle(frame, new Point(rect.x,rect.y), new Point(rect.x+rect.width,rect.y+rect.height), color, TargetUtil.LINE_THICKNESS);
 	        
-	        if (Imgproc.contourArea(contours.get(i)) > 1000 ) {
-	            Rect rect = Imgproc.boundingRect(contours.get(i));
-	            
-	            if (rect.height > 100) {
-	            	Imgproc.rectangle(frame, new Point(rect.x,rect.y), new Point(rect.x+rect.width,rect.y+rect.height), new Scalar(0,0,255), 3);
-	            }
+	        if (leftRect == null) {
+	        	leftRect = rect;
+	        } else if (rect.x < leftRect.x) {
+	        	rightRect = leftRect;
+	        	leftRect = rect;
 	        }
+	    }
+	    
+	    if (leftRect != null && rightRect != null) {
+	    	centerPoint = TargetUtil.getCenterPoint(leftRect, rightRect);
+	    	
+	    	Imgproc.circle(frame, centerPoint, TargetUtil.TARGET_RADIUS, color, TargetUtil.LINE_THICKNESS);
+	    } else {
+	    	centerPoint = null;
 	    }
 	}
 
