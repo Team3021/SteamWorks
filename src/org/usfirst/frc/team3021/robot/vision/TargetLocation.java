@@ -36,6 +36,10 @@ public class TargetLocation
 	
 	private Point centerPoint = null;
 
+	public Point getCenterPoint() {
+		return centerPoint;
+	}
+	
 	public void draw(Mat frame)
 	{
 		// init
