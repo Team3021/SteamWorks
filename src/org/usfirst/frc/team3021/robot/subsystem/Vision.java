@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
 import org.usfirst.frc.team3021.robot.commands.VisionCommand;
+import org.usfirst.frc.team3021.robot.vision.TargetElement;
 import org.usfirst.frc.team3021.robot.vision.VisionProcessor;
 
 import edu.wpi.cscore.MjpegServer;
@@ -36,6 +37,18 @@ public class Vision extends Subsystem {
 	// our robot vision processing
 	private VisionProcessor visionProcessor;
 	
+	public Vision() {
+		initialize();
+	}
+	
+	public TargetElement getTargetScope() {
+		return visionProcessor.getTargetScope();
+	}
+	
+	public TargetElement getTargetLocator() {
+		return visionProcessor.getTargetLocator();
+	}
+	
 	private boolean isCamera0Enabled() {
 		return Preferences.getInstance().getBoolean(PREF_VISION_CAMERA_0_ENABLED, true);
 	}
@@ -48,7 +61,7 @@ public class Vision extends Subsystem {
 		return isCamera0Enabled() || isCamera1Enabled();
 	}
 	
-	public Vision() {
+	public void initialize() {
 		if (!isVisionEnabled()) {
 			// Don't initialize the camera objects and return right away
 			System.out.println("WARNING !!! NO CAMERAS ENABLED");

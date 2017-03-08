@@ -15,7 +15,7 @@ public class VisionProcessor extends RunnableDevice {
 	private final String PREF_TARGET_LOCATOR_ENABLED = "VisionProcessor.target.locator.enabled";
 	
 	private TargetScope targetScope;
-	private TargetLocation targetLocation;
+	private TargetLocation targetLocator;
 
 	private CvSink input; // Video sink that will receive images from the camera source
 
@@ -45,6 +45,14 @@ public class VisionProcessor extends RunnableDevice {
 		return output;
 	}
 
+	public TargetElement getTargetScope() {
+		return targetScope;
+	}
+
+	public TargetElement getTargetLocator() {
+		return targetLocator;
+	}
+	
 	public void setTargetScopeEnabled(boolean newValue) {
 		this.targetScopeEnabled = newValue;
 	}
@@ -78,7 +86,7 @@ public class VisionProcessor extends RunnableDevice {
 
 		// Draw a target location on the image
 		if (isTargetLocatorEnabled()) {
-			targetLocation.draw(mat);
+			targetLocator.draw(mat);
 		}
 
 		// Draw a target scope on the image
