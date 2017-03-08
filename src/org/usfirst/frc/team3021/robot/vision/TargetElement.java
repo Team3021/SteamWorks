@@ -3,7 +3,7 @@ package org.usfirst.frc.team3021.robot.vision;
 import org.opencv.core.Point;
 import org.opencv.core.Size;
 
-public class TargetElement {
+public abstract class TargetElement {
 	
 	protected final int LINE_THICKNESS = 2;
 	
@@ -33,4 +33,6 @@ public class TargetElement {
 	protected double TARGET_CENTER_X = FRAME_WIDTH / 2;
 
 	protected Point TARGET_CENTER = new Point(TARGET_CENTER_X, STRIPE_TOP + (STRIPE_HEIGHT / 2));
+	
+	public abstract Point getCenterPoint();
 }
