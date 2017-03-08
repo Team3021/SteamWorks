@@ -116,6 +116,7 @@ public class Configuration {
 		turnCommands.add(new TurnLeftToAngle90());
 		turnCommands.add(new TurnToAngle180());
 		turnCommands.add(new StopTurning());
+		turnCommands.add(new TurnToTarget());
 		
 		// ****************************************************************************
 		// **********************       DEVICE COMMANDS          **********************

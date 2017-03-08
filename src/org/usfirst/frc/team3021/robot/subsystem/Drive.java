@@ -79,7 +79,7 @@ public class Drive extends Subsystem {
 	}
 
 	public void turnToTarget(double desirecPosition) {
-		setDesiredPostion(desirecPosition);
+		setDesiredTargetPostion(desirecPosition);
 		
 		double turnValue = getTargetTurnValue();
 		
@@ -118,11 +118,11 @@ public class Drive extends Subsystem {
 	// **********************             TARGET             **********************
 	// ****************************************************************************
 
-	public void getDesiredPosition() {
-		targetController.calculateDesiredPosition();
+	public double getDesiredTargetPosition() {
+		return targetController.calculateDesiredPosition();
 	}
 	
-	private void setDesiredPostion(double value) {
+	private void setDesiredTargetPostion(double value) {
 		targetController.setDesiredPosition(value);
 	}
 	
