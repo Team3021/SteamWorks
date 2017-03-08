@@ -2,13 +2,14 @@ package org.usfirst.frc.team3021.robot.subsystem;
 
 import org.usfirst.frc.team3021.robot.commands.DriveCommand;
 import org.usfirst.frc.team3021.robot.commands.driving.DriveWithJoystick;
-import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngle180;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnLeftToAngle45;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnLeftToAngle90;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnRightToAngle45;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnRightToAngle90;
+import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngle180;
 import org.usfirst.frc.team3021.robot.controller.DriveController;
 import org.usfirst.frc.team3021.robot.controller.GyroController;
+import org.usfirst.frc.team3021.robot.controller.TargetController;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
 
@@ -17,6 +18,8 @@ public class Drive extends Subsystem {
 	private DriveController driveController;
 	
 	private GyroController gyroController;
+	
+	private TargetController targetController;
 
 	private DriveCommand defaultCommand;
 
@@ -26,6 +29,8 @@ public class Drive extends Subsystem {
 		driveController = new DriveController();
 		
 		gyroController = new GyroController();
+		
+		targetController = new TargetController();
 	}
 	
 	@Override
@@ -35,7 +40,7 @@ public class Drive extends Subsystem {
 	}
 
 	// ****************************************************************************
-	// **********************              DRIVE             **********************
+	// **********************              MOVE              **********************
 	// ****************************************************************************
 
 	public void resetEncoders() {
@@ -73,6 +78,14 @@ public class Drive extends Subsystem {
 		drive(0, turnValue);
 	}
 
+	public void turnToTarget(double desirecPosition) {
+		setDesiredPostion(desirecPosition);
+		
+		double turnValue = getTargetTurnValue();
+		
+		drive(0, turnValue);
+	}
+
 	// ****************************************************************************
 	// **********************              GYRO              **********************
 	// ****************************************************************************
@@ -81,11 +94,11 @@ public class Drive extends Subsystem {
 		gyroController.resetGyro();
 	}
 
-	public void setGyroDesiredAngle(double angle) {
+	private void setGyroDesiredAngle(double angle) {
 		gyroController.setDesiredAngle(angle);
 	}
 
-	public double getGyroTurnValue() {
+	private double getGyroTurnValue() {
 		return gyroController.getTurnValue();
 	}
 
@@ -101,6 +114,22 @@ public class Drive extends Subsystem {
 		return gyroController.isMoving();
 	}
 
+	// ****************************************************************************
+	// **********************             TARGET             **********************
+	// ****************************************************************************
+
+	public void getDesiredPosition() {
+		targetController.calculateDesiredPosition();
+	}
+	
+	private void setDesiredPostion(double value) {
+		targetController.setDesiredPosition(value);
+	}
+	
+	private double getTargetTurnValue() {
+		return targetController.getTurnValue();
+	}
+	
 	// ****************************************************************************
 	// **********************             TELEOP            **********************
 	// ****************************************************************************

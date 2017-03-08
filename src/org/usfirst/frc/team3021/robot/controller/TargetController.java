@@ -40,10 +40,20 @@ public class TargetController implements PIDOutput {
 
         pidController.enable();
 	}
+	
+	public void reset() {
+		System.out.println("Resetting target controller");
+		
+		pidSource.getSetPoint();
+	}
+
+	public double calculateDesiredPosition() {
+		return pidSource.getSetPoint();
+	}
 
 	// Input is the range of -160 to 160 to control the PID Controller
-	public void setDesiredAngle(double setpoint) {
-		pidController.setSetpoint(setpoint);
+	public void setDesiredPosition(double value) {
+		pidController.setSetpoint(value);
 	}
 
 	public double getTurnValue() {
