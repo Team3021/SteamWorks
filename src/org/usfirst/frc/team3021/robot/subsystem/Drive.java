@@ -158,10 +158,6 @@ public class Drive extends Subsystem {
         	Scheduler.getInstance().removeAll();
         }
 		
-        if (mainController.isResettingNavx() || auxController.isResettingNavx()) {
-        	resetGyro();
-        }
-        
         // Lets the current autonomous command continue to run.
         if (autonomousCommand != null && autonomousCommand.isRunning()) {
         	return;
