@@ -35,6 +35,9 @@ public class VisionProcessor extends RunnableDevice {
 
 		// Mats are very memory expensive.
 		mat = new Mat();
+		
+		targetLocator = new TargetLocator();
+		targetScope = new TargetScope();
 	}
 
 	public void setInput(VideoSource source) {
@@ -97,6 +100,6 @@ public class VisionProcessor extends RunnableDevice {
 		// Give the frame to the output
 		output.putFrame(mat);
 
-		delay(50);
+		delay(100);
 	}
 }
