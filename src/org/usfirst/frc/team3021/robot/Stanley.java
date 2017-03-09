@@ -36,11 +36,12 @@ public class Stanley extends IterativeRobot {
 		
 		configuration = new Configuration();
 		
+		vision = new Vision();
+		
 		robotDrive = new Drive();
 		launcher = new Launcher();
 		collector = new Collector();
 		climber = new Climber();
-		vision = new Vision();
 		
 		configuration.addSubsystemsToDashboard();
 		
