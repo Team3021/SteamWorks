@@ -93,6 +93,7 @@ public class Configuration {
 		
 		autoCommands.add(new StartLeftToLeftGearDelivery());
 		autoCommands.add(new StartCenterToCenterGearDelivery());
+		autoCommands.add(new StartRightToRightGearDelivery());
 
 		// ****************************************************************************
 		// **********************        MOVE COMMANDS           **********************
