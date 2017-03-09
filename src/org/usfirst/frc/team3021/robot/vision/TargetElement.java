@@ -11,7 +11,7 @@ public abstract class TargetElement {
 	protected final int TARGET_RADIUS = 7;
 	
 	protected final double STRIPE_ASPECT_RATIO = 2.0 / 5.0; // Width / Height of the target stripes
-	protected final double STRIPE_ASPECT_RATIO_TOLERANCE = 0.1;
+	protected final double STRIPE_ASPECT_RATIO_TOLERANCE = 0.25;
 
 	protected final double STRIPE_TOP = 50;
 	
@@ -24,7 +24,7 @@ public abstract class TargetElement {
 	protected final double STRIPE_WIDTH_MAX = 23;
 	protected final double STRIPE_HEIGHT_MAX = 150;
 	
-	protected final double STRIPE_OFFSET = 50;
+	protected final double STRIPE_OFFSET = 80;
 	
 	protected final Size STRIPE_SIZE = new Size(STRIPE_WIDTH, STRIPE_HEIGHT);
 	
@@ -54,12 +54,17 @@ public abstract class TargetElement {
 	}
 	
 	public boolean isTargetStripe(Rect rect) {
-		double rectangleAspectRatio = rect.width / rect.height;
+		double width = rect.width;
+		double height = rect.height;
+		
+		double rectangleAspectRatio = (width / height);
 		
 		double tolerance = STRIPE_ASPECT_RATIO * STRIPE_ASPECT_RATIO_TOLERANCE;
 		
 		double lowerRange = STRIPE_ASPECT_RATIO - tolerance;
 		double upperRange = STRIPE_ASPECT_RATIO + tolerance;
+		
+//		System.out.println(lowerRange + " " + rectangleAspectRatio + " " + upperRange) ;
 		
 		if (lowerRange < rectangleAspectRatio && rectangleAspectRatio < upperRange) {
 			return true;
