@@ -39,14 +39,23 @@ public class Indexer extends RunnableDevice {
 		talon.set(voltage);
 
 		// run the motor for a time
-		long motorRunTime = Preferences.getInstance().getLong(PREF_TIME_FOR_MOTOR, DEFAULT_TIME_FOR_MOTOR);
-		RunnableDevice.delay(motorRunTime);
+//		long motorRunTime = Preferences.getInstance().getLong(PREF_TIME_FOR_MOTOR, DEFAULT_TIME_FOR_MOTOR);
+//		RunnableDevice.delay(motorRunTime);
 		
 		// stop the motor
-		talon.set(0);
+//		talon.set(0);
 		
 		// wait before next periodic
-		long timeBetweenPeriodic = Preferences.getInstance().getLong(PREF_TIME_BETWEEN_PERIODIC, DEFAULT_TIME_BETWEEN_PERIODIC);
-		RunnableDevice.delay(timeBetweenPeriodic);
+//		long timeBetweenPeriodic = Preferences.getInstance().getLong(PREF_TIME_BETWEEN_PERIODIC, DEFAULT_TIME_BETWEEN_PERIODIC);
+//		RunnableDevice.delay(timeBetweenPeriodic);
+	}
+	
+	@Override
+	public void pause() {
+		super.pause();
+		
+		if (talon != null) {
+			talon.set(0);
+		}
 	}
 }
