@@ -13,9 +13,9 @@ public class StartLeftToLeftGearDelivery extends CommandGroup {
 		
 		requires(Stanley.robotDrive);
 		
-		addSequential(new MoveForwardForDistance(0.5, 2));
+		addSequential(new MoveForwardForDistance(0.3, 2));
 		addSequential(new TurnLeftToAngle(20));
-		addSequential(new MoveForwardForDistance(0.5, 5));
+		addSequential(new MoveForwardForDistance(0.3, 5));
 		addSequential(new TurnRightToAngle(90));
 		addSequential(new MoveForwardForDistance(0.3, 4.5));
 	}
