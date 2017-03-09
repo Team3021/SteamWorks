@@ -12,6 +12,7 @@ public class TargetPIDSource implements edu.wpi.first.wpilibj.PIDSource {
 	private double offset;
 
 	private double originalTargetPositionX;
+	private double currentTargetPositionX;
 
 	@Override
 	public PIDSourceType getPIDSourceType() {
@@ -37,6 +38,8 @@ public class TargetPIDSource implements edu.wpi.first.wpilibj.PIDSource {
 		// This will be a value from 0 to the max frame size
 		originalTargetPositionX = Math.abs(targetLocator.getCenterPoint().x);
 		
+		currentTargetPositionX = originalTargetPositionX;
+		
 		offset = targetLocator.getCenterPoint().x - targetScope.getCenterPoint().x;
 		
 		return offset;
@@ -44,8 +47,12 @@ public class TargetPIDSource implements edu.wpi.first.wpilibj.PIDSource {
 	
 	@Override
 	public double pidGet() {
+		if (targetLocator.getCenterPoint() != null) {
+			currentTargetPositionX = targetLocator.getCenterPoint().x;
+		}
+				
 		// compare the original target x position against the current target locator x position
 		// as this determines how much the robot has turned
-		return  (originalTargetPositionX - targetLocator.getCenterPoint().x);
+		return  (originalTargetPositionX - currentTargetPositionX);
 	}
 }

@@ -21,13 +21,13 @@ public class TargetLocator extends TargetElement {
 	
 	private Mat contouredImage = new Mat();
 
-	private double hueStart = 50; // 80
-	private double hueStop = 100; // 100
+	private double hueStart = 30; // 80
+	private double hueStop = 60; // 100
 
 	private double saturationStart = 0; // 0
 	private double saturationStop = 90; // 60
 
-	private double valueStart = 135; // 255
+	private double valueStart = 245; // 255
 	private double valueStop = 255; // 255
 	
 	private String valuesToPrint;
@@ -58,23 +58,22 @@ public class TargetLocator extends TargetElement {
 			}
 		}
 		
-		Rect leftRect = null;
-		Rect rightRect = null;
-		
 	    for (int i = 0; i < rectangles.size(); i++) {
 	    	Rect rect = rectangles.get(i);
 	    	
 	        Imgproc.rectangle(frame, new Point(rect.x,rect.y), new Point(rect.x+rect.width,rect.y+rect.height), color, LINE_THICKNESS);
-	        
-	        if (leftRect == null) {
-	        	leftRect = rect;
-	        } else if (rect.x < leftRect.x) {
-	        	rightRect = leftRect;
-	        	leftRect = rect;
-	        }
 	    }
 	    
-	    if (leftRect != null && rightRect != null) {
+	    if (rectangles.size() == 2) {
+	    	Rect leftRect = rectangles.get(0);
+	    	Rect rightRect = rectangles.get(1);
+	        
+	    	if (leftRect.x > rightRect.x) {
+	        	Rect temp = rightRect;
+	        	
+	        	rightRect = leftRect;
+	        	leftRect = temp;
+	        }
 	    	centerPoint = getCenterPoint(leftRect, rightRect);
 	    	
 	    	Imgproc.circle(frame, centerPoint, TARGET_RADIUS, color, LINE_THICKNESS);
@@ -91,7 +90,7 @@ public class TargetLocator extends TargetElement {
 
 		try {
 			// remove some noise
-			Imgproc.blur(frame, blurredImage, new Size(7, 7));
+			Imgproc.blur(frame, blurredImage, new Size(9, 9));
 
 			// convert the frame to HSV
 			Imgproc.cvtColor(blurredImage, hsvImage, Imgproc.COLOR_BGR2HSV);

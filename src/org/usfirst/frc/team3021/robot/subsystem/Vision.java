@@ -82,6 +82,7 @@ public class Vision extends Subsystem {
 		
 		if (cam0.isConnected()) {
 			cam0.setFPS(20);
+			cam0.setExposureManual(-10);
 		}
 
 		// set up a usb camera on port 1
@@ -89,6 +90,7 @@ public class Vision extends Subsystem {
 		
 		if (cam1.isConnected()) {
 			cam1.setFPS(20);
+			cam1.setExposureManual(-10);
 		}
 		
 		VideoSource currentCam = null;
