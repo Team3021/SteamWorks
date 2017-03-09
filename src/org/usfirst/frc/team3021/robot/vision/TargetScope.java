@@ -10,10 +10,6 @@ public class TargetScope extends TargetElement {
 	
 	private static final Scalar color = new Scalar(255, 255, 255);
 
-	public Point getCenterPoint() {
-		return TARGET_CENTER;
-	}
-
 	private Rect getLeftTargetStripe() {
 		Point leftTop = new Point(TARGET_CENTER_X - STRIPE_OFFSET - STRIPE_WIDTH, STRIPE_TOP);
 		Point bottomRight = new Point(TARGET_CENTER_X - STRIPE_OFFSET, STRIPE_TOP + STRIPE_HEIGHT);

@@ -36,10 +36,6 @@ public class TargetLocation extends TargetElement {
 	
 	private Point centerPoint = null;
 
-	public Point getCenterPoint() {
-		return centerPoint;
-	}
-	
 	public void draw(Mat frame) {
 		// init
 		buildContourMask(frame);
@@ -56,9 +52,7 @@ public class TargetLocation extends TargetElement {
 				
 				Rect rect = Imgproc.boundingRect(contours.get(i));
 				
-				if (rect.width > STRIPE_WIDTH_MIN && rect.width < STRIPE_WIDTH_MAX
-						&& rect.height > STRIPE_HEIGHT_MIN && rect.height < STRIPE_HEIGHT_MAX) {
-					
+				if (isTargetStripe(rect)) {
 					rectangles.add(rect);
 				}
 			}
@@ -125,18 +119,6 @@ public class TargetLocation extends TargetElement {
 		}
 
 		return contourFilter;
-	}
-	
-	private Point getCenterPoint(Rect leftRect, Rect rightRect) {
-
-		Point leftBoxCenterPoint = new Point(leftRect.x + (leftRect.width / 2), leftRect.y + (leftRect.height / 2));
-
-		Point rightBoxCenterPoint = new Point(rightRect.x + (rightRect.width / 2), rightRect.y + (rightRect.height / 2));
-
-		double centerX = leftBoxCenterPoint.x + ((rightBoxCenterPoint.x - leftBoxCenterPoint.x) / 2);
-		double centerY = (leftBoxCenterPoint.y + rightBoxCenterPoint.y) / 2;
-
-		return new Point(centerX, centerY);
 	}
 
 	public void setHueStart(double hueStart) {
