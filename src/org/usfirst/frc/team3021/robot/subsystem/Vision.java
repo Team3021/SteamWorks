@@ -82,6 +82,7 @@ public class Vision extends Subsystem {
 		
 		if (cam0.isConnected()) {
 			cam0.setFPS(20);
+			cam0.setResolution(320, 240);
 			cam0.setExposureManual(-10);
 		}
 
@@ -90,6 +91,7 @@ public class Vision extends Subsystem {
 		
 		if (cam1.isConnected()) {
 			cam1.setFPS(20);
+			cam1.setResolution(320, 240);
 			cam1.setExposureManual(-10);
 		}
 		
