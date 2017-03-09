@@ -20,8 +20,6 @@ public class Drive extends Subsystem {
 	
 	private GyroController gyroController;
 	
-	private TargetController targetController;
-
 	private DriveCommand defaultCommand;
 
 	private DriveCommand autonomousCommand;
@@ -30,10 +28,6 @@ public class Drive extends Subsystem {
 		driveController = new DriveController();
 		
 		gyroController = new GyroController();
-		
-		if (Stanley.vision.isVisionEnabled()) {
-			targetController = new TargetController();
-		}
 	}
 	
 	@Override
@@ -122,27 +116,15 @@ public class Drive extends Subsystem {
 	// ****************************************************************************
 
 	public double getDesiredTargetPosition() {
-		if (!Stanley.vision.isVisionEnabled()) {
-			return 0;
-		}
-		
-		return targetController.calculateDesiredPosition();
+		return 0;
 	}
 	
 	private void setDesiredTargetPostion(double value) {
-		if (!Stanley.vision.isVisionEnabled()) {
-			return;
-		}
-		
-		targetController.setDesiredPosition(value);
+		return;
 	}
 	
 	private double getTargetTurnValue() {
-		if (!Stanley.vision.isVisionEnabled()) {
-			return 0;
-		}
-		
-		return targetController.getTurnValue();
+		return 0;
 	}
 	
 	// ****************************************************************************
