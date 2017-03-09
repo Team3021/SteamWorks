@@ -13,6 +13,16 @@ public class Xbox360Controller extends BaseController {
 //	private static final int RIGHT_STICK_Y = 5;
 
 	public Xbox360Controller() {
+		setButtons();
+	}
+	
+	public Xbox360Controller(int port) {
+		super(port);
+		
+		setButtons();
+	}
+
+	private void setButtons() {
 		buttonActions.add(new ButtonAction(1, "A_BUTTON", "isRotatingToOneHundredEighty"));
 		buttonActions.add(new ButtonAction(2, "B_BUTTON", "isRotatingToNinety"));
 		buttonActions.add(new ButtonAction(3, "X_BUTTON", "isRotatingToNegativeNinety"));
@@ -28,10 +38,6 @@ public class Xbox360Controller extends BaseController {
 		buttonActions.add(new ButtonAction(10, "RIGHT_STICK_CLICK", "isSwitchingCamera"));
 	}
 	
-	public Xbox360Controller(int port) {
-		super(port);
-	}
-
 	@Override
 	public double getMoveValue(){
 		return controller.getRawAxis(LEFT_STICK_Y);

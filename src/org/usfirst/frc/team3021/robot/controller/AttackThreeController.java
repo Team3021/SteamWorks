@@ -3,6 +3,16 @@ package org.usfirst.frc.team3021.robot.controller;
 public class AttackThreeController extends BaseController {
 	
 	public AttackThreeController() {
+		setButtons();
+	}
+	
+	public AttackThreeController(int port) {
+		super(port);
+		
+		setButtons();
+	}
+
+	private void setButtons() {
 		buttonActions.add(new ButtonAction(1, "STICK_TRIGGER", "isLaunching"));
 		buttonActions.add(new ButtonAction(2, "STICK_MIDDLE_BUTTON", "isRotatingToOneHundredEighty"));
 		buttonActions.add(new ButtonAction(3, "STICK_CENTER", "isCollecting"));
@@ -17,10 +27,6 @@ public class AttackThreeController extends BaseController {
 		
 		buttonActions.add(new ButtonAction(10, "BASE_RIGHT_BACK", "isRotatingRight45"));
 		buttonActions.add(new ButtonAction(11, "BASE_RIGHT_FRONT", "isClimbing"));
-	}
-	
-	public AttackThreeController(int port) {
-		super(port);
 	}
 	
 	@Override
