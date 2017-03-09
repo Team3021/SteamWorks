@@ -57,7 +57,7 @@ public class Vision extends Subsystem {
 		return Preferences.getInstance().getBoolean(PREF_VISION_CAMERA_1_ENABLED, true);
 	}
 	
-	private boolean isVisionEnabled() {
+	public boolean isVisionEnabled() {
 		return isCamera0Enabled() || isCamera1Enabled();
 	}
 	

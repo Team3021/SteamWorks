@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
+import org.usfirst.frc.team3021.robot.Stanley;
 import org.usfirst.frc.team3021.robot.commands.DriveCommand;
 import org.usfirst.frc.team3021.robot.commands.driving.DriveWithJoystick;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnLeftToAngle45;
@@ -30,7 +31,9 @@ public class Drive extends Subsystem {
 		
 		gyroController = new GyroController();
 		
-		targetController = new TargetController();
+		if (Stanley.vision.isVisionEnabled()) {
+			targetController = new TargetController();
+		}
 	}
 	
 	@Override
@@ -119,14 +122,26 @@ public class Drive extends Subsystem {
 	// ****************************************************************************
 
 	public double getDesiredTargetPosition() {
+		if (!Stanley.vision.isVisionEnabled()) {
+			return 0;
+		}
+		
 		return targetController.calculateDesiredPosition();
 	}
 	
 	private void setDesiredTargetPostion(double value) {
+		if (!Stanley.vision.isVisionEnabled()) {
+			return;
+		}
+		
 		targetController.setDesiredPosition(value);
 	}
 	
 	private double getTargetTurnValue() {
+		if (!Stanley.vision.isVisionEnabled()) {
+			return 0;
+		}
+		
 		return targetController.getTurnValue();
 	}
 	
