@@ -15,7 +15,7 @@ public class VisionProcessor extends RunnableDevice {
 	private final String PREF_TARGET_LOCATOR_ENABLED = "VisionProcessor.target.locator.enabled";
 	
 	private TargetScope targetScope;
-	private TargetLocation targetLocator;
+	private TargetLocator targetLocator;
 
 	private CvSink input; // Video sink that will receive images from the camera source
 

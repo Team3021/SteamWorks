@@ -12,7 +12,7 @@ import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
-public class TargetLocation extends TargetElement {
+public class TargetLocator extends TargetElement {
 	
 	private Mat blurredImage = new Mat();
 	private Mat hsvImage = new Mat();
