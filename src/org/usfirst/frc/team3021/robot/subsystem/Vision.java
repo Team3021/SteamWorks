@@ -78,21 +78,19 @@ public class Vision extends Subsystem {
 		server.addServer(dashboardSink);
 		
 		// set up a usb camera on port 0
-		cam0 = new UsbCamera("Active USB Camera", 0);
-		
-		if (cam0.isConnected()) {
+		if (isCamera0Enabled()) {
+			cam0 = new UsbCamera("Active USB Camera", 0);
+
 			cam0.setFPS(20);
 			cam0.setResolution(320, 240);
-			cam0.setExposureManual(-10);
 		}
 
 		// set up a usb camera on port 1
-		cam1 = new UsbCamera("Active USB Camera", 1);
-		
-		if (cam1.isConnected()) {
+		if (isCamera1Enabled()) {
+			cam1 = new UsbCamera("Active USB Camera", 1);
+			
 			cam1.setFPS(20);
 			cam1.setResolution(320, 240);
-			cam1.setExposureManual(-10);
 		}
 		
 		VideoSource currentCam = null;
