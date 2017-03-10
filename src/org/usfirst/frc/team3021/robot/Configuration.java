@@ -94,10 +94,12 @@ public class Configuration {
 		autoCommands.add(new RedStartLeftToLeftGear());
 		autoCommands.add(new RedStartCenterToCenterGear());
 		autoCommands.add(new RedStartRightToRightGear());
+		autoCommands.add(new RedStartCenterToCenterGearToCrossLine());
 		
 		autoCommands.add(new BlueStartLeftToLeftGear());
 		autoCommands.add(new BlueStartCenterToCenterGear());
 		autoCommands.add(new BlueStartRightToRightGear());
+		autoCommands.add(new BlueStartCenterToCenterGearToCrossLine());
 
 		// ****************************************************************************
 		// **********************        MOVE COMMANDS           **********************
