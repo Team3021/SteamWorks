@@ -15,12 +15,7 @@ public class RedStartCenterToCenterGear extends CommandGroup {
 
 		requires(Stanley.robotDrive);
 		
-		addSequential(new MoveForwardForDistance(0.4, 7));
+		addSequential(new MoveForwardForDistance(0.3, 7));
 		addSequential(new TimedCommand(4));
-		addSequential(new MoveBackwardForDistance(0.3, 3.5));
-		addSequential(new TurnLeftToAngle(75));
-		addSequential(new MoveForwardForDistance(1.0, 7));
-		addSequential(new TurnRightToAngle(75));
-		addSequential(new MoveForwardForDistance(1.0, 12));
 	}
 }

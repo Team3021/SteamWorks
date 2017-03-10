@@ -1,0 +1,9 @@
+		addSequential(new MoveForwardForDistance(0.3, 1.8));
+		addSequential(new TimedCommand(0.1));
+		addSequential(new TurnLeftToAngle(20));
+		addSequential(new TimedCommand(0.1));
+		addSequential(new MoveForwardForDistance(0.25, 3.3));
+		addSequential(new TimedCommand(0.1));
+		addSequential(new TurnRightToAngle(76));
+		addSequential(new TimedCommand(0.1));
+		addSequential(new MoveForwardForDistance(0.3, 0.5));

@@ -87,6 +87,9 @@ public class VisionProcessor extends RunnableDevice {
 			return;
 		}
 
+//		System.out.println("mat height: " + mat.height());
+//		System.out.println("mat width: " + mat.width());
+		
 		// Draw a target location on the image
 		if (isTargetLocatorEnabled()) {
 			targetLocator.draw(mat);
