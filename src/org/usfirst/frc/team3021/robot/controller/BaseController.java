@@ -138,7 +138,6 @@ public abstract class BaseController implements Controller {
 		boolean buttonOn = controller.getRawButton(number);
 		
 		if (buttonOn) {
-			System.out.println("button " + number + " for action " + action);
 			return true;
 		}
 		
