@@ -39,7 +39,13 @@ public class DriveWithJoystick extends DriveCommand {
 		// The equations here are of the form d(ab^|x| - a) where d is the respective direction value (note above). 
 		// If you wish to alter these equations, adjust b, then solve for a at (1, 1).
 		// Greater values of b make the controls less sensitive; smaller values are more sensitive.
-		turnValue = turnDirection * (0.25 * Math.pow(5.0, Math.abs(turnValue)) - 0.25);
+		// a = 0.25, b = 5
+		// a = 0.2, b = 6
+		// a = 0.166, b = 7
+		// a = 0.1428, b = 8
+		// a = 0.125, b = 9
+		
+		turnValue = turnDirection * (0.166 * Math.pow(7.0, Math.abs(turnValue)) - 0.166);
 
 		return turnValue;
 	}
