@@ -7,16 +7,17 @@ import org.usfirst.frc.team3021.robot.commands.driving.TurnRightToAngle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class StartLeftToLeftGearDelivery extends CommandGroup {
-	public StartLeftToLeftGearDelivery() {
-		super("[Left] to [Left Gear]");
+public class BlueStartRightToRightGear extends CommandGroup {
+	
+	public BlueStartRightToRightGear() {
+		super("[Blue] [Right] to [Right Gear]");
 		
 		requires(Stanley.robotDrive);
 		
 		addSequential(new MoveForwardForDistance(0.3, 2));
-		addSequential(new TurnLeftToAngle(20));
+		addSequential(new TurnRightToAngle(20));
 		addSequential(new MoveForwardForDistance(0.3, 5));
-		addSequential(new TurnRightToAngle(90));
+		addSequential(new TurnLeftToAngle(90));
 		addSequential(new MoveForwardForDistance(0.3, 4.5));
 	}
 }

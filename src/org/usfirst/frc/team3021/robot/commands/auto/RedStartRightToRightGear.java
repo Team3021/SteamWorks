@@ -7,10 +7,10 @@ import org.usfirst.frc.team3021.robot.commands.driving.TurnRightToAngle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class StartRightToRightGearDelivery extends CommandGroup {
+public class RedStartRightToRightGear extends CommandGroup {
 	
-	public StartRightToRightGearDelivery() {
-		super("[Right] to [Right Gear]");
+	public RedStartRightToRightGear() {
+		super("[Red] [Right] to [Right Gear]");
 		
 		requires(Stanley.robotDrive);
 		
