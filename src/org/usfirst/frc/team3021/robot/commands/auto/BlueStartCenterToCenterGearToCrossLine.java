@@ -15,7 +15,7 @@ public class BlueStartCenterToCenterGearToCrossLine extends CommandGroup {
 
 		requires(Stanley.robotDrive);
 		
-		addSequential(new MoveForwardForDistance(0.4, 7));
+		addSequential(new MoveForwardForDistance(0.3, 7));
 		addSequential(new TimedCommand(5));
 		addSequential(new MoveBackwardForDistance(0.3, 3.5));
 		addSequential(new TurnRightToAngle(75));

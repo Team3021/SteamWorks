@@ -11,6 +11,6 @@ public class BlueStartCenterToCenterGear extends CommandGroup {
 
 		requires(Stanley.robotDrive);
 		
-		addSequential(new MoveForwardForDistance(0.4, 7));
+		addSequential(new MoveForwardForDistance(0.3, 7));
 	}
 }
