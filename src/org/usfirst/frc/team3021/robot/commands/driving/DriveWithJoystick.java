@@ -16,6 +16,10 @@ public class DriveWithJoystick extends DriveCommand {
 	}
 
 	private double getMoveValue() {
+		if (Stanley.mainController == null) {
+			return 0;
+		}
+		
 		double moveValue = Stanley.mainController.getMoveValue();
 		
 		// Determines whether the output of expSpeed should be positive or negative.
@@ -31,6 +35,10 @@ public class DriveWithJoystick extends DriveCommand {
 	}
 
 	private double getTurnValue() {
+		if (Stanley.mainController == null) {
+			return 0;
+		}
+		
 		double turnValue = Stanley.mainController.getTurnValue();
 
 		int turnDirection = getDirection(turnValue);
