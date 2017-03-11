@@ -31,7 +31,7 @@ public class VisionProcessor extends RunnableDevice {
 		input.setSource(initialCam);
 		
 		// Setup a CvSource. This will send images back to an external sink
-		output = CameraServer.getInstance().putVideo("Stanely : Vision", 320, 240);
+		output = CameraServer.getInstance().putVideo("Stanely : Vision", TargetElement.FRAME_WIDTH, TargetElement.FRAME_HEIGHT);
 
 		// Mats are very memory expensive.
 		mat = new Mat();

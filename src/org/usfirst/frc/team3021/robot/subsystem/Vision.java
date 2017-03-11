@@ -19,6 +19,8 @@ public class Vision extends Subsystem {
 	private static final int USB_CAMERA_ZERO = 0;
 	private static final int USB_CAMERA_ONE = 1;
 
+	private boolean isInitialized = false;
+	
 	// Member Attributes
 	private int curCamNum;
 	
@@ -62,6 +64,14 @@ public class Vision extends Subsystem {
 	}
 	
 	public void initialize() {
+		
+		if (isInitialized) {
+			System.out.println("Vision already initialized");
+			return;
+		}
+		
+		isInitialized = true;
+		
 		if (!isVisionEnabled()) {
 			// Don't initialize the camera objects and return right away
 			System.out.println("WARNING !!! NO CAMERAS ENABLED");
@@ -82,7 +92,7 @@ public class Vision extends Subsystem {
 			cam0 = new UsbCamera("Active USB Camera", 0);
 
 			cam0.setFPS(20);
-			cam0.setResolution(320, 240);
+			cam0.setResolution(TargetElement.FRAME_WIDTH, TargetElement.FRAME_HEIGHT);
 		}
 
 		// set up a usb camera on port 1
@@ -90,7 +100,7 @@ public class Vision extends Subsystem {
 			cam1 = new UsbCamera("Active USB Camera", 1);
 			
 			cam1.setFPS(20);
-			cam1.setResolution(320, 240);
+			cam1.setResolution(TargetElement.FRAME_WIDTH, TargetElement.FRAME_HEIGHT);
 		}
 		
 		VideoSource currentCam = null;

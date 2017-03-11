@@ -28,8 +28,9 @@ public abstract class TargetElement {
 	
 	protected final Size STRIPE_SIZE = new Size(STRIPE_WIDTH, STRIPE_HEIGHT);
 	
-	protected final double FRAME_WIDTH = 320;
-	protected final double FRAME_HEIGHT = 240;
+	// The video resolution
+	public static final int FRAME_WIDTH = 320;
+	public static final int FRAME_HEIGHT = 240;
 	
 	protected final Size FRAME_SIZE = new Size(FRAME_WIDTH, FRAME_HEIGHT);
 	
