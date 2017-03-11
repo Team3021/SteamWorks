@@ -109,6 +109,8 @@ public class GyroController implements PIDOutput {
 			gyroOffset =  -gyroOffset;
 		}
 		
+		System.out.println("GyroController calculated offset: " + gyroOffset);
+		
 		return gyroOffset;
 	}
 
