@@ -53,7 +53,7 @@ public class DriveWithJoystick extends DriveCommand {
 		// a = 0.1428, b = 8
 		// a = 0.125, b = 9
 		
-		turnValue = turnDirection * (0.166 * Math.pow(7.0, Math.abs(turnValue)) - 0.166);
+		turnValue = turnDirection * (0.125 * Math.pow(9.0, Math.abs(turnValue)) - 0.166);
 
 		return turnValue;
 	}
