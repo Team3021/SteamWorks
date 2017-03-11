@@ -21,6 +21,6 @@ public class RedStartCenterToCenterGearToCrossLine extends CommandGroup {
 		addSequential(new TurnLeftToAngle(75));
 		addSequential(new MoveForwardForDistance(1.0, 7));
 		addSequential(new TurnRightToAngle(75));
-		addSequential(new MoveForwardForDistance(1.0, 12));
+		addSequential(new MoveForwardForDistance(1.0, 7));
 	}
 }

@@ -13,9 +13,8 @@ public class RedStartLeftToLeftGear extends CommandGroup {
 		
 		requires(Stanley.robotDrive);
 		
-		addSequential(new MoveForwardForDistance(0.3, 8));
-		addSequential(new StopMoving());
+		addSequential(new MoveForwardForDistance(0.3, 7.75));
 		addSequential(new TurnRightToAngle(56));
-		addSequential(new MoveForwardForDistance(0.3, 0.02));
+		addSequential(new MoveForwardForDistance(0.3, 1.75));
 	}
 }
