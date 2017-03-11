@@ -48,7 +48,7 @@ public class Configuration {
 	private List<Command> autoCommands = new ArrayList<Command>();
 
 	public void addAutonmousChoices() {
-		autonomousChooser.addDefault(AUTONOMOUS_DEFALUT, AUTONOMOUS_DEFALUT);
+		autonomousChooser.addDefault("[Red] [Left] to [Left Gear]", "[Red] [Left] to [Left Gear]");
 		
 		for (Command command : autoCommands) {
 			autonomousChooser.addObject(command.getName(), command.getName());
@@ -58,8 +58,7 @@ public class Configuration {
 	}
 
 	public void addControllerChoices() {
-		controllerChooser.addDefault(DEFAULT, DEFAULT);
-		controllerChooser.addObject(ATTACK_THREE, ATTACK_THREE);
+		controllerChooser.addDefault(ATTACK_THREE, ATTACK_THREE);
 		controllerChooser.addObject(XBOX360, XBOX360);
 		SmartDashboard.putData("Main Controller Mode", controllerChooser);
 	}
