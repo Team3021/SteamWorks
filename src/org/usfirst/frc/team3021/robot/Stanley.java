@@ -89,27 +89,8 @@ public class Stanley extends IterativeRobot {
 		String selectedController = configuration.getMainControllerMode();
 		int mainControllerPort = configuration.getMainControllerPort();
 
-		if (selectedController.equals(Configuration.ATTACK_THREE)) {
 			System.out.println("***************ATTACK TRHREE***************");
 			mainController = new AttackThreeController(mainControllerPort);
-			
-			if (mainController.isXbox()) {
-				System.out.println("*************** WARNING !!! ***************");
-				System.out.println("Dahboard choice is not an XBOX controller, but this is an XBOX CONTROLLER on port " + configuration.getMainControllerPort());
-			}
-		}
-		else if (selectedController.equals(Configuration.XBOX360)) {
-			System.out.println("***************XBOX***************");
-			mainController = new Xbox360Controller(mainControllerPort);
-			
-			if (!mainController.isXbox()) {
-				System.out.println("*************** WARNING !!! ***************");
-				System.out.println("Dahboard choice is XBOX controller, but this is NOT an XBOX CONTROLLER on port " + configuration.getMainControllerPort());
-			}
-		} else {
-			System.out.println("***************NO CONTROLLER***************");
-			mainController = new DefaultController(mainControllerPort);
-		}
 
 		auxController = new AuxController(configuration.getAuxPanelPort());
 		
