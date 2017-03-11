@@ -127,5 +127,9 @@ public class DriveController {
 	public void stop() {
 		robotDrive.arcadeDrive(0, 0, false);
 	}
+
+	public double getMotorOutput() {
+		return (leftFrontTalon.get() + leftRearTalon.get() + rightFrontTalon.get() + rightRearTalon.get()) / 4;
+	}
 	
 }

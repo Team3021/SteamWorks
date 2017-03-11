@@ -52,6 +52,10 @@ public class Drive extends Subsystem {
 		driveController.drive(moveValue, turnValue);
 	}
 	
+	public double getMotorOutput() {
+		return driveController.getMotorOutput();
+	}
+	
 	// Drive forward using the gyro to maintain course
 	// This assumes that forward is set to zero degrees
 	// and thus the gyro offset is is a deviation from going straight forward
