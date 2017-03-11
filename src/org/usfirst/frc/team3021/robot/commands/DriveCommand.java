@@ -50,15 +50,22 @@ public abstract class DriveCommand extends Command {
 		// (not necessarily the case, but this is required for proper function of turnToAngle).
 		boolean isMoving = true;
 		
+		if (timeSinceInitialized() < 1.0) {
+			return true;
+		}
+		
 		// Checks to see if the robot has started moving.
 		if (Stanley.robotDrive.isGyroMoving() && hasMoved == false) {
 			isMoving = true;
 			hasMoved = true;
+			System.out.println("started moving at " + timeSinceInitialized());
 		}
 		// False will not be returned unless the robot has already started moving.
-		else if (!Stanley.robotDrive.isGyroMoving() && hasMoved == true) {
+		else if ((!Stanley.robotDrive.isGyroMoving() || Stanley.robotDrive.getMotorOutput() < 0.1) && hasMoved == true) {
 			isMoving = false;
 			hasMoved = false;
+			
+			System.out.println("finished moving at time since " + timeSinceInitialized());
 		}
 		return isMoving;
 	}
