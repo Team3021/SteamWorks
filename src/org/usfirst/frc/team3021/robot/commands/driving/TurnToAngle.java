@@ -15,7 +15,7 @@ public abstract class TurnToAngle extends DriveCommand {
 	
 	@Override
 	protected void initialize() {
-		System.out.println("Start TurnToAngle");
+		System.out.println("Start TurnToAngle at: " + timeSinceInitialized());
 		
 		super.initialize();
 	}
@@ -27,7 +27,7 @@ public abstract class TurnToAngle extends DriveCommand {
 	
 	@Override
 	protected void end() {
-		System.out.println("End TurnToAngle");
+		System.out.println("End TurnToAngle at: " + timeSinceInitialized());
 	}
 	
 	@Override
