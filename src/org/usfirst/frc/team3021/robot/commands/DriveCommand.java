@@ -17,6 +17,8 @@ public abstract class DriveCommand extends Command {
 	protected static final String FORWARD = "forward";
 	protected static final String BACKWARD = "backward";
 	
+	protected boolean hasStarted = false;
+	
 	protected boolean hasMoved = false;
 	
 	public DriveCommand() {
@@ -29,6 +31,8 @@ public abstract class DriveCommand extends Command {
 	protected void initialize() {
 		Stanley.robotDrive.resetGyro();
 		Stanley.robotDrive.resetEncoders();
+
+		hasStarted = false;
 
 		hasMoved = false;
 	}
@@ -50,7 +54,13 @@ public abstract class DriveCommand extends Command {
 		// (not necessarily the case, but this is required for proper function of turnToAngle).
 		boolean isMoving = true;
 		
-		if (timeSinceInitialized() < 1.0) {
+		if (!hasStarted) {
+			System.out.println("started moving at time: " + timeSinceInitialized());
+			
+			hasStarted = true;
+		}
+		
+		if (timeSinceInitialized() < 0.5) {
 			return true;
 		}
 		
@@ -58,15 +68,16 @@ public abstract class DriveCommand extends Command {
 		if (Stanley.robotDrive.isGyroMoving() && hasMoved == false) {
 			isMoving = true;
 			hasMoved = true;
-			System.out.println("started moving at " + timeSinceInitialized());
+			System.out.println("started checking movement at time: " + timeSinceInitialized());
 		}
 		// False will not be returned unless the robot has already started moving.
 		else if ((!Stanley.robotDrive.isGyroMoving() || Stanley.robotDrive.getMotorOutput() < 0.1) && hasMoved == true) {
 			isMoving = false;
 			hasMoved = false;
 			
-			System.out.println("finished moving at time since " + timeSinceInitialized());
+			System.out.println("stopped moving at time: " + timeSinceInitialized());
 		}
+		
 		return isMoving;
 	}
 
