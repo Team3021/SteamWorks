@@ -37,6 +37,9 @@ public class Configuration {
 	private  final String PREF_AUX_PANEL_STATUS = "Controller.aux.enabled";
 	private final String PREF_AUX_PANEL_PORT = "Controller.aux.port";
 	private final int AUX_PANEL_PORT_DEFAULT = 1;
+
+	private  final String DASHBOARD_COMMANDS_ENABLED = "Config.dashboard.commands.enabled";
+	private  final String DASHBAORD_SUBSYSTEMS_ENABLED = "Config.dashboard.subsystems.enabled";
 	
 	private SendableChooser<String> autonomousChooser = new SendableChooser<>();
 	private SendableChooser<String> controllerChooser = new SendableChooser<>();
@@ -82,6 +85,12 @@ public class Configuration {
 	}
 
 	private void addSubsystemsToSmartDashboard(List<Subsystem> subsystems) {
+		boolean isDashboardSubsystemsEnabled = Preferences.getInstance().getBoolean(DASHBAORD_SUBSYSTEMS_ENABLED, false);
+		
+		if (!isDashboardSubsystemsEnabled) {
+			return;
+		}
+		
 		for (Subsystem subsystem : subsystems) {
 			SmartDashboard.putData(subsystem);
 		}
@@ -171,10 +180,14 @@ public class Configuration {
 	}
 
 	private void addCommandsToSmartDashboard(String commandType, List<Command> commands) {
+		boolean isDashboardCommandsEnabled = Preferences.getInstance().getBoolean(DASHBOARD_COMMANDS_ENABLED, false);
+		
+		if (!isDashboardCommandsEnabled) {
+			return;
+		}
 
 		for (Command command : commands) {
 			SmartDashboard.putData(command);
-			
 		}
 	}
 	
