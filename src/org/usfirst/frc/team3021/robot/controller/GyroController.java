@@ -80,11 +80,9 @@ public class GyroController implements PIDOutput {
 	private boolean isGyroEnabled() {
 		return isUSBEnabled() || isMXPEnabled();
 	}
-	
-	public void resetGyro() {
-		System.out.println("Resetting gyro");
-		
-		navx.reset();
+
+	public boolean isMoving() {
+		return navx.isMoving();
 	}
 
 	// Input is the range of -180 to 180 to control the PID Controller
@@ -113,9 +111,17 @@ public class GyroController implements PIDOutput {
 		
 		return gyroOffset;
 	}
-
-	public boolean isMoving() {
-		return navx.isMoving();
+	
+	public void resetGyro() {
+		System.out.println("Resetting gyro");
+		
+		navx.reset();
+	}
+	
+	public void zeroGyro() {
+		System.out.println("Zero the gyro");
+		
+		navx.zeroYaw();
 	}
 	
     @Override

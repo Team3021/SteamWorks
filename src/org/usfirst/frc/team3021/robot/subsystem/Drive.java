@@ -38,8 +38,8 @@ public class Drive extends Subsystem {
 	// **********************              MOVE              **********************
 	// ****************************************************************************
 
-	public void resetEncoders() {
-		driveController.resetEncoders();
+	public void zeroEncoders() {
+		driveController.zeroDistance();
 	}
 
 	public double getDistance() {
@@ -91,6 +91,10 @@ public class Drive extends Subsystem {
 
 	public void resetGyro() {
 		gyroController.resetGyro();
+	}
+
+	public void zeroGyro() {
+		gyroController.zeroGyro();
 	}
 
 	private void setGyroDesiredAngle(double angle) {

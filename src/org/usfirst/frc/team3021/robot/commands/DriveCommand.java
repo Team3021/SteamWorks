@@ -29,8 +29,8 @@ public abstract class DriveCommand extends Command {
 
 	@Override
 	protected void initialize() {
-		Stanley.robotDrive.resetGyro();
-		Stanley.robotDrive.resetEncoders();
+		Stanley.robotDrive.zeroGyro();
+		Stanley.robotDrive.zeroEncoders();
 
 		hasStarted = false;
 

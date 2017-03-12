@@ -121,7 +121,7 @@ public class Configuration {
 		// **********************        MOVE COMMANDS           **********************
 		// ****************************************************************************
 		
-		moveCommands.add(new ResetEncoders());
+		moveCommands.add(new ZeroEncoders());
 		moveCommands.add(new MoveForwardForDistance(speed, distance));
 		moveCommands.add(new MoveForwardForTime(speed, time));
 		moveCommands.add(new MoveBackwardForDistance(speed, distance));
@@ -133,6 +133,7 @@ public class Configuration {
 		// ****************************************************************************
 		
 		turnCommands.add(new ResetGyro());
+		turnCommands.add(new ZeroGyro());
 		turnCommands.add(new TurnRightToAngle45());
 		turnCommands.add(new TurnRightToAngle90());
 		turnCommands.add(new TurnLeftToAngle45());

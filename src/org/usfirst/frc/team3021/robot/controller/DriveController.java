@@ -115,7 +115,7 @@ public class DriveController {
 		return distanceTraveledAverage;
 	}
 
-	public void resetEncoders() {
+	public void zeroDistance() {
 		leftEncoder.reset();
 		rightEncoder.reset();
 	}
