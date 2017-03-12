@@ -101,14 +101,6 @@ public class Drive extends Subsystem {
 		return gyroController.getTurnValue();
 	}
 
-	public boolean isGyroOnTarget() {
-		return gyroController.isOnTarget();
-	}
-
-	public boolean isGyroRotating() {
-		return gyroController.isRotating();
-	}
-
 	public boolean isGyroMoving() {
 		return gyroController.isMoving();
 	}
