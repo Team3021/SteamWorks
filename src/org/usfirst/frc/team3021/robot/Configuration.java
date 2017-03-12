@@ -12,6 +12,8 @@ import org.usfirst.frc.team3021.robot.commands.test.*;
 
 import org.usfirst.frc.team3021.robot.controller.AttackThreeController;
 import org.usfirst.frc.team3021.robot.controller.AuxController;
+import org.usfirst.frc.team3021.robot.controller.Controller;
+import org.usfirst.frc.team3021.robot.controller.DefaultController;
 import org.usfirst.frc.team3021.robot.controller.Xbox360Controller;
 
 import edu.wpi.first.wpilibj.Preferences;
@@ -47,6 +49,10 @@ public class Configuration {
 	private List<Command> deviceCommands = new ArrayList<Command>();
 	private List<Command> autoCommands = new ArrayList<Command>();
 
+	public Configuration() {
+		addControllerChoices();
+	}
+	
 	public void addAutonmousChoices() {
 		autonomousChooser.addDefault("[Red] [Left] to [Left Gear]", "[Red] [Left] to [Left Gear]");
 		
@@ -57,7 +63,7 @@ public class Configuration {
 		SmartDashboard.putData("Autonomous Mode", autonomousChooser);
 	}
 
-	public void addControllerChoices() {
+	private void addControllerChoices() {
 		controllerChooser.addDefault(ATTACK_THREE, ATTACK_THREE);
 		controllerChooser.addObject(XBOX360, XBOX360);
 		SmartDashboard.putData("Main Controller Mode", controllerChooser);
@@ -239,5 +245,44 @@ public class Configuration {
 	
 	public static void main(String[] args) {
 		Configuration.printButtonActions();
+	}
+
+	public Controller initializeMainController() {
+		int mainControllerPort = getMainControllerPort();
+
+		System.out.println("*************** ATTACK TRHREE ***************");
+		Controller mainController = new AttackThreeController(mainControllerPort);
+		
+		String selectedController = getMainControllerMode();
+
+		if (selectedController.equals(Configuration.ATTACK_THREE)) {
+			if (mainController.isXbox()) {
+				System.out.println("*************** WARNING !!! ***************");
+				System.out.println("Dahboard choice is not an XBOX controller, but this is an XBOX CONTROLLER on port " + getMainControllerPort());
+			}
+		}
+		else if (selectedController.equals(Configuration.XBOX360)) {
+			System.out.println("*************** XBOX ***************");
+			mainController = new Xbox360Controller(mainControllerPort);
+			
+			if (!mainController.isXbox()) {
+				System.out.println("*************** WARNING !!! ***************");
+				System.out.println("Dahboard choice is XBOX controller, but this is NOT an XBOX CONTROLLER on port " + getMainControllerPort());
+			}
+		} else {
+			System.out.println("*************** NO CONTROLLER ***************");
+			mainController = new DefaultController(mainControllerPort);
+		}
+		
+		return mainController;
+	}
+
+	public Controller initializeAuxController() {
+		System.out.println("*************** AUX ***************");
+		int auxControllerPort = getAuxPanelPort();
+
+		Controller auxController = new AuxController(auxControllerPort);
+		
+		return auxController;
 	}
 }

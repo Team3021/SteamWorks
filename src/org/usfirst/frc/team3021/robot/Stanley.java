@@ -1,11 +1,9 @@
 package org.usfirst.frc.team3021.robot;
 
 import org.usfirst.frc.team3021.robot.commands.test.SubsystemTest;
+import org.usfirst.frc.team3021.robot.controller.AttackThreeController;
 import org.usfirst.frc.team3021.robot.controller.AuxController;
 import org.usfirst.frc.team3021.robot.controller.Controller;
-import org.usfirst.frc.team3021.robot.controller.DefaultController;
-import org.usfirst.frc.team3021.robot.controller.AttackThreeController;
-import org.usfirst.frc.team3021.robot.controller.Xbox360Controller;
 import org.usfirst.frc.team3021.robot.subsystem.Climber;
 import org.usfirst.frc.team3021.robot.subsystem.Collector;
 import org.usfirst.frc.team3021.robot.subsystem.Drive;
@@ -48,13 +46,20 @@ public class Stanley extends IterativeRobot {
 		configuration.addCommandsToDashboard();
 		
 		configuration.addAutonmousChoices();
-		
-		configuration.addControllerChoices();
 	}
 	
 	@Override
 	public void robotInit() {
-		// Do Nothing to prevent warnings
+
+		mainController = new AttackThreeController(configuration.getMainControllerPort());
+
+		auxController = new AuxController(configuration.getAuxPanelPort());
+
+		robotDrive.setControllers(mainController, auxController);
+		launcher.setControllers(mainController, auxController);
+		collector.setControllers(mainController, auxController);
+		climber.setControllers(mainController, auxController);
+		vision.setControllers(mainController, auxController);
 	}
 
 	@Override
@@ -85,20 +90,6 @@ public class Stanley extends IterativeRobot {
 	public void teleopInit() {
 		// Stop any commands that might be left running from another mode
 		Scheduler.getInstance().removeAll();
-
-		String selectedController = configuration.getMainControllerMode();
-		int mainControllerPort = configuration.getMainControllerPort();
-
-			System.out.println("***************ATTACK TRHREE***************");
-			mainController = new AttackThreeController(mainControllerPort);
-
-		auxController = new AuxController(configuration.getAuxPanelPort());
-		
-		robotDrive.setControllers(mainController, auxController);
-		launcher.setControllers(mainController, auxController);
-		collector.setControllers(mainController, auxController);
-		climber.setControllers(mainController, auxController);
-		vision.setControllers(mainController, auxController);
 	}
 	
 	@Override
