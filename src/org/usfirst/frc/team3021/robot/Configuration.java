@@ -25,16 +25,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Configuration {
 	
-	public static final String NO_AUTONOMOUS = "No Command";
+	private static final String NO_AUTONOMOUS = "No Command";
 	
-	public static final String NO_CONTROLLER = "No Controller";
-	public static final String ATTACK_THREE = "Attack Three";
-	public static final String XBOX360 = "Xbox360";
+	private static final String NO_CONTROLLER = "No Controller";
+	private static final String ATTACK_THREE = "Attack Three";
+	private static final String XBOX360 = "Xbox360";
 
 	private final String PREF_MAIN_CONTROLLER_PORT = "Controller.main.port";
 	private final int MAIN_CONTROLLER_PORT_DEFAULT = 0;
 
-	public  final String PREF_AUX_PANEL_STATUS = "Controller.aux.enabled";
+	private  final String PREF_AUX_PANEL_STATUS = "Controller.aux.enabled";
 	private final String PREF_AUX_PANEL_PORT = "Controller.aux.port";
 	private final int AUX_PANEL_PORT_DEFAULT = 1;
 	
