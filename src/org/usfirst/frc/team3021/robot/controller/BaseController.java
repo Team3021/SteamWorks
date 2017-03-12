@@ -60,6 +60,16 @@ public abstract class BaseController implements Controller {
 	}
 
 	@Override
+	public boolean isZeroGyro() {
+		return getRawButton("isZeroGyro");
+	}
+
+	@Override
+	public boolean isZeroEncoders() {
+		return getRawButton("isZeroEncoders");
+	}
+
+	@Override
 	public boolean isRotatingToNinety() {
 		return getRawButton("isRotatingToNinety");
 	}

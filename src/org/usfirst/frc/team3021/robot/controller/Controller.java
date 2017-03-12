@@ -37,4 +37,8 @@ public interface Controller {
 	boolean isTargetLocatorEnabled();
 
 	boolean isStoppingCommands();
+
+	boolean isZeroGyro();
+
+	boolean isZeroEncoders();
 }

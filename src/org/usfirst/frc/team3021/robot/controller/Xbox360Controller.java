@@ -34,7 +34,7 @@ public class Xbox360Controller extends BaseController {
 		buttonActions.add(new ButtonAction(7, "BACK_BUTTON", "isClimberSafteyOn"));
 		buttonActions.add(new ButtonAction(8, "START_BUTTON", "isStoppingCommands"));
 		
-		buttonActions.add(new ButtonAction(9, "LEFT_STICK_CLICK", "unassigned"));
+		buttonActions.add(new ButtonAction(9, "LEFT_STICK_CLICK", "isZeroGyro"));
 		buttonActions.add(new ButtonAction(10, "RIGHT_STICK_CLICK", "isSwitchingCamera"));
 	}
 	
