@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3021.robot.subsystem;
 
-import org.usfirst.frc.team3021.robot.Stanley;
 import org.usfirst.frc.team3021.robot.commands.DriveCommand;
 import org.usfirst.frc.team3021.robot.commands.driving.DriveWithJoystick;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnLeftToAngle45;
@@ -10,7 +9,6 @@ import org.usfirst.frc.team3021.robot.commands.driving.TurnRightToAngle90;
 import org.usfirst.frc.team3021.robot.commands.driving.TurnToAngle180;
 import org.usfirst.frc.team3021.robot.controller.DriveController;
 import org.usfirst.frc.team3021.robot.controller.GyroController;
-import org.usfirst.frc.team3021.robot.controller.TargetController;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
 
