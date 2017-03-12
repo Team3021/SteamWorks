@@ -25,9 +25,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Configuration {
 	
-	public static final String AUTONOMOUS_DEFALUT = "No Command";
+	public static final String NO_AUTONOMOUS = "No Command";
 	
-	public static final String DEFAULT = "No Controller";
+	public static final String NO_CONTROLLER = "No Controller";
 	public static final String ATTACK_THREE = "Attack Three";
 	public static final String XBOX360 = "Xbox360";
 
@@ -49,12 +49,10 @@ public class Configuration {
 	private List<Command> deviceCommands = new ArrayList<Command>();
 	private List<Command> autoCommands = new ArrayList<Command>();
 
-	public Configuration() {
-		addControllerChoices();
-	}
-	
 	public void addAutonmousChoices() {
 		autonomousChooser.addDefault("[Red] [Left] to [Left Gear]", "[Red] [Left] to [Left Gear]");
+		
+		autonomousChooser.addObject(NO_AUTONOMOUS, NO_AUTONOMOUS);
 		
 		for (Command command : autoCommands) {
 			autonomousChooser.addObject(command.getName(), command.getName());
@@ -63,9 +61,13 @@ public class Configuration {
 		SmartDashboard.putData("Autonomous Mode", autonomousChooser);
 	}
 
-	private void addControllerChoices() {
+	public void addControllerChoices() {
 		controllerChooser.addDefault(ATTACK_THREE, ATTACK_THREE);
+		
 		controllerChooser.addObject(XBOX360, XBOX360);
+		
+		controllerChooser.addObject(NO_CONTROLLER, NO_CONTROLLER);
+		
 		SmartDashboard.putData("Main Controller Mode", controllerChooser);
 	}
 
@@ -242,20 +244,17 @@ public class Configuration {
 			}
 		}
 	}
-	
-	public static void main(String[] args) {
-		Configuration.printButtonActions();
-	}
 
 	public Controller initializeMainController() {
 		int mainControllerPort = getMainControllerPort();
 
-		System.out.println("*************** ATTACK TRHREE ***************");
 		Controller mainController = new AttackThreeController(mainControllerPort);
 		
 		String selectedController = getMainControllerMode();
 
 		if (selectedController.equals(Configuration.ATTACK_THREE)) {
+			System.out.println("*************** ATTACK THREE ***************");
+			
 			if (mainController.isXbox()) {
 				System.out.println("*************** WARNING !!! ***************");
 				System.out.println("Dahboard choice is not an XBOX controller, but this is an XBOX CONTROLLER on port " + getMainControllerPort());
@@ -269,7 +268,7 @@ public class Configuration {
 				System.out.println("*************** WARNING !!! ***************");
 				System.out.println("Dahboard choice is XBOX controller, but this is NOT an XBOX CONTROLLER on port " + getMainControllerPort());
 			}
-		} else {
+		} else if (selectedController.equals(Configuration.NO_CONTROLLER)) {
 			System.out.println("*************** NO CONTROLLER ***************");
 			mainController = new DefaultController(mainControllerPort);
 		}
@@ -279,10 +278,15 @@ public class Configuration {
 
 	public Controller initializeAuxController() {
 		System.out.println("*************** AUX ***************");
+		
 		int auxControllerPort = getAuxPanelPort();
 
 		Controller auxController = new AuxController(auxControllerPort);
 		
 		return auxController;
+	}
+	
+	public static void main(String[] args) {
+		Configuration.printButtonActions();
 	}
 }

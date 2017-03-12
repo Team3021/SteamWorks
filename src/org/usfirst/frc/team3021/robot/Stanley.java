@@ -1,8 +1,6 @@
 package org.usfirst.frc.team3021.robot;
 
 import org.usfirst.frc.team3021.robot.commands.test.SubsystemTest;
-import org.usfirst.frc.team3021.robot.controller.AttackThreeController;
-import org.usfirst.frc.team3021.robot.controller.AuxController;
 import org.usfirst.frc.team3021.robot.controller.Controller;
 import org.usfirst.frc.team3021.robot.subsystem.Climber;
 import org.usfirst.frc.team3021.robot.subsystem.Collector;
@@ -45,15 +43,17 @@ public class Stanley extends IterativeRobot {
 		
 		configuration.addCommandsToDashboard();
 		
+		configuration.addControllerChoices();
+		
 		configuration.addAutonmousChoices();
 	}
 	
 	@Override
 	public void robotInit() {
 
-		mainController = new AttackThreeController(configuration.getMainControllerPort());
+		mainController = configuration.initializeMainController();
 
-		auxController = new AuxController(configuration.getAuxPanelPort());
+		auxController = configuration.initializeAuxController();
 
 		robotDrive.setControllers(mainController, auxController);
 		launcher.setControllers(mainController, auxController);
