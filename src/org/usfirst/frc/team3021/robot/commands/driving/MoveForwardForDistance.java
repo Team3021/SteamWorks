@@ -36,7 +36,7 @@ public class MoveForwardForDistance extends DriveCommand {
 	
 	@Override
 	protected void end() {
-		System.out.println("End moving " + direction + " for distance : " + desiredDistance);
+		System.out.println("End moving " + direction + " for distance : " + desiredDistance + " and moved distance : " + Stanley.robotDrive.getDistance());
 	}
 	
 	@Override
@@ -46,6 +46,6 @@ public class MoveForwardForDistance extends DriveCommand {
 		
 		remaingDifference = Math.abs(remaingDifference);
 		
-		return (remaingDifference < 0.1);
+		return (remaingDifference < 0.1 || !isMoving());
 	}
 }
