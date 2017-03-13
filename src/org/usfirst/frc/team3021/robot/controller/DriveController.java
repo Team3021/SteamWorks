@@ -41,6 +41,9 @@ public class DriveController {
 	// DISTANCE
 	private static final int PULSE_PER_ROTATION = 256;
 	private static final double INCHES_PER_FOOT = 12;
+	
+	// RATE
+	private double maxRateAchieved = 0.0;
 
 	public DriveController() {
 		// TALONS
@@ -110,6 +113,12 @@ public class DriveController {
 		double rateAverage = (rateLeftSide + rateRightSide) / 2;
 		
 		SmartDashboard.putNumber("Drive : Encoder Rate", rateAverage);
+		
+		if (rateAverage > maxRateAchieved) {
+			maxRateAchieved = rateAverage;
+			
+			SmartDashboard.putNumber("Drive : Encoder Rate Max", maxRateAchieved);
+		}
 		
 		return rateAverage;
 	}
