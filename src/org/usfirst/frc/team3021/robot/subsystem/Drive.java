@@ -134,7 +134,9 @@ public class Drive extends Subsystem {
 	public void teleopPeriodic() {
 		
 		gyroController.getGyroRotation();
+		
 		driveController.getEncoderDistance();
+		driveController.getEncoderRate();
 		
         if (mainController.isStoppingCommands() || auxController.isStoppingCommands()) {
         	Scheduler.getInstance().removeAll();

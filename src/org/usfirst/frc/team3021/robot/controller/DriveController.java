@@ -97,6 +97,22 @@ public class DriveController {
 	public void printEncoderDistance(double distance) {
 		SmartDashboard.putNumber("Drive : Encoder Distance", distance);
 	}
+
+	public double getEncoderRate() {
+		double rateLeftSide = leftEncoder.getRate();
+		
+		SmartDashboard.putNumber("Drive : Encoder Rate : Left", rateLeftSide);
+
+		double rateRightSide = rightEncoder.getRate();
+		
+		SmartDashboard.putNumber("Drive : Encoder Rate : Right", rateRightSide);
+		
+		double rateAverage = (rateLeftSide + rateRightSide) / 2;
+		
+		SmartDashboard.putNumber("Drive : Encoder Rate", rateAverage);
+		
+		return rateAverage;
+	}
 	
 	public double getEncoderDistance() {
 
@@ -139,5 +155,4 @@ public class DriveController {
 	public double getMotorOutput() {
 		return (leftFrontTalon.get() + leftRearTalon.get() + rightFrontTalon.get() + rightRearTalon.get()) / 4;
 	}
-	
 }
