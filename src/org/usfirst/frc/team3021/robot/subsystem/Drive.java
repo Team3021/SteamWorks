@@ -133,6 +133,7 @@ public class Drive extends Subsystem {
 	@Override
 	public void teleopPeriodic() {
 		
+		gyroController.getGyroRotation();
 		driveController.getEncoderDistance();
 		
         if (mainController.isStoppingCommands() || auxController.isStoppingCommands()) {

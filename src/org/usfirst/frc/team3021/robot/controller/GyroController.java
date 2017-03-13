@@ -90,6 +90,15 @@ public class GyroController implements PIDOutput {
 		pidController.setSetpoint(setpoint);
 	}
 
+	public double getGyroRotation() {
+		
+		double rotation = navx.getYaw();
+		
+		SmartDashboard.putNumber("GyroController : Navx : Rotation", rotation);
+
+		return rotation;
+	}
+
 	public double getTurnValue() {
 		SmartDashboard.putNumber("GyroController : currentRotationRate",  rotateToAngleRate);
 
