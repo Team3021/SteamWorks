@@ -141,6 +141,8 @@ public class DriveController {
 	}
 
 	public void zeroDistance() {
+		System.out.println("Zero encoders");
+		
 		leftEncoder.reset();
 		rightEncoder.reset();
 	}
