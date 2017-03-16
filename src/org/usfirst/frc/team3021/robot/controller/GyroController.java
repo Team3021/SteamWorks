@@ -33,6 +33,8 @@ public class GyroController implements PIDOutput {
     
     public static final double kToleranceDegrees = 2.0f; // Tolerance--Precision of turning with the Navx
 	
+    private double lastCalculatedOffset = 0;
+    
 	public GyroController() {
 		if (!isGyroEnabled()) {
 			System.out.println("WARNING !!! NO GYRO PORT ENABLED");
@@ -116,7 +118,11 @@ public class GyroController implements PIDOutput {
 			gyroOffset =  -gyroOffset;
 		}
 		
-		System.out.println("GyroController calculated offset: " + gyroOffset);
+		if (gyroOffset != lastCalculatedOffset) {
+			System.out.println("GyroController calculated offset: " + gyroOffset);
+			
+			lastCalculatedOffset = gyroOffset;
+		}
 		
 		return gyroOffset;
 	}
