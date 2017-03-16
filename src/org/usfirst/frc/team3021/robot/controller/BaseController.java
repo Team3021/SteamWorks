@@ -131,7 +131,6 @@ public abstract class BaseController implements Controller {
 		}
 		
 		if (foundButtonAction == null) {
-			System.err.println("Failed to find button for action " + action);
 			return false;
 		}
 		
