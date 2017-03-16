@@ -47,5 +47,8 @@ public class MoveForwardForDistance extends DriveCommand {
 		remaingDifference = Math.abs(remaingDifference);
 		
 		return (remaingDifference < 0.1);
+		
+		// better way to calculate
+//		return (Math.abs(Stanley.robotDrive.getDistance()) >= Math.abs(desiredDistance));
 	}
 }
