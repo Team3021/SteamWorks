@@ -15,6 +15,8 @@ public class Climber extends Subsystem {
 	
 	public Climber() {		
 		talon = new CANTalon(30);
+		
+		talon.EnableCurrentLimit(false);
 	}
 	
 	@Override
