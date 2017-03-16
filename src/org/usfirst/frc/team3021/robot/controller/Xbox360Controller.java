@@ -26,13 +26,13 @@ public class Xbox360Controller extends BaseController {
 		buttonActions.add(new ButtonAction(1, "A_BUTTON", "isRotatingToOneHundredEighty"));
 		buttonActions.add(new ButtonAction(2, "B_BUTTON", "isRotatingToNinety"));
 		buttonActions.add(new ButtonAction(3, "X_BUTTON", "isRotatingToNegativeNinety"));
-		buttonActions.add(new ButtonAction(4, "Y_BUTTON", "isClimbing"));
+		buttonActions.add(new ButtonAction(4, "Y_BUTTON", "isStoppingCommands"));
 		
 		buttonActions.add(new ButtonAction(5, "LEFT_SHOULDER", "isRotatingLeft45"));
 		buttonActions.add(new ButtonAction(6, "RIGHT_SHOULDER", "isRotatingRight45"));
 		
-		buttonActions.add(new ButtonAction(7, "BACK_BUTTON", "isClimberSafteyOn"));
-		buttonActions.add(new ButtonAction(8, "START_BUTTON", "isStoppingCommands"));
+		buttonActions.add(new ButtonAction(7, "BACK_BUTTON", "isZeroGyro"));
+		buttonActions.add(new ButtonAction(8, "START_BUTTON", "isZeroEncoders"));
 		
 		buttonActions.add(new ButtonAction(9, "LEFT_STICK_CLICK", "isZeroGyro"));
 		buttonActions.add(new ButtonAction(10, "RIGHT_STICK_CLICK", "isSwitchingCamera"));
