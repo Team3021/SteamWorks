@@ -52,7 +52,7 @@ public class Drive extends Subsystem {
 	}
 	
 	public double getMotorOutput() {
-		return driveController.getMotorOutput();
+		return Math.abs(driveController.getMotorOutput());
 	}
 	
 	// Drive forward using the gyro to maintain course
