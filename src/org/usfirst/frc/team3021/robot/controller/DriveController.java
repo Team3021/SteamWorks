@@ -164,6 +164,6 @@ public class DriveController {
 	}
 
 	public double getMotorOutput() {
-		return (leftFrontTalon.get() + leftRearTalon.get() + rightFrontTalon.get() + rightRearTalon.get()) / 4;
+		return (leftFrontTalon.getOutputVoltage() + leftRearTalon.getOutputVoltage() + rightFrontTalon.getOutputVoltage() + rightRearTalon.getOutputVoltage()) / 4;
 	}
 }
