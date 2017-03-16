@@ -1,0 +1,43 @@
+Robot Button Mappings
+
+
+******************* Attack Three *******************
+ButtonAction { 'number':'1', 'name':'STICK_TRIGGER, 'action':'isLaunching' }
+ButtonAction { 'number':'2', 'name':'STICK_MIDDLE_BUTTON, 'action':'isRotatingToOneHundredEighty' }
+ButtonAction { 'number':'3', 'name':'STICK_CENTER, 'action':'isCollecting' }
+ButtonAction { 'number':'4', 'name':'STICK_LEFT_BUTTON, 'action':'isRotatingToNegativeNinety' }
+ButtonAction { 'number':'5', 'name':'STICK_RIGHT_BUTTON, 'action':'isRotatingToNinety' }
+ButtonAction { 'number':'6', 'name':'BASE_LEFT_FRONT, 'action':'isRotatingLeft45' }
+ButtonAction { 'number':'7', 'name':'BASE_LEFT_BACK, 'action':'isZeroGyro' }
+ButtonAction { 'number':'8', 'name':'BASE_BOTTOM_LEFT, 'action':'isSwitchingCamera' }
+ButtonAction { 'number':'9', 'name':'BASE_BOTTOM_RIGHT, 'action':'isStoppingCommands' }
+ButtonAction { 'number':'10', 'name':'BASE_RIGHT_BACK, 'action':'isZeroEncoders' }
+ButtonAction { 'number':'11', 'name':'BASE_RIGHT_FRONT, 'action':'isRotatingRight45' }
+
+******************* Aux Panel *******************
+ButtonAction { 'number':'1', 'name':'RIGHT_TOGGLE_BUTTON, 'action':'unassigned' }
+ButtonAction { 'number':'2', 'name':'MIDDLE_TOGGLE_BUTTON, 'action':'isTargetLocatorEnabled' }
+ButtonAction { 'number':'3', 'name':'LEFT_TOGGLE_BUTTON, 'action':'isScopeEnabled' }
+ButtonAction { 'number':'4', 'name':'SAFETY_TRIGGER, 'action':'isClimberSafteyOn' }
+ButtonAction { 'number':'5', 'name':'TOP_BLUE_BUTTON, 'action':'isClimbing' }
+ButtonAction { 'number':'6', 'name':'MIDDLE_BLUE_BUTTON, 'action':'isLaunching' }
+ButtonAction { 'number':'7', 'name':'BOTTOM_BLUE_BUTTON, 'action':'isCollecting' }
+ButtonAction { 'number':'8', 'name':'TOP_RED_BUTTON, 'action':'isSwitchingCamera' }
+ButtonAction { 'number':'9', 'name':'MIDDLE_RED_BUTTON, 'action':'isResettingNavx' }
+ButtonAction { 'number':'10', 'name':'BOTTOM_RED_BUTTON, 'action':'isStoppingCommands' }
+
+******************* Xbox360 *******************
+ButtonAction { 'number':'1', 'name':'A_BUTTON, 'action':'isRotatingToOneHundredEighty' }
+ButtonAction { 'number':'2', 'name':'B_BUTTON, 'action':'isRotatingToNinety' }
+ButtonAction { 'number':'3', 'name':'X_BUTTON, 'action':'isRotatingToNegativeNinety' }
+ButtonAction { 'number':'4', 'name':'Y_BUTTON, 'action':'isClimbing' }
+ButtonAction { 'number':'5', 'name':'LEFT_SHOULDER, 'action':'isRotatingLeft45' }
+ButtonAction { 'number':'6', 'name':'RIGHT_SHOULDER, 'action':'isRotatingRight45' }
+ButtonAction { 'number':'7', 'name':'BACK_BUTTON, 'action':'isClimberSafteyOn' }
+ButtonAction { 'number':'8', 'name':'START_BUTTON, 'action':'isStoppingCommands' }
+ButtonAction { 'number':'9', 'name':'LEFT_STICK_CLICK, 'action':'isZeroGyro' }
+ButtonAction { 'number':'10', 'name':'RIGHT_STICK_CLICK, 'action':'isSwitchingCamera' }
+
+PressureAction { 'number':'1', 'name':'2, 'action':'isLaunching' }
+PressureAction { 'number':'2', 'name':'3, 'action':'isCollecting' }
+
