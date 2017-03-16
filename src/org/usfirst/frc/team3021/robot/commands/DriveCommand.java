@@ -71,11 +71,20 @@ public abstract class DriveCommand extends Command {
 			System.out.println("started checking movement at time: " + timeSinceInitialized());
 		}
 		// False will not be returned unless the robot has already started moving.
-		else if ((!Stanley.robotDrive.isGyroMoving() || Stanley.robotDrive.getMotorOutput() < 0.1) && hasMoved == true) {
-			isMoving = false;
-			hasMoved = false;
+		else if (hasMoved == true) {
+			if (!Stanley.robotDrive.isGyroMoving()) {
+				System.out.println("gyro status caused command to stop moving at time: " + timeSinceInitialized());
+				
+				isMoving = false;
+				hasMoved = false;
+			}
 			
-			System.out.println("stopped moving at time: " + timeSinceInitialized());
+			if (Stanley.robotDrive.getMotorOutput() < 0.05) {
+				System.out.println("motor status of " + Stanley.robotDrive.getMotorOutput() + " caused command to stop moving at time: " + timeSinceInitialized());
+				
+				isMoving = false;
+				hasMoved = false;
+			}
 		}
 		
 		return isMoving;
