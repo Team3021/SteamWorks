@@ -67,21 +67,11 @@ public class Configuration {
 	public void addControllerChoices() {
 		controllerChooser.addDefault(ATTACK_THREE, ATTACK_THREE);
 		
-		controllerChooser.addObject(XBOX360, XBOX360);
-		
-		controllerChooser.addObject(NO_CONTROLLER, NO_CONTROLLER);
-		
 		SmartDashboard.putData("Main Controller Mode", controllerChooser);
 	}
 
 	public void addSubsystemsToDashboard() {
-		subsystems.add(Stanley.robotDrive);
-		subsystems.add(Stanley.collector);
-		subsystems.add(Stanley.climber);
-		subsystems.add(Stanley.launcher);
-		subsystems.add(Stanley.vision);
 		
-		addSubsystemsToSmartDashboard(subsystems);
 	}
 
 	private void addSubsystemsToSmartDashboard(List<Subsystem> subsystems) {
@@ -117,67 +107,8 @@ public class Configuration {
 		autoCommands.add(new BlueStartRightToRightGear());
 		autoCommands.add(new BlueStartCenterToCenterGearToCrossLine());
 
-		// ****************************************************************************
-		// **********************        MOVE COMMANDS           **********************
-		// ****************************************************************************
-		
-		moveCommands.add(new ZeroEncoders());
-		moveCommands.add(new MoveForwardForDistance(speed, distance));
-		moveCommands.add(new MoveForwardForTime(speed, time));
-		moveCommands.add(new MoveBackwardForDistance(speed, distance));
-		moveCommands.add(new MoveBackwardForTime(speed, time));
-		moveCommands.add(new StopMoving());
-		
-		// ****************************************************************************
-		// **********************        TURN COMMANDS           **********************
-		// ****************************************************************************
-		
-		turnCommands.add(new ResetGyro());
-		turnCommands.add(new ZeroGyro());
-		turnCommands.add(new TurnRightToAngle45());
-		turnCommands.add(new TurnRightToAngle90());
-		turnCommands.add(new TurnLeftToAngle45());
-		turnCommands.add(new TurnLeftToAngle90());
-		turnCommands.add(new TurnToAngle180());
-		turnCommands.add(new StopTurning());
-		turnCommands.add(new TurnToTarget());
-		
-		// ****************************************************************************
-		// **********************       DEVICE COMMANDS          **********************
-		// ****************************************************************************
-		
-		deviceCommands.add(new StartAgitator());
-		deviceCommands.add(new StartIndexer());
-		deviceCommands.add(new StartLaunchWheel());
-		deviceCommands.add(new StartCollector());
-		deviceCommands.add(new StartClimber());
-		
-		deviceCommands.add(new StopAgitator());
-		deviceCommands.add(new StopIndexer());
-		deviceCommands.add(new StopLaunchWheel());
-		deviceCommands.add(new StopCollector());
-		deviceCommands.add(new StopClimber());
-
-		// ****************************************************************************
-		// **********************        TEST COMMANDS           **********************
-		// ****************************************************************************
-		
-		testCommands.add(new SubsystemTest());
-		testCommands.add(new CollectorTest());
-		testCommands.add(new ClimberTest());
-		testCommands.add(new LauncherTest());
-		testCommands.add(new VisionTest());
-		testCommands.add(new MoveForwardForDistanceTest());
-		testCommands.add(new MoveBackwardForDistanceTest());
-		testCommands.add(new MoveForwardForTimeTest());
-		testCommands.add(new MoveBackwardForTimeTest());
-
 		// Add commands to dashboard
 		addCommandsToSmartDashboard("Autonomous", autoCommands);
-		addCommandsToSmartDashboard("Move", moveCommands);
-		addCommandsToSmartDashboard("Turn", turnCommands);
-		addCommandsToSmartDashboard("Device", deviceCommands);
-		addCommandsToSmartDashboard("Test", testCommands);
 	}
 
 	private void addCommandsToSmartDashboard(String commandType, List<Command> commands) {

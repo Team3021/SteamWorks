@@ -14,6 +14,6 @@ public class BlueStartCenterToCenterGear extends CommandGroup {
 		
 		double speed = DriveCommand.getAutonomousMoveSpeed();
 		
-		addSequential(new MoveForwardForDistance(speed, 7));
+		addSequential(new MoveForwardForDistance(speed, 6.6));
 	}
 }

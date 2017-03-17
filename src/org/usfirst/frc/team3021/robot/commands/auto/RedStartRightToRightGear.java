@@ -16,8 +16,11 @@ public class RedStartRightToRightGear extends CommandGroup {
 		
 		double speed = DriveCommand.getAutonomousMoveSpeed();
 		
-		addSequential(new MoveForwardForDistance(speed, 7.75));
-		addSequential(new TurnLeftToAngle(56));
-		addSequential(new MoveForwardForDistance(speed, 1.75));
+		addSequential(new MoveForwardForDistance(speed, 7.00));
+		addSequential(new TurnLeftToAngle(60));
+		addSequential(new MoveForwardForDistance(speed, 1.25));
+		
+		// 5.75
+
 	}
 }

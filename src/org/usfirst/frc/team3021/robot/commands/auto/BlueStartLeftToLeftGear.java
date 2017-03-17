@@ -15,8 +15,8 @@ public class BlueStartLeftToLeftGear extends CommandGroup {
 		
 		double speed = DriveCommand.getAutonomousMoveSpeed();
 		
-		addSequential(new MoveForwardForDistance(speed, 7.75));
-		addSequential(new TurnRightToAngle(56));
-		addSequential(new MoveForwardForDistance(speed, 1.75));
+		addSequential(new MoveForwardForDistance(speed, 7.00));
+		addSequential(new TurnRightToAngle(60));
+		addSequential(new MoveForwardForDistance(speed, 1.25));
 	}
 }
