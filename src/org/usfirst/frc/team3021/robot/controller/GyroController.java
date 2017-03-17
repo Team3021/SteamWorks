@@ -15,6 +15,10 @@ public class GyroController implements PIDOutput {
 	private final String PREF_GYRO_MXP_ENABLED = "Gyro.mxp.enabled";
 	
 	private final String PREF_GYRO_ANGLE_ADJUSTMENT = "Gyro.angle.adjustment";
+	
+	private final String PREF_GYRO_TURN_RATE = "Gyro.turn.rate";
+	
+	private final double GYRO_TURN_RATE_DEFAULT = 0.3;
 
 	// Member Attributes
 	private AHRS navx;
@@ -60,17 +64,20 @@ public class GyroController implements PIDOutput {
         } catch (RuntimeException ex ) {
             DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
         }
+        
+        resetGyro();
 
         pidController = new PIDController(kP, kI, kD, kF, navx, this); 
         
         pidController.setInputRange(-180.0f, 180.0f);
-        pidController.setOutputRange(-0.3, 0.3);
         pidController.setAbsoluteTolerance(kToleranceDegrees);
         pidController.setContinuous(true);
 
-        pidController.enable();
+        double turnRate = Preferences.getInstance().getDouble(PREF_GYRO_TURN_RATE, GYRO_TURN_RATE_DEFAULT);
         
-        resetGyro();
+        pidController.setOutputRange(-1 * turnRate, turnRate);
+        
+        pidController.enable();
 	}
 	
 	private boolean isUSBEnabled() {

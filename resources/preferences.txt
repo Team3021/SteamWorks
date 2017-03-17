@@ -3,6 +3,7 @@ Robot Preferences
 Gyro.usb.enabled						false
 Gyro.mxp.enabled						true
 Gyro.angle.adjustment					0.3
+Gyro.turn.rate							0.3
 
 Agitator.period.first.time.millis		200
 Agitator.periodic.time.millis			200
