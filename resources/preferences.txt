@@ -2,6 +2,7 @@ Robot Preferences
 
 Gyro.usb.enabled						false
 Gyro.mxp.enabled						true
+Gyro.angle.adjustment					0.3
 
 Agitator.period.first.time.millis		200
 Agitator.periodic.time.millis			200
@@ -16,7 +17,7 @@ Climber.motor.voltage					0.95
 
 Collector.motor.voltage					1.0
 
-Launcher.motor.voltage					0.45
+Launcher.motor.voltage					0.70
 
 Vision.camera.0.enabled					true
 Vision.camera.1.enabled					true

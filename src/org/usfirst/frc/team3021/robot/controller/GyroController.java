@@ -13,6 +13,8 @@ public class GyroController implements PIDOutput {
 	
 	private final String PREF_GYRO_USB_ENABLED = "Gyro.usb.enabled";
 	private final String PREF_GYRO_MXP_ENABLED = "Gyro.mxp.enabled";
+	
+	private final String PREF_GYRO_ANGLE_ADJUSTMENT = "Gyro.angle.adjustment";
 
 	// Member Attributes
 	private AHRS navx;
@@ -102,9 +104,13 @@ public class GyroController implements PIDOutput {
 	}
 
 	public double getTurnValue() {
-		SmartDashboard.putNumber("GyroController : currentRotationRate",  rotateToAngleRate);
+		double angleAdjustment = Preferences.getInstance().getDouble(PREF_GYRO_ANGLE_ADJUSTMENT, 0.0);
+		
+		double adjustedAngle = rotateToAngleRate + angleAdjustment;
+		
+		SmartDashboard.putNumber("GyroController : currentRotationRate",  adjustedAngle);
 
-		return rotateToAngleRate;
+		return adjustedAngle;
 	}
 
 	public double getGyroOffset() {
