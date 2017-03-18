@@ -55,6 +55,10 @@ public class DriveWithJoystick extends DriveCommand {
 		
 		turnValue = turnDirection * (0.125 * Math.pow(9.0, Math.abs(turnValue)) - 0.166);
 
+		if (Math.abs(getMoveValue()) > 0.75) {
+			turnValue = turnValue * 0.5;
+		}
+		
 		return turnValue;
 	}
 
