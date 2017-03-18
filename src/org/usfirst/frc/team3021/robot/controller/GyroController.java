@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -18,7 +19,7 @@ public class GyroController implements PIDOutput {
 	
 	private final String PREF_GYRO_TURN_RATE = "Gyro.turn.rate";
 	
-	private final double GYRO_TURN_RATE_DEFAULT = 0.3;
+	private final double GYRO_TURN_RATE_DEFAULT = 0.375;
 
 	// Member Attributes
 	private AHRS navx;
@@ -39,8 +40,6 @@ public class GyroController implements PIDOutput {
     
     public static final double kToleranceDegrees = 2.0f; // Tolerance--Precision of turning with the Navx
 	
-    private double lastCalculatedOffset = 0;
-    
 	public GyroController() {
 		if (!isGyroEnabled()) {
 			System.out.println("WARNING !!! NO GYRO PORT ENABLED");
@@ -59,7 +58,7 @@ public class GyroController implements PIDOutput {
         	} else {
         		// The Navx--connected by MXP port
         		System.out.println("Using NavX on MXP port");
-        		navx = new AHRS(Port.kMXP); 
+        		navx = new AHRS(SPI.Port.kMXP); 
         	}
         } catch (RuntimeException ex ) {
             DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
@@ -120,26 +119,6 @@ public class GyroController implements PIDOutput {
 		return adjustedAngle;
 	}
 
-	public double getGyroOffset() {
-		double gyroOffset = (getTurnValue() * .01111111111);
-		
-		// IF THE ABOSOLUTE VAL OF THE GYRO OFFSET IS LARGER THAN 1
-		if (Math.abs(gyroOffset) > 1) {
-			// SET THE GYRO OFFSET TO EITHER 1 OR -1
-			gyroOffset =  (-1 * (Math.abs(gyroOffset) / gyroOffset));
-		} else {
-			gyroOffset =  -gyroOffset;
-		}
-		
-		if (gyroOffset != lastCalculatedOffset) {
-			System.out.println("GyroController calculated offset: " + gyroOffset);
-			
-			lastCalculatedOffset = gyroOffset;
-		}
-		
-		return gyroOffset;
-	}
-	
 	public void resetGyro() {
 		System.out.println("Resetting gyro");
 		
