@@ -74,7 +74,7 @@ public class GyroController implements PIDOutput {
 
         double turnRate = Preferences.getInstance().getDouble(PREF_GYRO_TURN_RATE, GYRO_TURN_RATE_DEFAULT);
         
-        pidController.setOutputRange(-1 * turnRate, turnRate);
+        pidController.setOutputRange(-0.5, 0.5);
         
         pidController.enable();
 	}

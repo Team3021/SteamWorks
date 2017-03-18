@@ -27,11 +27,11 @@ public abstract class TurnToAngle extends DriveCommand {
 	
 	@Override
 	protected void end() {
-		System.out.println("End TurnToAngle at: " + timeSinceInitialized());
+		System.out.println("Finished TurnToAngle for : " + desiredAngle + " degrees; turned : " + Stanley.robotDrive.getGyroRotation());
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		return !isMoving();
+		return (Math.abs(Stanley.robotDrive.getGyroRotation()) >= Math.abs(desiredAngle));
 	}
 }

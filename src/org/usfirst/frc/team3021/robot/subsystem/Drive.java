@@ -106,6 +106,10 @@ public class Drive extends Subsystem {
 		return gyroController.getTurnValue();
 	}
 
+	public double getGyroRotation() {
+		return gyroController.getGyroRotation();
+	}
+	
 	public boolean isGyroMoving() {
 		return gyroController.isMoving();
 	}

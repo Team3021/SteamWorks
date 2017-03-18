@@ -5,6 +5,7 @@ import org.usfirst.frc.team3021.robot.commands.ClimberCommand;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Climber extends Subsystem {
 	
@@ -16,7 +17,7 @@ public class Climber extends Subsystem {
 	public Climber() {		
 		talon = new CANTalon(30);
 		
-		talon.EnableCurrentLimit(false);
+		talon.setCurrentLimit(100);
 	}
 	
 	@Override
@@ -29,6 +30,8 @@ public class Climber extends Subsystem {
 		else {
 			stopMotor();
 		}
+		
+		SmartDashboard.putNumber("Climber.talon.voltage", talon.getBusVoltage());
 	}
 
 	public void startMotor() {
