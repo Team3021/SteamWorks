@@ -1,0 +1,6 @@
+java.lang.RuntimeException:  Code: -1073807298. HAL - VISA: General IO Error 
+ 	at edu.wpi.first.wpilibj.hal.SerialPortJNI.serialGetBytesRecieved(Native Method) 
+ 	at edu.wpi.first.wpilibj.SerialPort.getBytesReceived(SerialPort.java:220) 
+ 	at com.kauailabs.navx.frc.SerialIO.run(SerialIO.java:237) 
+ 	at com.kauailabs.navx.frc.AHRS$IOThread.run(AHRS.java:1242) 
+ 	at java.lang.Thread.run(Thread.java:745) 
