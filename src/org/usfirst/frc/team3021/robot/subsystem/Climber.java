@@ -31,7 +31,8 @@ public class Climber extends Subsystem {
 			stopMotor();
 		}
 		
-		SmartDashboard.putNumber("Climber.talon.voltage", talon.getBusVoltage());
+		SmartDashboard.putNumber("Climber : voltage", talon.getOutputVoltage());
+		SmartDashboard.putNumber("Climber : current", talon.getOutputCurrent());
 	}
 
 	public void startMotor() {
