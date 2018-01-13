@@ -50,7 +50,8 @@ public class Stanley extends IterativeRobot {
 	
 	@Override
 	public void robotInit() {
-
+		System.out.println("Robot initializing...");
+		
 		mainController = configuration.initializeMainController();
 
 		auxController = configuration.initializeAuxController();

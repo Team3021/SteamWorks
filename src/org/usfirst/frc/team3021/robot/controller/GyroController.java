@@ -15,11 +15,14 @@ public class GyroController implements PIDOutput {
 	private final String PREF_GYRO_USB_ENABLED = "Gyro.usb.enabled";
 	private final String PREF_GYRO_MXP_ENABLED = "Gyro.mxp.enabled";
 	
-	private final String PREF_GYRO_ANGLE_ADJUSTMENT = "Gyro.angle.adjustment";
+	private final String PREF_GYRO_TURN_VALUE_MIN = "Gyro.turn.rate.min";
 	
-	private final String PREF_GYRO_TURN_RATE = "Gyro.turn.rate";
+	private final String PREF_GYRO_TURN_RATE_MAX = "Gyro.turn.rate.max";
 	
 	private final double GYRO_TURN_RATE_DEFAULT = 0.375;
+	
+	private double turnRateMin = 0.0;
+	private double turnRateMax = GYRO_TURN_RATE_DEFAULT;
 
 	// Member Attributes
 	private AHRS navx;
@@ -33,12 +36,12 @@ public class GyroController implements PIDOutput {
     /* and D constants and test the mechanism.                         */
     
     // Motor tuning values
-    static final double kP = 0.02; // Proportion
-    static final double kI = 0.00; // Integration 
-    static final double kD = 0.00; // Differential
+    static final double kP = 0.01; // Proportion
+    static final double kI = 0.00; // Integral 
+    static final double kD = 0.02; // Derivative
     static final double kF = 0.00; // Feedback
     
-    public static final double kToleranceDegrees = 2.0f; // Tolerance--Precision of turning with the Navx
+    public static final double kToleranceDegrees = 4.0f; // Tolerance--Precision of turning with the Navx
 	
 	public GyroController() {
 		if (!isGyroEnabled()) {
@@ -64,19 +67,23 @@ public class GyroController implements PIDOutput {
             DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
         }
         
-        resetGyro();
+        recalibrateGyro();
 
-        pidController = new PIDController(kP, kI, kD, kF, navx, this); 
+        pidController = new PIDController(kP, kI, kD, kF, navx, this, 0.01); 
         
         pidController.setInputRange(-180.0f, 180.0f);
         pidController.setAbsoluteTolerance(kToleranceDegrees);
         pidController.setContinuous(true);
 
-        double turnRate = Preferences.getInstance().getDouble(PREF_GYRO_TURN_RATE, GYRO_TURN_RATE_DEFAULT);
+		turnRateMin = Preferences.getInstance().getDouble(PREF_GYRO_TURN_VALUE_MIN, 0.0);
+        turnRateMax = Preferences.getInstance().getDouble(PREF_GYRO_TURN_RATE_MAX, GYRO_TURN_RATE_DEFAULT);
         
-        pidController.setOutputRange(-0.5, 0.5);
+        pidController.setOutputRange(-turnRateMax, turnRateMax);
         
-        pidController.enable();
+        pidController.setToleranceBuffer(25);
+        
+        enable();
+        
 	}
 	
 	private boolean isUSBEnabled() {
@@ -110,17 +117,26 @@ public class GyroController implements PIDOutput {
 	}
 
 	public double getTurnValue() {
-		double angleAdjustment = Preferences.getInstance().getDouble(PREF_GYRO_ANGLE_ADJUSTMENT, 0.0);
-		
-		double adjustedAngle = rotateToAngleRate + angleAdjustment;
-		
-		SmartDashboard.putNumber("GyroController : currentRotationRate",  adjustedAngle);
 
-		return adjustedAngle;
+		int turnDirection = getDirection(rotateToAngleRate);
+		
+		double turnValue = rotateToAngleRate;
+		
+		if (Math.abs(turnValue) > turnRateMax) {
+			turnValue = turnRateMax * turnDirection;
+		}
+		
+		if (Math.abs(turnValue) < turnRateMin) {
+			turnValue = turnRateMin * turnDirection;
+		}
+		
+		SmartDashboard.putNumber("GyroController : currentRotationRate",  turnValue);
+
+		return turnValue;
 	}
 
-	public void resetGyro() {
-		System.out.println("Resetting gyro");
+	private void recalibrateGyro() {
+		System.out.println("Recalibrating gyro");
 		
 		navx.reset();
 	}
@@ -131,10 +147,47 @@ public class GyroController implements PIDOutput {
 		navx.zeroYaw();
 	}
 	
+	public void enable() {
+		System.out.println("Enable the gyro");
+		
+		pidController.enable();
+	}
+	
+	public void reset() {
+		System.out.println("Reset the gyro");
+		
+		pidController.reset();
+	}
+	
+	public boolean isOnTarget() {
+		return pidController.onTarget();
+	}
+	
     @Override
     /* This function is invoked periodically by the PID Controller, */
     /* based upon navX MXP yaw angle input and PID Coefficients.    */
     public void pidWrite(double rotateToAngleRate) {
         this.rotateToAngleRate = rotateToAngleRate;
     }
+    
+	private int getDirection(double n) {
+		// Returns either 1, -1, or 0 depending on whether the argument is 
+		// positive, negative, or neutral respectively.
+		// Returns 0 when given -0 as an argument.
+
+		int result = 0;
+
+		if (n > 0) {
+			result = 1;
+		}
+		else if (n < -0) {
+			result = -1;
+		}
+		else {
+			result = 0;
+		}
+
+		return result;
+	}
+   
 }

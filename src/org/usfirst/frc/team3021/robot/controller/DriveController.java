@@ -164,6 +164,12 @@ public class DriveController {
 	}
 
 	public double getMotorOutput() {
+		
+		SmartDashboard.putNumber("Drive : Motor Voltage : Left Front", leftFrontTalon.getOutputVoltage());
+		SmartDashboard.putNumber("Drive : Motor Voltage : Left Rear", leftRearTalon.getOutputVoltage());
+		SmartDashboard.putNumber("Drive : Motor Voltage : Right Front", rightFrontTalon.getOutputVoltage());
+		SmartDashboard.putNumber("Drive : Motor Voltage : Right Rear", rightRearTalon.getOutputVoltage());
+		
 		return (leftFrontTalon.getOutputVoltage() + leftRearTalon.getOutputVoltage() + rightFrontTalon.getOutputVoltage() + rightRearTalon.getOutputVoltage()) / 4;
 	}
 }

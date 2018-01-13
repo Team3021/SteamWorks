@@ -90,12 +90,16 @@ public class Drive extends Subsystem {
 	// **********************              GYRO              **********************
 	// ****************************************************************************
 
-	public void resetGyro() {
-		gyroController.resetGyro();
-	}
-
 	public void zeroGyro() {
 		gyroController.zeroGyro();
+	}
+
+	public void enableGyro() {
+		gyroController.enable();
+	}
+
+	public void resetGyro() {
+		gyroController.reset();
 	}
 
 	private void setGyroDesiredAngle(double angle) {
@@ -114,6 +118,10 @@ public class Drive extends Subsystem {
 		return gyroController.isMoving();
 	}
 
+	public boolean isGyroOnTarget() {
+		return gyroController.isOnTarget();
+	}
+	
 	// ****************************************************************************
 	// **********************             TARGET             **********************
 	// ****************************************************************************
@@ -142,12 +150,10 @@ public class Drive extends Subsystem {
 		driveController.getEncoderDistance();
 		driveController.getEncoderRate();
 		
+		driveController.getMotorOutput();
+		
         if (mainController.isStoppingCommands() || auxController.isStoppingCommands()) {
         	Scheduler.getInstance().removeAll();
-        }
-		
-        if (mainController.isResettingNavx() || auxController.isResettingNavx()) {
-        	Stanley.robotDrive.resetGyro();
         }
 		
         if (mainController.isZeroGyro() || auxController.isZeroGyro()) {

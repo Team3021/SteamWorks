@@ -6,6 +6,11 @@ import org.usfirst.frc.team3021.robot.commands.DriveCommand;
 public class DriveWithJoystick extends DriveCommand {
 
 	@Override
+	protected void initialize() {
+		//Override to do nothing
+	}
+	
+	@Override
 	protected void execute() {
 		Stanley.robotDrive.drive(getMoveValue(), getTurnValue());
 	}
