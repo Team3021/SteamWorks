@@ -62,7 +62,7 @@ public abstract class RunnableDevice implements Runnable {
 		try {
 			Thread.sleep(millis);
 		} catch (InterruptedException e) {
-			// Ignore excpetion;
+			// Ignore exception;
 		}
 	}
 	
